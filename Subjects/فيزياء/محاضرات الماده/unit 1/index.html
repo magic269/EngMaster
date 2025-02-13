@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الفصل الأول: التيار الكهربي وقانون أوم وقانون كيرشوف</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            background-color: #142850;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: #00d9ff;
+        }
+
+        .btn-back {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            color: #00d9ff;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.2);
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 30px;
+        }
+
+        ul li {
+            margin: 10px 0;
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        ul li:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        footer {
+            background-color: #142850;
+            color: #00d9ff;
+            padding: 20px;
+            margin-top: auto;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        iframe {
+            width: 80%;
+            height: 500px;
+            margin-top: 30px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>الفصل الأول: التيار الكهربي وقانون أوم وقانون كيرشوف</h1>
+        <a href="../index.html" class="btn-back">&#8592;</a>
+    </header>
+    <main>
+        <ul>
+            <li><a href="#" onclick="openVideo('https://www.youtube.com/embed/408Q1oT7fyc', this)">المحاضرة الأولى</a></li>
+            <li><a href="#" onclick="openVideo('https://www.youtube.com/embed/2SdLB5UN4so', this)">المحاضرة الثانية</a></li>
+            <li><a href="#" onclick="openVideo('https://www.youtube.com/embed/2qyfiYajHCs', this)">المحاضرة الثالثة</a></li>
+            <li><a href="#" onclick="openVideo('https://www.youtube.com/embed/hzl_UnUbaMM', this)">المحاضرة الرابعة</a></li>
+            <li><a href="#" onclick="openVideo('https://www.youtube.com/embed/1NhtgLRECGI', this)">المحاضرة الخامسة</a></li>
+            <li><a href="#" onclick="openVideo('https://www.youtube.com/embed/QVTi8dbJrGA', this)">المحاضرة السادسة</a></li>
+            <li><a href="#" onclick="openVideo('https://www.youtube.com/embed/R8_Ha3rv-xY', this)">المحاضرة السابعة</a></li>
+            <li><a href="#" onclick="openVideo('https://www.youtube.com/embed/bdJhFpMf3GI', this)">المحاضرة الثامنة</a></li>
+            <li><a href="#" onclick="openVideo('https://www.youtube.com/embed/L1h1AoqPcPU', this)">المحاضرة التاسعة</a></li>
+            <li><a href="#" onclick="openVideo('https://www.youtube.com/embed/RSkf0nQUg7c', this)">ورشة عمل</a></li>
+        </ul>
+
+        <div id="videoContainer"></div>
+    </main>
+    <footer>
+        &copy; 2025 دليل معادلة كلية الهندسة. جميع الحقوق محفوظة.
+    </footer>
+
+    <script>
+        let lastOpenedVideo = null;
+        function openVideo(videoUrl, linkElement) {
+            if (lastOpenedVideo && lastOpenedVideo !== linkElement.parentElement) {
+                lastOpenedVideo.innerHTML = ''; // إغلاق الفيديو السابق
+            }
+            let videoContainer = linkElement.nextElementSibling;
+            if (!videoContainer) {
+                videoContainer = document.createElement('div');
+                videoContainer.className = 'video-container';
+                linkElement.parentElement.appendChild(videoContainer);
+            }
+            const iframe = document.createElement('iframe');
+            iframe.src = videoUrl;
+            iframe.frameBorder = "0";
+            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+            iframe.allowFullscreen = true;
+            videoContainer.innerHTML = '';
+            videoContainer.appendChild(iframe);
+            lastOpenedVideo = videoContainer;
+        }
+
+        // ✅ التحقق من توفر الروابط وتلوين الروابط غير المتاحة بالأحمر
+        document.querySelectorAll("ul li a").forEach(link => {
+            fetch(link.href, { method: 'HEAD' })
+                .then(response => {
+                    if (!response.ok) {
+                        link.style.color = "red";
+                        link.textContent += " (غير متاح)";
+                    }
+                })
+                .catch(() => {
+                    link.style.color = "red";
+                    link.textContent += " (غير متاح)";
+                });
+        });
+
+        // 🔥 منع أخطاء JavaScript من تعطيل الصفحة
+        try {
+            document.addEventListener("contextmenu", function (event) {
+                event.preventDefault();
+                alert("🚫 ممنوع النقر بزر الفأرة الأيمن!");
+            });
+        } catch (error) {
+            console.warn("حدث خطأ ولكن تم منعه: ", error);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
+    <meta name="referrer" content="no-referrer">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دليل معادلة كلية الهندسة</title>
+
+    <!-- تحسين الأداء -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <style>
+        body {
+            font-family: 'Cairo', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            text-align: center;
+            scroll-behavior: smooth;
+        }
+        header {
+            background: #142850;
+            color: white;
+            padding: 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        .menu {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .menu li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 10px;
+            transition: 0.3s;
+        }
+        .menu li a:hover {
+            background: #00d9ff;
+            color: #142850;
+            border-radius: 5px;
+        }
+        .hero {
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(to bottom, #142850, #27496d);
+            color: white;
+            margin-top: 80px;
+            padding: 20px;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 1.5rem;
+        }
+        .cta {
+            background: #00d9ff;
+            color: #142850;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            transition: 0.3s;
+        }
+        .cta:hover {
+            background: #1e90ff;
+        }
+        #subjects {
+            padding: 50px 20px;
+        }
+        .subjects-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .subject {
+            background: #259ee4;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 280px;
+            transition: 0.4s;
+        }
+        .subject:hover {
+            transform: scale(1.1);
+        }
+        #contact {
+            background: #142850;
+            color: white;
+            padding: 30px 20px;
+        }
+        footer {
+            background: #0c1b2a;
+            color: white;
+            padding: 10px;
+        }
+        #back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #00d9ff;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: none;
+            font-size: 1.5rem;
+            box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+        }
+        #back-to-top:hover {
+            background: #1e90ff;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">معادلة <span>كلية الهندسة</span></div>
+        <nav>
+            <ul class="menu">
+                <li><a href="#home">الرئيسية</a></li>
+                <li><a href="#subjects">المواد</a></li>
+                <li><a href="#contact">تواصل معنا</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>استعد للمعادلة بثقة</h1>
+        <p>كل ما تحتاجه للنجاح: مواد دراسية، تمارين، وامتحانات سابقة.</p>
+        <a href="#subjects" class="cta">ابدأ الآن</a>
+    </section>
+
+    <section id="subjects">
+        <h2>المواد الدراسية</h2>
+        <div class="subjects-container">
+            <div class="subject">
+                <a href="Subjects/انجليزي/index.html">
+                    <h3>انجليزي</h3>
+                    <p>تطوير مهاراتك في اللغة الإنجليزية الأكاديمية.</p>
+                </a>
+            </div>
+            <div class="subject">
+                <a href="Subjects/تفاضل%20و%20تكامل/index.html">
+                    <h3>تفاضل و تكامل</h3>
+                    <p>تعلم مبادئ التفاضل والتكامل وتطبيقاتهما.</p>
+                </a>
+            </div>
+            <div class="subject">
+                <a href="Subjects/جبر%20و%20هندسة%20فراغية/index.html">
+                    <h3>جبر و هندسة فراغية</h3>
+                    <p>استكشاف الأشكال الهندسية وحلول المعادلات.</p>
+                </a>
+            </div>
+            <div class="subject">
+                <a href="Subjects/فيزياء/index.html">
+                    <h3>فيزياء</h3>
+                    <p>تعرف على مبادئ الفيزياء الأساسية وتطبيقاتها.</p>
+                </a>
+            </div>
+            <div class="subject">
+                <a href="Subjects/كيمياء/index.html">
+                    <h3>كيمياء</h3>
+                    <p>دراسة التفاعلات الكيميائية وأساليب التحليل.</p>
+                </a>
+            </div>
+            <div class="subject">
+                <a href="Subjects/ميكانيكا/index.html">
+                    <h3>ميكانيكا</h3>
+                    <p>فهم ديناميكيات الحركة والتطبيقات العملية.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>تواصل معنا</h2>
+        <a href="https://chat.whatsapp.com/LuDMTtHNkR8Dv3ZYfG9J0M" target="_blank" rel="noopener noreferrer" class="cta">
+            انضم إلى جروب الواتساب
+        </a>
+        
+    </section>
+
+    <footer>
+            <p>&copy; 2025 EngMaster. جميع الحقوق محفوظة.</p>
+            <p><a href="LICENSE">عرض شروط الترخيص</a></p>
+        </footer>
+        
+
+    <button id="back-to-top" onclick="scrollToTop()">⬆</button>
+
+<script>
+    // ✅ التحقق من توفر الروابط وتلوين الروابط غير المتاحة بالأحمر
+    document.querySelectorAll(".subject a").forEach(link => {
+        fetch(link.href, { method: 'HEAD' })
+            .then(response => {
+                if (!response.ok) {
+                    link.style.color = "red";
+                    link.textContent += " (غير متاح)";
+                }
+            })
+            .catch(() => {
+                link.style.color = "red";
+                link.textContent += " (غير متاح)";
+            });
+    });
+
+    // 🔒 منع النقر بزر الفأرة الأيمن
+    document.addEventListener("contextmenu", function (event) {
+        event.preventDefault();
+        alert("🚫 ممنوع النقر بزر الفأرة الأيمن!");
+    });
+
+    // 🔒 منع تحديد النص
+    document.addEventListener("selectstart", function (event) {
+        event.preventDefault();
+    });
+
+    // 🔒 منع النسخ
+    document.addEventListener("copy", function (event) {
+        event.preventDefault();
+        alert("🚫 النسخ غير مسموح!");
+    });
+
+    // 🔒 منع فتح أدوات المطور (F12 و Ctrl+Shift+I و Ctrl+U و Ctrl+Shift+C)
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "F12" || 
+            (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "U" || event.key === "C"))) {
+            event.preventDefault();
+            alert("🚫 ممنوع الوصول إلى أدوات المطور!");
+        }
+    });
+
+    // 🔥 إخفاء Console كل 100ms لمنع التلاعب
+    setInterval(function() {
+        if (window.console && (console.log || console.error || console.warn)) {
+            console.clear();
+        }
+    }, 100);
+</script>
+
+
+</body>
+</html>
