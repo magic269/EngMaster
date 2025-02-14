@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    
-    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
-    <meta name="referrer" content="no-referrer">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
+    <meta name="referrer" content="no-referrer">
+    
     <title>دليل معادلة كلية الهندسة</title>
 
     <!-- تحسين الأداء -->
@@ -14,126 +14,335 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
+<body>
+    <div class="hamburger-menu" onclick="toggleMenu()">☰</div>
+    <div class="overlay" onclick="toggleMenu()"></div>
+    
+    <nav class="mobile-menu">
+        <ul class="subjects">
+            <li class="subject">
+                <a href="#" onclick="toggleSubMenu(event)"> فيزياء ⬇</a>
+                <ul class="submenu">
+                    <li><a class="subject" href="Subjects/فيزياء/index.html">محاضرات المادة</a></li>
+                    <li><a class="subject" href="Subjects/فيزياء/حل كتاب الامتحان/index.html">حل كتاب الامتحان</a></li>
+                    <li><a class="subject" href="Subjects/فيزياء/تمارين للمراجعه/index.html">تمارين للمراجعة</a></li>
+                    <li><a class="subject" href="Subjects/فيزياء/امتحانات سابقه/index.html">امتحانات سابقة</a></li>
+                    <li><a class="subject" href="Subjects/فيزياء/الكتب/index.html">الكتب</a></li>
+                </ul>
+            </li>
+    
+            <li class="subject">
+                <a href="#" onclick="toggleSubMenu(event)"> تفاضل وتكامل ⬇</a>
+                <ul class="submenu">
+                    <li><a class="subject" href="Subjects/تفاضل و تكامل/index.html">محاضرات المادة</a></li>
+                    <li><a class="subject" href="Subjects/تفاضل و تكامل/تمارين للمراجعه/index.html">تمارين للمراجعة</a></li>
+                    <li><a class="subject" href="Subjects/تفاضل و تكامل/امتحانات سابقه/index.html">امتحانات سابقة</a></li>
+                    <li><a class="subject" href="Subjects/تفاضل و تكامل/الكتب/index.html">الكتب</a></li>
+                </ul>
+            </li>
+    
+            <li class="subject">
+                <a href="#" onclick="toggleSubMenu(event)"> كيمياء ⬇</a>
+                <ul class="submenu">
+                    <li><a class="subject" href="Subjects/كيمياء/index.html">محاضرات المادة</a></li>
+                    <li><a class="subject" href="Subjects/كيمياء/تمارين للمراجعه/index.html">تمارين للمراجعة</a></li>
+                    <li><a class="subject" href="Subjects/كيمياء/امتحانات سابقه/index.html">امتحانات سابقة</a></li>
+                    <li><a class="subject" href="Subjects/كيمياء/الكتب/index.html">الكتب</a></li>
+                </ul>
+            </li>
+    
+            <li class="subject">
+                <a href="#" onclick="toggleSubMenu(event)"> ميكانيكا ⬇</a>
+                <ul class="submenu">
+                    <li><a class="subject" href="Subjects/ميكانيكا/index.html">محاضرات المادة</a></li>
+                    <li><a class="subject" href="Subjects/ميكانيكا/تمارين للمراجعه/index.html">تمارين للمراجعة</a></li>
+                    <li><a class="subject" href="Subjects/ميكانيكا/امتحانات سابقه/index.html">امتحانات سابقة</a></li>
+                    <li><a class="subject" href="Subjects/ميكانيكا/الكتب/index.html">الكتب</a></li>
+                </ul>
+            </li>
+    
+            <li class="subject">
+                <a href="#" onclick="toggleSubMenu(event)"> إنجليزي ⬇</a>
+                <ul class="submenu">
+                    <li><a class="subject" href="Subjects/انجليزي/index.html">محاضرات المادة</a></li>
+                    <li><a class="subject" href="Subjects/انجليزي/تمارين للمراجعه/index.html">تمارين للمراجعة</a></li>
+                    <li><a class="subject" href="Subjects/انجليزي/امتحانات سابقه/index.html">امتحانات سابقة</a></li>
+                    <li><a class="subject" href="Subjects/انجليزي/الكتب/index.html">الكتب</a></li>
+                </ul>
+            </li>
+    
+            <li class="subject">
+                <a href="#" onclick="toggleSubMenu(event)"> جبر و هندسة فراغية ⬇</a>
+                <ul class="submenu">
+                    <li><a class="subject" href="Subjects/جبر و هندسة فراغية/index.html">محاضرات المادة</a></li>
+                    <li><a class="subject" href="Subjects/جبر و هندسة فراغية/تمارين للمراجعه/index.html">تمارين للمراجعة</a></li>
+                    <li><a class="subject" href="Subjects/جبر و هندسة فراغية/امتحانات سابقه/index.html">امتحانات سابقة</a></li>
+                    <li><a class="subject" href="Subjects/جبر و هندسة فراغية/كتب/index.html">الكتب</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    
     <style>
-        body {
-            font-family: 'Cairo', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: #f4f4f4;
-            text-align: center;
-            scroll-behavior: smooth;
-        }
-        header {
-            background: #142850;
-            color: white;
-            padding: 20px;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-        }
-        .logo {
-            font-size: 2.5rem;
-            font-weight: bold;
-        }
-        .menu {
-            list-style: none;
-            padding: 0;
-            margin: 10px 0 0;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-        }
-        .menu li a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.2rem;
-            padding: 10px;
-            transition: 0.3s;
-        }
-        .menu li a:hover {
-            background: #00d9ff;
-            color: #142850;
-            border-radius: 5px;
-        }
-        .hero {
-            height: 90vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: linear-gradient(to bottom, #142850, #27496d);
-            color: white;
-            margin-top: 80px;
-            padding: 20px;
-        }
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
-        .hero p {
-            font-size: 1.5rem;
-        }
-        .cta {
-            background: #00d9ff;
-            color: #142850;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 1.2rem;
-            transition: 0.3s;
-        }
-        .cta:hover {
-            background: #1e90ff;
-        }
-        #subjects {
-            padding: 50px 20px;
-        }
-        .subjects-container {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-        .subject {
-            background: #259ee4;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            width: 280px;
-            transition: 0.4s;
-        }
-        .subject:hover {
-            transform: scale(1.1);
-        }
-        #contact {
-            background: #142850;
-            color: white;
-            padding: 30px 20px;
-        }
-        footer {
-            background: #0c1b2a;
-            color: white;
-            padding: 10px;
-        }
-        #back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #00d9ff;
-            color: white;
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: none;
-            font-size: 1.5rem;
-            box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
-        }
-        #back-to-top:hover {
-            background: #1e90ff;
-        }
+/* الأساسيات */
+body {
+    font-family: 'Cairo', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    text-align: center;
+    scroll-behavior: smooth;
+}
+
+/* الهيدر */
+header {
+    background: #142850;
+    color: white;
+    padding: 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+/* القائمة العلوية */
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.menu li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    padding: 10px;
+    transition: 0.3s;
+}
+
+.menu li a:hover {
+    background: #00d9ff;
+    color: #142850;
+    border-radius: 5px;
+}
+
+/* قسم الهيرو */
+.hero {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #142850, #27496d);
+    color: white;
+    margin-top: 80px;
+    padding: 20px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.5rem;
+}
+
+/* زر CTA */
+.cta {
+    background: #00d9ff;
+    color: #142850;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+.cta:hover {
+    background: #1e90ff;
+}
+
+/* قسم المواد */
+#subjects {
+    padding: 50px 20px;
+}
+
+.subjects-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.subject {
+    background: #259ee4;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 280px;
+    transition: 0.4s;
+}
+
+.subject:hover {
+    transform: scale(1.1);
+}
+
+/* الفوتر */
+#contact {
+    background: #142850;
+    color: white;
+    padding: 30px 20px;
+}
+
+footer {
+    background: #0c1b2a;
+    color: white;
+    padding: 10px;
+}
+
+/* زر العودة للأعلى */
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #00d9ff;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    font-size: 1.5rem;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+}
+
+#back-to-top:hover {
+    background: #1e90ff;
+}
+
+/* زر الهامبرجر */
+.hamburger-menu {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 1100;
+    background: #00d9ff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.hamburger-menu:hover {
+    background: #1e90ff;
+}
+
+/* الخلفية الشفافة عند فتح القائمة */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+/* القائمة الجانبية */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -250px;
+    width: 220px;
+    background: #142850;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
+    height: 100vh;
+    transition: 0.3s ease-in-out;
+    padding-top: 60px;
+    overflow-y: auto;
+}
+
+/* عرض القائمة عند الفتح */
+.mobile-menu.active {
+    right: 0;
+}
+
+/* تنسيق عناصر القائمة */
+.mobile-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: right;
+}
+
+.mobile-menu ul li {
+    padding: 15px;
+}
+
+.mobile-menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    display: block;
+    padding: 10px 15px;
+    transition: 0.3s;
+}
+
+.mobile-menu ul li a:hover {
+    background: #00d9ff;
+    border-radius: 5px;
+    color: #142850;
+}
+
+/* القوائم الفرعية */
+.submenu {
+    list-style: none;
+    padding: 0;
+    display: none;
+}
+
+.submenu li a {
+    padding-left: 30px;
+    background: #1e3a5f;
+}
+
+/* تأثير ظهور القوائم الفرعية */
+.subject.open .submenu {
+    display: block;
+}
+
+/* أنيميشن ناعم للقائمة */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* عند فتح القائمة */
+.overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
     </style>
+    
 </head>
 <body>
 
@@ -213,9 +422,10 @@
     <button id="back-to-top" onclick="scrollToTop()">⬆</button>
 
 <script>
+document.addEventListener("DOMContentLoaded", function () {
     // ✅ التحقق من توفر الروابط وتلوين الروابط غير المتاحة بالأحمر
     document.querySelectorAll(".subject a").forEach(link => {
-        fetch(link.href, { method: 'HEAD' })
+        fetch(link.href, { method: "HEAD" })
             .then(response => {
                 if (!response.ok) {
                     link.style.color = "red";
@@ -245,7 +455,7 @@
         alert("🚫 النسخ غير مسموح!");
     });
 
-    // 🔒 منع فتح أدوات المطور (F12 و Ctrl+Shift+I و Ctrl+U و Ctrl+Shift+C)
+    // 🔒 منع فتح أدوات المطور
     document.addEventListener("keydown", function (event) {
         if (event.key === "F12" || 
             (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "U" || event.key === "C"))) {
@@ -254,14 +464,33 @@
         }
     });
 
-    // 🔥 إخفاء Console كل 100ms لمنع التلاعب
-    setInterval(function() {
+    // 🔥 إخفاء Console لمنع التلاعب
+    setInterval(function () {
         if (window.console && (console.log || console.error || console.warn)) {
             console.clear();
         }
     }, 100);
+
+    // ✅ فتح/إغلاق القائمة الجانبية (الهامبرجر)
+    document.querySelector(".hamburger-menu").addEventListener("click", function () {
+        document.querySelector(".mobile-menu").classList.toggle("active");
+        document.querySelector(".overlay").classList.toggle("active");
+    });
+
+    // ✅ إغلاق القائمة عند الضغط على الخلفية
+    document.querySelector(".overlay").addEventListener("click", function () {
+        document.querySelector(".mobile-menu").classList.remove("active");
+        document.querySelector(".overlay").classList.remove("active");
+    });
+
+    // ✅ فتح/إغلاق القوائم الفرعية داخل القائمة الجانبية فقط
+    document.querySelectorAll(".mobile-menu .subject > a").forEach(subject => {
+        subject.addEventListener("click", function (event) {
+            event.preventDefault();
+            this.parentElement.classList.toggle("open");
+        });
+    });
+});
 </script>
-
-
 </body>
 </html>
