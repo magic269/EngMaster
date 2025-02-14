@@ -30,7 +30,18 @@
                     <li><a class="subject" href="Subjects/فيزياء/الكتب/index.html">الكتب</a></li>
                 </ul>
             </li>
-    
+            
+            <li class="subject">
+                <a href="#" onclick="toggleSubMenu(event)"> فيزياء ⬇</a>
+                <ul class="submenu">
+                    <li><a class="subject" href="Subjects/فيزياء/index.html">محاضرات المادة</a></li>
+                    <li><a class="subject" href="Subjects/فيزياء/حل كتاب الامتحان/index.html">حل كتاب الامتحان</a></li>
+                    <li><a class="subject" href="Subjects/فيزياء/تمارين للمراجعه/index.html">تمارين للمراجعة</a></li>
+                    <li><a class="subject" href="Subjects/فيزياء/امتحانات سابقه/index.html">امتحانات سابقة</a></li>
+                    <li><a class="subject" href="Subjects/فيزياء/الكتب/index.html">الكتب</a></li>
+                </ul>
+            </li>
+
             <li class="subject">
                 <a href="#" onclick="toggleSubMenu(event)"> تفاضل وتكامل ⬇</a>
                 <ul class="submenu">
@@ -340,6 +351,61 @@ footer {
 .overlay.active {
     visibility: visible;
     opacity: 1;
+}
+
+/* تصميم متجاوب */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+
+    .btn-back {
+        top: 10px;
+        right: 10px;
+        font-size: 1.2rem;
+        width: 35px;
+        height: 35px;
+    }
+
+    .content h2 {
+        font-size: 1.5rem;
+    }
+
+    .content ul li {
+        font-size: 1rem;
+        padding: 12px;
+    }
+
+    .content ul li a {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .btn-back {
+        top: 8px;
+        right: 8px;
+        font-size: 1rem;
+        width: 30px;
+        height: 30px;
+    }
+
+    .content h2 {
+        font-size: 1.2rem;
+    }
+
+    .content ul li {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .content ul li a {
+        font-size: 0.9rem;
+    }
 }
     </style>
     
