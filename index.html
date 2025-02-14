@@ -147,17 +147,161 @@ header {
 }
 
 /* زر القائمة */
-#menuButton {
-    width: 40px; /* تقليل عرض الزر */
-    height: 40px; /* تقليل ارتفاع الزر */
-    font-size: 14px; /* تصغير حجم النص */
-    transition: opacity 0.3s ease-in-out;
+.hamburger-menu {
+    position: fixed;
+    top: 15px;
+    right: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1100;
+    background: #00d9ff;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 5px;
+    transition: 0.3s;
 }
 
-/* القوائم المنسدلة */
-.dropdown-menu {
-    font-size: 14px; /* تصغير حجم النص في القوائم */
-    padding: 5px; /* تقليل التباعد */
+.hamburger-menu:hover {
+    background: #1e90ff;
+}
+
+@media (max-width: 768px) {
+    .hamburger-menu {
+        font-size: 1.2rem;
+        padding: 5px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hamburger-menu {
+        font-size: 1rem;
+        padding: 4px 6px;
+    }
+}
+
+/* الخلفية الشفافة عند فتح القائمة */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+/* القائمة الجانبية */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -250px;
+    width: 220px;
+    background: #142850;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
+    height: 100vh;
+    transition: 0.3s ease-in-out;
+    padding-top: 60px;
+    overflow-y: auto;
+}
+
+/* عرض القائمة عند الفتح */
+.mobile-menu.active {
+    right: 0;
+}
+
+/* تنسيق عناصر القائمة */
+.mobile-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: right;
+}
+
+.mobile-menu ul li {
+    padding: 12px;
+}
+
+.mobile-menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    display: block;
+    padding: 12px 15px;
+    transition: 0.3s;
+    white-space: nowrap; /* منع تقطيع النص */
+}
+
+.mobile-menu ul li a:hover {
+    background: #00d9ff;
+    border-radius: 5px;
+    color: #142850;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu ul li a {
+        font-size: 1rem;
+        padding: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .mobile-menu ul li a {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
+}
+
+/* ✅ تصغير حجم القوائم الفرعية */
+.submenu {
+    width: 100%; /* جعل القائمة الفرعية تأخذ كل العرض */
+    background: #1e3a5f;
+    padding: 5px 10px; /* تقليل التباعد بين العناصر */
+    font-size: 1rem; /* تصغير الخط */
+    border-radius: 5px;
+    display: none;
+}
+
+.submenu li a {
+    padding: 5px 10px; /* تقليل الحواف */
+    font-size: 0.9rem; /* تصغير الخط أكثر */
+}
+
+/* ✅ ضبط حجم القوائم الفرعية على الأجهزة الصغيرة */
+@media (max-width: 768px) {
+    .submenu {
+        font-size: 0.85rem; /* تصغير الخط */
+        padding: 4px 8px;
+    }
+
+    .submenu li a {
+        padding: 4px 8px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .submenu {
+        font-size: 0.8rem; /* تصغير الخط أكثر للموبايلات */
+        padding: 3px 6px;
+    }
+
+    .submenu li a {
+        padding: 3px 6px;
+        font-size: 0.75rem;
+    }
+}
+
+/* تأثير ظهور القوائم الفرعية */
+.subject.open .submenu {
+    display: block;
+}
+
+/* عند فتح القائمة */
+.overlay.active {
+    visibility: visible;
+    opacity: 1;
 }
 
 /* قسم الهيرو */
@@ -254,119 +398,10 @@ footer {
     background: #1e90ff;
 }
 
-/* زر الهامبرجر */
-.hamburger-menu {
-    position: fixed;
-    top: 15px;
-    right: 20px;
-    font-size: 1.8rem;
-    cursor: pointer;
-    z-index: 1100;
-    background: #00d9ff;
-    color: white;
-    padding: 8px 12px;
-    border-radius: 5px;
-    transition: 0.3s;
-}
-
-.hamburger-menu:hover {
-    background: #1e90ff;
-}
-
-/* الخلفية الشفافة عند فتح القائمة */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    visibility: hidden;
-    opacity: 0;
-    transition: 0.3s;
-}
-
-/* القائمة الجانبية */
-.mobile-menu {
-    position: fixed;
-    top: 0;
-    right: -250px;
-    width: 220px;
-    background: #142850;
-    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
-    height: 100vh;
-    transition: 0.3s ease-in-out;
-    padding-top: 60px;
-    overflow-y: auto;
-}
-
-/* عرض القائمة عند الفتح */
-.mobile-menu.active {
-    right: 0;
-}
-
-/* تنسيق عناصر القائمة */
-.mobile-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    text-align: right;
-}
-
-.mobile-menu ul li {
-    padding: 12px;
-}
-
-.mobile-menu ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
-    display: block;
-    padding: 8px 12px;
-    transition: 0.3s;
-}
-
-.mobile-menu ul li a:hover {
-    background: #00d9ff;
-    border-radius: 5px;
-    color: #142850;
-}
-
-/* القوائم الفرعية */
-.submenu {
-    list-style: none;
-    padding: 0;
-    display: none;
-}
-
-.submenu li a {
-    padding-left: 30px;
-    background: #1e3a5f;
-}
-
-/* تأثير ظهور القوائم الفرعية */
-.subject.open .submenu {
-    display: block;
-}
-
-/* عند فتح القائمة */
-.overlay.active {
-    visibility: visible;
-    opacity: 1;
-}
-
 /* تصميم متجاوب */
 @media (max-width: 768px) {
     header h1 {
         font-size: 2rem;
-    }
-
-    .btn-back {
-        top: 10px;
-        right: 10px;
-        font-size: 1.2rem;
-        width: 35px;
-        height: 35px;
     }
 
     .content h2 {
@@ -386,14 +421,6 @@ footer {
 @media (max-width: 480px) {
     header h1 {
         font-size: 1.5rem;
-    }
-
-    .btn-back {
-        top: 8px;
-        right: 8px;
-        font-size: 1rem;
-        width: 30px;
-        height: 30px;
     }
 
     .content h2 {
@@ -559,26 +586,31 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // ✅ إخفاء الزر عند التمرير لأسفل
+    // ✅ إخفاء زر القائمة عند التمرير لأسفل
     let lastScrollTop = 0;
-    const button = document.getElementById("menuButton");
+    const menuButton = document.querySelector(".hamburger-menu");
 
-    if (button) { // التأكد من وجود الزر قبل تطبيق الحدث
-        window.addEventListener("scroll", function () {
-            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            if (scrollTop > lastScrollTop) {
-                // عند التمرير لأسفل، يخفي الزر
-                button.style.opacity = "0";
-                button.style.pointerEvents = "none"; // يمنع التفاعل معه عند إخفائه
-            } else {
-                // عند التمرير لأعلى، يظهر الزر
-                button.style.opacity = "1";
-                button.style.pointerEvents = "auto";
-            }
-            lastScrollTop = scrollTop;
-        });
-    }
+    window.addEventListener("scroll", function () {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        let heroSectionHeight = document.querySelector(".hero").offsetHeight;
+
+        if (scrollTop > heroSectionHeight - 100) {
+            menuButton.style.opacity = "0";
+            menuButton.style.pointerEvents = "none";
+        } else {
+            menuButton.style.opacity = "1";
+            menuButton.style.pointerEvents = "auto";
+        }
+
+        if (scrollTop > lastScrollTop) {
+            menuButton.style.opacity = "0";
+            menuButton.style.pointerEvents = "none";
+        } else {
+            menuButton.style.opacity = "1";
+            menuButton.style.pointerEvents = "auto";
+        }
+        lastScrollTop = scrollTop;
+    });
 });
 </script>
 </body>
