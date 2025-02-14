@@ -30,7 +30,7 @@
                     <li><a class="subject" href="Subjects/فيزياء/الكتب/index.html">الكتب</a></li>
                 </ul>
             </li>
-            
+
             <li class="subject">
                 <a href="#" onclick="toggleSubMenu(event)"> فيزياء ⬇</a>
                 <ul class="submenu">
@@ -146,6 +146,20 @@ header {
     border-radius: 5px;
 }
 
+/* زر القائمة */
+#menuButton {
+    width: 40px; /* تقليل عرض الزر */
+    height: 40px; /* تقليل ارتفاع الزر */
+    font-size: 14px; /* تصغير حجم النص */
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* القوائم المنسدلة */
+.dropdown-menu {
+    font-size: 14px; /* تصغير حجم النص في القوائم */
+    padding: 5px; /* تقليل التباعد */
+}
+
 /* قسم الهيرو */
 .hero {
     height: 90vh;
@@ -245,12 +259,12 @@ footer {
     position: fixed;
     top: 15px;
     right: 20px;
-    font-size: 2rem;
+    font-size: 1.8rem;
     cursor: pointer;
     z-index: 1100;
     background: #00d9ff;
     color: white;
-    padding: 10px 15px;
+    padding: 8px 12px;
     border-radius: 5px;
     transition: 0.3s;
 }
@@ -300,15 +314,15 @@ footer {
 }
 
 .mobile-menu ul li {
-    padding: 15px;
+    padding: 12px;
 }
 
 .mobile-menu ul li a {
     color: white;
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1rem;
     display: block;
-    padding: 10px 15px;
+    padding: 8px 12px;
     transition: 0.3s;
 }
 
@@ -333,18 +347,6 @@ footer {
 /* تأثير ظهور القوائم الفرعية */
 .subject.open .submenu {
     display: block;
-}
-
-/* أنيميشن ناعم للقائمة */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-5px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 /* عند فتح القائمة */
@@ -556,6 +558,27 @@ document.addEventListener("DOMContentLoaded", function () {
             this.parentElement.classList.toggle("open");
         });
     });
+
+    // ✅ إخفاء الزر عند التمرير لأسفل
+    let lastScrollTop = 0;
+    const button = document.getElementById("menuButton");
+
+    if (button) { // التأكد من وجود الزر قبل تطبيق الحدث
+        window.addEventListener("scroll", function () {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop) {
+                // عند التمرير لأسفل، يخفي الزر
+                button.style.opacity = "0";
+                button.style.pointerEvents = "none"; // يمنع التفاعل معه عند إخفائه
+            } else {
+                // عند التمرير لأعلى، يظهر الزر
+                button.style.opacity = "1";
+                button.style.pointerEvents = "auto";
+            }
+            lastScrollTop = scrollTop;
+        });
+    }
 });
 </script>
 </body>
