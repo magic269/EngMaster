@@ -79,6 +79,22 @@ header {
     transition: transform 0.3s ease;
 }
 
+/* 🔽 تحسين حجم صورة زر الهامبرغر للأجهزة الصغيرة */
+@media (max-width: 768px) {
+    .hamburger-menu img {
+        width: 36px;
+        height: 36px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hamburger-menu img {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+
 .hamburger-menu:hover img {
     transform: rotate(15deg) scale(1.05);
 }
