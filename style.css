@@ -14,7 +14,7 @@ body.no-scroll {
     overflow: hidden;
 }
 
-/* ✅ الهيدر */
+/* ✅ الهيدر - تبقى كما هي للكمبيوتر */
 header {
     background: #142850;
     color: white;
@@ -26,28 +26,12 @@ header {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
 }
 
-/* ✅ تحسين حجم "معادلة هندسة" في الهيدر */
 .logo {
-    font-size: 2rem; /* الحجم الافتراضي */
+    font-size: 2rem;
     font-weight: bold;
 }
 
-/* 🔽 تقليل الحجم على الأجهزة اللوحية */
-@media (max-width: 768px) {
-    .logo {
-        font-size: 1.6rem;
-    }
-}
-
-/* 🔽 تقليل الحجم أكثر على الهواتف الصغيرة */
-@media (max-width: 480px) {
-    .logo {
-        font-size: 1.3rem;
-    }
-}
-
-
-/* ✅ القائمة العلوية */
+/* ✅ القائمة العلوية للكمبيوتر */
 .menu {
     list-style: none;
     padding: 0;
@@ -357,21 +341,42 @@ footer {
     background: #1e90ff;
 }
 
-/* ✅ تصميم متجاوب */
+/* ========= تحسينات الاستجابة ========= */
+/* 🔽 للأجهزة اللوحية (768px فأقل) */
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 2rem;
+    .logo {
+        font-size: 1.6rem;
+    }
+    
+    /* إخفاء القائمة العلوية */
+    .menu {
+        display: none;
+    }
+    
+    /* إظهار زر الهامبرجر */
+    .hamburger-menu {
+        display: block;
     }
     
     .hamburger-menu img {
         width: 40px;
         height: 40px;
     }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
 }
 
+/* 🔽 للهواتف الصغيرة (480px فأقل) */
 @media (max-width: 480px) {
-    header h1 {
-        font-size: 1.5rem;
+    .logo {
+        font-size: 1.3rem;
+    }
+    
+    .hamburger-menu {
+        top: 15px;
+        right: 15px;
     }
     
     .hamburger-menu img {
@@ -379,8 +384,25 @@ footer {
         height: 35px;
     }
     
+    .mobile-menu {
+        width: 160px;
+    }
+    
     .mobile-menu ul li a {
-        font-size: 0.85rem;
-        padding: 6px;
+        font-size: 0.9rem;
+        padding: 8px 12px;
+    }
+    
+    .hero h1 {
+        font-size: 2rem;
+    }
+    
+    .hero p {
+        font-size: 1.2rem;
+    }
+    
+    .subject {
+        width: 100%;
+        max-width: 280px;
     }
 }
