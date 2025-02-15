@@ -14,10 +14,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
+    <!-- ربط ملف الـ CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
 <body>
+    <!-- زر القائمة الجانبية -->
     <div class="hamburger-menu" onclick="toggleMenu()">☰</div>
     <div class="overlay" onclick="toggleMenu()"></div>
     
+    <!-- القائمة الجانبية -->
     <nav class="mobile-menu">
         <ul class="subjects">
             <li class="subject">
@@ -93,354 +98,8 @@
             </li>
         </ul>
     </nav>
-    
-    <style>
-/* الأساسيات */
-body {
-    font-family: 'Cairo', Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f4f4f4;
-    text-align: center;
-    scroll-behavior: smooth;
-}
 
-/* الهيدر */
-header {
-    background: #142850;
-    color: white;
-    padding: 20px;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-.logo {
-    font-size: 2.5rem;
-    font-weight: bold;
-}
-
-/* القائمة العلوية */
-.menu {
-    list-style: none;
-    padding: 0;
-    margin: 10px 0 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-.menu li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
-    padding: 10px;
-    transition: 0.3s;
-}
-
-.menu li a:hover {
-    background: #00d9ff;
-    color: #142850;
-    border-radius: 5px;
-}
-
-/* زر القائمة */
-.hamburger-menu {
-    position: fixed;
-    top: 15px;
-    right: 20px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    z-index: 1100;
-    background: #00d9ff;
-    color: white;
-    padding: 6px 10px;
-    border-radius: 5px;
-    transition: 0.3s;
-}
-
-.hamburger-menu:hover {
-    background: #1e90ff;
-}
-
-@media (max-width: 768px) {
-    .hamburger-menu {
-        font-size: 1.2rem;
-        padding: 5px 8px;
-    }
-}
-
-@media (max-width: 480px) {
-    .hamburger-menu {
-        font-size: 1rem;
-        padding: 4px 6px;
-    }
-}
-
-/* الخلفية الشفافة عند فتح القائمة */
-.overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    visibility: hidden;
-    opacity: 0;
-    transition: 0.3s;
-}
-
-/* القائمة الجانبية */
-.mobile-menu {
-    position: fixed;
-    top: 0;
-    right: -250px;
-    width: 220px;
-    background: #142850;
-    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
-    height: 100vh;
-    transition: 0.3s ease-in-out;
-    padding-top: 60px;
-    overflow-y: auto;
-}
-
-/* عرض القائمة عند الفتح */
-.mobile-menu.active {
-    right: 0;
-}
-
-/* تنسيق عناصر القائمة */
-.mobile-menu ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    text-align: right;
-}
-
-.mobile-menu ul li {
-    padding: 12px;
-}
-
-.mobile-menu ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.1rem;
-    display: block;
-    padding: 12px 15px;
-    transition: 0.3s;
-    white-space: nowrap; /* منع تقطيع النص */
-}
-
-.mobile-menu ul li a:hover {
-    background: #00d9ff;
-    border-radius: 5px;
-    color: #142850;
-}
-
-@media (max-width: 768px) {
-    .mobile-menu ul li a {
-        font-size: 1rem;
-        padding: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .mobile-menu ul li a {
-        font-size: 0.9rem;
-        padding: 8px;
-    }
-}
-
-/* ✅ تصغير حجم القوائم الفرعية */
-.submenu {
-    width: 100%; /* جعل القائمة الفرعية تأخذ كل العرض */
-    background: #1e3a5f;
-    padding: 5px 10px; /* تقليل التباعد بين العناصر */
-    font-size: 1rem; /* تصغير الخط */
-    border-radius: 5px;
-    display: none;
-}
-
-.submenu li a {
-    padding: 5px 10px; /* تقليل الحواف */
-    font-size: 0.9rem; /* تصغير الخط أكثر */
-}
-
-/* ✅ ضبط حجم القوائم الفرعية على الأجهزة الصغيرة */
-@media (max-width: 768px) {
-    .submenu {
-        font-size: 0.85rem; /* تصغير الخط */
-        padding: 4px 8px;
-    }
-
-    .submenu li a {
-        padding: 4px 8px;
-        font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 480px) {
-    .submenu {
-        font-size: 0.8rem; /* تصغير الخط أكثر للموبايلات */
-        padding: 3px 6px;
-    }
-
-    .submenu li a {
-        padding: 3px 6px;
-        font-size: 0.75rem;
-    }
-}
-
-/* تأثير ظهور القوائم الفرعية */
-.subject.open .submenu {
-    display: block;
-}
-
-/* عند فتح القائمة */
-.overlay.active {
-    visibility: visible;
-    opacity: 1;
-}
-
-/* قسم الهيرو */
-.hero {
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(to bottom, #142850, #27496d);
-    color: white;
-    margin-top: 80px;
-    padding: 20px;
-}
-
-.hero h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
-}
-
-.hero p {
-    font-size: 1.5rem;
-}
-
-/* زر CTA */
-.cta {
-    background: #00d9ff;
-    color: #142850;
-    padding: 15px 30px;
-    text-decoration: none;
-    border-radius: 5px;
-    font-size: 1.2rem;
-    transition: 0.3s;
-}
-
-.cta:hover {
-    background: #1e90ff;
-}
-
-/* قسم المواد */
-#subjects {
-    padding: 50px 20px;
-}
-
-.subjects-container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-}
-
-.subject {
-    background: #259ee4;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    width: 280px;
-    transition: 0.4s;
-}
-
-.subject:hover {
-    transform: scale(1.1);
-}
-
-/* الفوتر */
-#contact {
-    background: #142850;
-    color: white;
-    padding: 30px 20px;
-}
-
-footer {
-    background: #0c1b2a;
-    color: white;
-    padding: 10px;
-}
-
-/* زر العودة للأعلى */
-#back-to-top {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #00d9ff;
-    color: white;
-    padding: 10px;
-    border-radius: 50%;
-    cursor: pointer;
-    display: none;
-    font-size: 1.5rem;
-    box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
-}
-
-#back-to-top:hover {
-    background: #1e90ff;
-}
-
-/* تصميم متجاوب */
-@media (max-width: 768px) {
-    header h1 {
-        font-size: 2rem;
-    }
-
-    .content h2 {
-        font-size: 1.5rem;
-    }
-
-    .content ul li {
-        font-size: 1rem;
-        padding: 12px;
-    }
-
-    .content ul li a {
-        font-size: 1rem;
-    }
-}
-
-@media (max-width: 480px) {
-    header h1 {
-        font-size: 1.5rem;
-    }
-
-    .content h2 {
-        font-size: 1.2rem;
-    }
-
-    .content ul li {
-        font-size: 0.9rem;
-        padding: 10px;
-    }
-
-    .content ul li a {
-        font-size: 0.9rem;
-    }
-}
-    </style>
-    
-</head>
-<body>
-
+    <!-- الهيدر -->
     <header>
         <div class="logo">معادلة <span>كلية الهندسة</span></div>
         <nav>
@@ -452,12 +111,14 @@ footer {
         </nav>
     </header>
 
+    <!-- قسم الهيرو -->
     <section id="home" class="hero">
         <h1>استعد للمعادلة بثقة</h1>
         <p>كل ما تحتاجه للنجاح: مواد دراسية، تمارين، وامتحانات سابقة.</p>
         <a href="#subjects" class="cta">ابدأ الآن</a>
     </section>
 
+    <!-- قسم المواد الدراسية -->
     <section id="subjects">
         <h2>المواد الدراسية</h2>
         <div class="subjects-container">
@@ -500,118 +161,25 @@ footer {
         </div>
     </section>
 
+    <!-- قسم التواصل -->
     <section id="contact">
         <h2>تواصل معنا</h2>
         <a href="https://chat.whatsapp.com/LuDMTtHNkR8Dv3ZYfG9J0M" target="_blank" rel="noopener noreferrer" class="cta">
             انضم إلى جروب الواتساب
         </a>
-        
     </section>
 
+    <!-- الفوتر -->
     <footer>
-            <p>&copy; 2025 EngMaster. جميع الحقوق محفوظة.</p>
-            <p><a href="LICENSE">عرض شروط الترخيص</a></p>
-        </footer>
-        
+        <p>&copy; 2025 EngMaster. جميع الحقوق محفوظة.</p>
+        <p><a href="LICENSE">عرض شروط الترخيص</a></p>
+    </footer>
 
+    <!-- زر العودة للأعلى -->
     <button id="back-to-top" onclick="scrollToTop()">⬆</button>
 
-<script>
-document.addEventListener("DOMContentLoaded", function () {
-    // ✅ التحقق من توفر الروابط وتلوين الروابط غير المتاحة بالأحمر
-    document.querySelectorAll(".subject a").forEach(link => {
-        fetch(link.href, { method: "HEAD" })
-            .then(response => {
-                if (!response.ok) {
-                    link.style.color = "red";
-                    link.textContent += " (غير متاح)";
-                }
-            })
-            .catch(() => {
-                link.style.color = "red";
-                link.textContent += " (غير متاح)";
-            });
-    });
-
-    // 🔒 منع النقر بزر الفأرة الأيمن
-    document.addEventListener("contextmenu", function (event) {
-        event.preventDefault();
-        alert("🚫 ممنوع النقر بزر الفأرة الأيمن!");
-    });
-
-    // 🔒 منع تحديد النص
-    document.addEventListener("selectstart", function (event) {
-        event.preventDefault();
-    });
-
-    // 🔒 منع النسخ
-    document.addEventListener("copy", function (event) {
-        event.preventDefault();
-        alert("🚫 النسخ غير مسموح!");
-    });
-
-    // 🔒 منع فتح أدوات المطور
-    document.addEventListener("keydown", function (event) {
-        if (event.key === "F12" || 
-            (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "U" || event.key === "C"))) {
-            event.preventDefault();
-            alert("🚫 ممنوع الوصول إلى أدوات المطور!");
-        }
-    });
-
-    // 🔥 إخفاء Console لمنع التلاعب
-    setInterval(function () {
-        if (window.console && (console.log || console.error || console.warn)) {
-            console.clear();
-        }
-    }, 100);
-
-    // ✅ فتح/إغلاق القائمة الجانبية (الهامبرجر)
-    document.querySelector(".hamburger-menu").addEventListener("click", function () {
-        document.querySelector(".mobile-menu").classList.toggle("active");
-        document.querySelector(".overlay").classList.toggle("active");
-    });
-
-    // ✅ إغلاق القائمة عند الضغط على الخلفية
-    document.querySelector(".overlay").addEventListener("click", function () {
-        document.querySelector(".mobile-menu").classList.remove("active");
-        document.querySelector(".overlay").classList.remove("active");
-    });
-
-    // ✅ فتح/إغلاق القوائم الفرعية داخل القائمة الجانبية فقط
-    document.querySelectorAll(".mobile-menu .subject > a").forEach(subject => {
-        subject.addEventListener("click", function (event) {
-            event.preventDefault();
-            this.parentElement.classList.toggle("open");
-        });
-    });
-
-    // ✅ إخفاء زر القائمة عند التمرير لأسفل
-    let lastScrollTop = 0;
-    const menuButton = document.querySelector(".hamburger-menu");
-
-    window.addEventListener("scroll", function () {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        let heroSectionHeight = document.querySelector(".hero").offsetHeight;
-
-        if (scrollTop > heroSectionHeight - 100) {
-            menuButton.style.opacity = "0";
-            menuButton.style.pointerEvents = "none";
-        } else {
-            menuButton.style.opacity = "1";
-            menuButton.style.pointerEvents = "auto";
-        }
-
-        if (scrollTop > lastScrollTop) {
-            menuButton.style.opacity = "0";
-            menuButton.style.pointerEvents = "none";
-        } else {
-            menuButton.style.opacity = "1";
-            menuButton.style.pointerEvents = "auto";
-        }
-        lastScrollTop = scrollTop;
-    });
-});
-</script>
+    <!-- ربط ملف الـ JavaScript -->
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
 </body>
 </html>

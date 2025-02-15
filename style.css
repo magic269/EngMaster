@@ -1,0 +1,319 @@
+/* ✅ الأساسيات */
+body {
+    font-family: 'Cairo', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    text-align: center;
+    scroll-behavior: smooth;
+    overflow-x: hidden; /* منع التمرير الأفقي */
+}
+
+/* ✅ الهيدر */
+header {
+    background: #142850;
+    color: white;
+    padding: 10px 20px; /* تقليل التباعد الداخلي */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+    font-size: 2rem; /* تصغير حجم اللوجو */
+    font-weight: bold;
+}
+
+/* ✅ القائمة العلوية */
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 5px 0 0; /* تقليل المسافة العلوية */
+    display: flex;
+    justify-content: center;
+    gap: 15px; /* تقليل المسافة بين العناصر */
+}
+
+.menu li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem; /* تصغير الخط */
+    padding: 8px; /* تقليل التباعد الداخلي */
+    transition: 0.3s;
+}
+
+.menu li a:hover {
+    background: #00d9ff;
+    color: #142850;
+    border-radius: 5px;
+}
+
+/* ✅ زر القائمة */
+.hamburger-menu {
+    position: fixed;
+    top: 12px; /* تعديل المسافة العلوية */
+    right: 15px; /* تعديل المسافة الجانبية */
+    font-size: 1.3rem; /* تصغير حجم الزر */
+    cursor: pointer;
+    z-index: 1100;
+    background: #00d9ff;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.hamburger-menu:hover {
+    background: #1e90ff;
+}
+
+@media (max-width: 768px) {
+    .hamburger-menu {
+        font-size: 1.2rem;
+        padding: 5px 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hamburger-menu {
+        font-size: 1rem;
+        padding: 4px 6px;
+    }
+}
+
+/* ✅ الخلفية الشفافة عند فتح القائمة */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    visibility: hidden;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+/* ✅ القائمة الجانبية */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    right: -200px; /* تم تقليل العرض من 250px إلى 200px */
+    width: 200px; /* عرض القائمة */
+    background: #142850;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
+    height: 100vh;
+    transition: 0.3s ease-in-out;
+    padding-top: 60px; /* تباعد علوي */
+    overflow-y: auto; /* التمرير الرأسي */
+    overflow-x: hidden; /* منع التمرير الأفقي */
+}
+
+.mobile-menu.active {
+    right: 0;
+}
+
+/* ✅ تنسيق عناصر القائمة */
+.mobile-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center; /* محاذاة النص إلى الوسط */
+}
+
+.mobile-menu ul li {
+    padding: 8px; /* تباعد بين العناصر */
+}
+
+.mobile-menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem; /* حجم الخط */
+    display: block;
+    padding: 10px; /* تباعد داخلي */
+    transition: 0.3s;
+    white-space: nowrap; /* منع تقطيع النص */
+}
+
+.mobile-menu ul li a:hover {
+    background: #00d9ff;
+    border-radius: 5px;
+    color: #142850;
+}
+
+@media (max-width: 768px) {
+    .mobile-menu ul li a {
+        font-size: 0.9rem; /* تصغير حجم الخط */
+        padding: 8px; /* تقليل التباعد */
+    }
+}
+
+@media (max-width: 480px) {
+    .mobile-menu ul li a {
+        font-size: 0.85rem; /* تصغير حجم الخط أكثر */
+        padding: 6px; /* تقليل التباعد أكثر */
+    }
+}
+
+/* ✅ القوائم الفرعية */
+.submenu {
+    width: 90%; /* تصغير عرض القائمة الفرعية */
+    background: #1e3a5f;
+    padding: 5px; /* تباعد داخلي */
+    font-size: 0.9rem; /* حجم الخط */
+    border-radius: 5px;
+    display: none;
+    text-align: center; /* محاذاة النص إلى الوسط */
+    margin: 0 auto; /* توسيط القائمة الفرعية */
+    overflow-x: auto; /* التمرير الأفقي */
+}
+
+.submenu li a {
+    padding: 5px; /* تباعد داخلي */
+    font-size: 0.85rem; /* حجم الخط */
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .submenu {
+        font-size: 0.85rem; /* تصغير حجم الخط */
+        padding: 4px; /* تقليل التباعد */
+    }
+
+    .submenu li a {
+        font-size: 0.8rem; /* تصغير حجم الخط أكثر */
+        padding: 4px; /* تقليل التباعد أكثر */
+    }
+}
+
+@media (max-width: 480px) {
+    .submenu {
+        font-size: 0.8rem; /* تصغير حجم الخط أكثر */
+        padding: 3px; /* تقليل التباعد أكثر */
+    }
+
+    .submenu li a {
+        font-size: 0.75rem; /* تصغير حجم الخط أكثر */
+        padding: 3px; /* تقليل التباعد أكثر */
+    }
+}
+
+/* ✅ تأثير ظهور القوائم الفرعية */
+.subject.open .submenu {
+    display: block;
+}
+
+/* ✅ عند فتح القائمة */
+.overlay.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* ✅ قسم الهيرو */
+.hero {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #142850, #27496d);
+    color: white;
+    margin-top: 60px; /* تعديل المسافة العلوية */
+    padding: 20px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.5rem;
+}
+
+/* ✅ زر CTA */
+.cta {
+    background: #00d9ff;
+    color: #142850;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+.cta:hover {
+    background: #1e90ff;
+}
+
+/* ✅ قسم المواد */
+#subjects {
+    padding: 50px 20px;
+}
+
+.subjects-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.subject {
+    background: #259ee4;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 280px;
+    transition: 0.4s;
+}
+
+.subject:hover {
+    transform: scale(1.1);
+}
+
+/* ✅ الفوتر */
+#contact {
+    background: #142850;
+    color: white;
+    padding: 30px 20px;
+}
+
+footer {
+    background: #0c1b2a;
+    color: white;
+    padding: 10px;
+}
+
+/* ✅ زر العودة للأعلى */
+#back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #00d9ff;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    font-size: 1.5rem;
+    box-shadow: 0px 4px 8px rgba(0,0,0,0.3);
+}
+
+#back-to-top:hover {
+    background: #1e90ff;
+}
+
+/* ✅ تصميم متجاوب */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+}
