@@ -6,14 +6,19 @@ body {
     background: #f4f4f4;
     text-align: center;
     scroll-behavior: smooth;
-    overflow-x: hidden; /* منع التمرير الأفقي */
+    overflow-x: hidden;
+}
+
+/* ✅ تعطيل التمرير عند فتح القائمة */
+body.no-scroll {
+    overflow: hidden;
 }
 
 /* ✅ الهيدر */
 header {
     background: #142850;
     color: white;
-    padding: 10px 20px; /* تقليل التباعد الداخلي */
+    padding: 10px 20px;
     position: fixed;
     width: 100%;
     top: 0;
@@ -22,7 +27,7 @@ header {
 }
 
 .logo {
-    font-size: 2rem; /* تصغير حجم اللوجو */
+    font-size: 2rem;
     font-weight: bold;
 }
 
@@ -30,17 +35,17 @@ header {
 .menu {
     list-style: none;
     padding: 0;
-    margin: 5px 0 0; /* تقليل المسافة العلوية */
+    margin: 5px 0 0;
     display: flex;
     justify-content: center;
-    gap: 15px; /* تقليل المسافة بين العناصر */
+    gap: 15px;
 }
 
 .menu li a {
     color: white;
     text-decoration: none;
-    font-size: 1rem; /* تصغير الخط */
-    padding: 8px; /* تقليل التباعد الداخلي */
+    font-size: 1rem;
+    padding: 8px;
     transition: 0.3s;
 }
 
@@ -50,165 +55,148 @@ header {
     border-radius: 5px;
 }
 
-/* ✅ زر القائمة */
+/* 🍔 زر القائمة العصري */
 .hamburger-menu {
     position: fixed;
-    top: 12px; /* تعديل المسافة العلوية */
-    right: 15px; /* تعديل المسافة الجانبية */
-    font-size: 1.3rem; /* تصغير حجم الزر */
+    top: 20px;
+    right: 25px;
     cursor: pointer;
     z-index: 1100;
-    background: #00d9ff;
-    color: white;
-    padding: 6px 10px;
-    border-radius: 5px;
-    transition: 0.3s;
+    background: transparent;
+    border: none;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.hamburger-menu:hover {
-    background: #1e90ff;
+.hamburger-menu img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    transition: transform 0.3s ease;
 }
 
-@media (max-width: 768px) {
-    .hamburger-menu {
-        font-size: 1.2rem;
-        padding: 5px 8px;
-    }
+.hamburger-menu:hover img {
+    transform: rotate(15deg) scale(1.05);
 }
 
-@media (max-width: 480px) {
-    .hamburger-menu {
-        font-size: 1rem;
-        padding: 4px 6px;
-    }
-}
-
-/* ✅ الخلفية الشفافة عند فتح القائمة */
+/* 🌫️ خلفية شفافة متدرجة */
 .overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(4px);
     visibility: hidden;
     opacity: 0;
-    transition: 0.3s;
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
-/* ✅ القائمة الجانبية */
+/* 🗂️ القائمة الجانبية الحديثة */
 .mobile-menu {
     position: fixed;
     top: 0;
-    right: -200px; /* تم تقليل العرض من 250px إلى 200px */
-    width: 200px; /* عرض القائمة */
-    background: #142850;
-    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.3);
+    right: -200px;
+    width: 180px;
     height: 100vh;
-    transition: 0.3s ease-in-out;
-    padding-top: 60px; /* تباعد علوي */
-    overflow-y: auto; /* التمرير الرأسي */
-    overflow-x: hidden; /* منع التمرير الأفقي */
+    background: #fff;
+    box-shadow: -8px 0 24px rgba(0,0,0,0.1);
+    padding: 80px 8px 10px;
+    transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow-y: auto;
+}
+
+/* ✅ عند تفعيل القائمة */
+.overlay.active {
+    visibility: visible;
+    opacity: 1;
 }
 
 .mobile-menu.active {
     right: 0;
 }
 
-/* ✅ تنسيق عناصر القائمة */
+/* ✅ تحريك أول عنصر لأسفل */
 .mobile-menu ul {
     list-style: none;
     padding: 0;
-    margin: 0;
-    text-align: center; /* محاذاة النص إلى الوسط */
+    margin-top: 30px;
 }
 
 .mobile-menu ul li {
-    padding: 8px; /* تباعد بين العناصر */
+    margin: 2px 0;
+    position: relative;
 }
 
+/* ✅ تحسين تباعد العناصر */
 .mobile-menu ul li a {
-    color: white;
+    color: #2d4059;
     text-decoration: none;
-    font-size: 1rem; /* حجم الخط */
-    display: block;
-    padding: 10px; /* تباعد داخلي */
-    transition: 0.3s;
-    white-space: nowrap; /* منع تقطيع النص */
+    font-size: 1rem;
+    padding: 10px 14px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
 }
 
 .mobile-menu ul li a:hover {
-    background: #00d9ff;
-    border-radius: 5px;
-    color: #142850;
+    background: #f0f4f9;
+    transform: translateX(4px);
+    color: #3a6ea5;
 }
 
-@media (max-width: 768px) {
-    .mobile-menu ul li a {
-        font-size: 0.9rem; /* تصغير حجم الخط */
-        padding: 8px; /* تقليل التباعد */
-    }
-}
-
-@media (max-width: 480px) {
-    .mobile-menu ul li a {
-        font-size: 0.85rem; /* تصغير حجم الخط أكثر */
-        padding: 6px; /* تقليل التباعد أكثر */
-    }
-}
-
-/* ✅ القوائم الفرعية */
+/* 🗃️ القوائم الفرعية */
 .submenu {
-    width: 90%; /* تصغير عرض القائمة الفرعية */
-    background: #1e3a5f;
-    padding: 5px; /* تباعد داخلي */
-    font-size: 0.9rem; /* حجم الخط */
-    border-radius: 5px;
+    background: #eef3f7; /* 🔹 لون أغمق قليلاً */
+    border-left: 3px solid #c2d3e2; /* 🔹 لون أوضح للحدود */
+    margin: 5px 0 5px 8px;
+    border-radius: 6px;
     display: none;
-    text-align: center; /* محاذاة النص إلى الوسط */
-    margin: 0 auto; /* توسيط القائمة الفرعية */
-    overflow-x: auto; /* التمرير الأفقي */
+    animation: slideIn 0.3s ease;
 }
 
 .submenu li a {
-    padding: 5px; /* تباعد داخلي */
-    font-size: 0.85rem; /* حجم الخط */
-    display: block;
+    font-size: 1rem !important;
+    padding: 10px 14px !important;
+    color: #2c3e50 !important; /* 🔹 لون أزرق غامق */
 }
 
-@media (max-width: 768px) {
-    .submenu {
-        font-size: 0.85rem; /* تصغير حجم الخط */
-        padding: 4px; /* تقليل التباعد */
-    }
-
-    .submenu li a {
-        font-size: 0.8rem; /* تصغير حجم الخط أكثر */
-        padding: 4px; /* تقليل التباعد أكثر */
-    }
+.submenu li a:hover {
+    color: #1d4e89 !important; /* 🔹 أزرق قوي */
+    background: #d0e1f2 !important; /* 🔹 خلفية أوضح عند التحويل */
 }
 
-@media (max-width: 480px) {
-    .submenu {
-        font-size: 0.8rem; /* تصغير حجم الخط أكثر */
-        padding: 3px; /* تقليل التباعد أكثر */
-    }
 
-    .submenu li a {
-        font-size: 0.75rem; /* تصغير حجم الخط أكثر */
-        padding: 3px; /* تقليل التباعد أكثر */
-    }
+@keyframes slideIn {
+    from { opacity: 0; transform: translateX(12px); }
+    to { opacity: 1; transform: translateX(0); }
 }
 
-/* ✅ تأثير ظهور القوائم الفرعية */
+/* ✅ إظهار القائمة الفرعية عند الضغط */
 .subject.open .submenu {
     display: block;
 }
 
-/* ✅ عند فتح القائمة */
-.overlay.active {
-    visibility: visible;
-    opacity: 1;
+/* 📱 تصميم متجاوب */
+@media (max-width: 480px) {
+    .mobile-menu {
+        width: 140px;
+    }
+
+    .hamburger-menu {
+        right: 15px;
+        top: 15px;
+    }
+
+    .hamburger-menu img {
+        width: 42px;
+        height: 42px;
+    }
 }
 
 /* ✅ قسم الهيرو */
@@ -220,7 +208,7 @@ header {
     align-items: center;
     background: linear-gradient(to bottom, #142850, #27496d);
     color: white;
-    margin-top: 60px; /* تعديل المسافة العلوية */
+    margin-top: 60px;
     padding: 20px;
 }
 
@@ -310,10 +298,25 @@ footer {
     header h1 {
         font-size: 2rem;
     }
+    
+    .hamburger-menu img {
+        width: 40px;
+        height: 40px;
+    }
 }
 
 @media (max-width: 480px) {
     header h1 {
         font-size: 1.5rem;
+    }
+    
+    .hamburger-menu img {
+        width: 35px;
+        height: 35px;
+    }
+    
+    .mobile-menu ul li a {
+        font-size: 0.85rem;
+        padding: 6px;
     }
 }

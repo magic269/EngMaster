@@ -1,51 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () {
-    // ✅ زر القائمة الجانبية (الهامبرجر)
-    const menuButton = document.querySelector(".hamburger-menu");
-    const mobileMenu = document.querySelector(".mobile-menu");
-    const overlay = document.querySelector(".overlay");
-
-    menuButton.addEventListener("click", function () {
-        mobileMenu.classList.toggle("active");
-        overlay.classList.toggle("active");
-    });
-
-    overlay.addEventListener("click", function () {
-        mobileMenu.classList.remove("active");
-        overlay.classList.remove("active");
-    });
-
-    // ✅ فتح/إغلاق القوائم الفرعية داخل القائمة الجانبية
-    document.querySelectorAll(".mobile-menu .subject > a").forEach(subject => {
-        subject.addEventListener("click", function (event) {
-            event.preventDefault();
-            this.parentElement.classList.toggle("open");
-        });
-    });
-
-    // ✅ إخفاء زر القائمة عند التمرير لأسفل
-    let lastScrollTop = 0;
-
-    window.addEventListener("scroll", function () {
-        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        let heroSectionHeight = document.querySelector(".hero").offsetHeight;
-
-        if (scrollTop > heroSectionHeight - 100) {
-            menuButton.style.opacity = "0";
-            menuButton.style.pointerEvents = "none";
-        } else {
-            menuButton.style.opacity = "1";
-            menuButton.style.pointerEvents = "auto";
-        }
-
-        if (scrollTop > lastScrollTop) {
-            menuButton.style.opacity = "0";
-            menuButton.style.pointerEvents = "none";
-        } else {
-            menuButton.style.opacity = "1";
-            menuButton.style.pointerEvents = "auto";
-        }
-        lastScrollTop = scrollTop;
-    });
+document.addEventListener("DOMContentLoaded", function () { 
 
     // ✅ التحقق من توفر الروابط وتلوين الروابط غير المتاحة بالأحمر
     document.querySelectorAll(".subject a").forEach(link => {
@@ -94,4 +47,62 @@ document.addEventListener("DOMContentLoaded", function () {
             console.clear();
         }
     }, 100);
+
+    // ✅ التحكم في القائمة الجانبية (الهامبرجر) 🍔
+    const menuBtn = document.querySelector(".hamburger-menu");
+    const mobileMenu = document.querySelector(".mobile-menu");
+    const overlay = document.querySelector(".overlay");
+    const body = document.body;
+
+    // ✅ فتح القائمة عند النقر على زر الهامبرجر
+    menuBtn.addEventListener("click", function () {
+        mobileMenu.classList.add("active");
+        overlay.classList.add("active");
+        body.classList.add("no-scroll"); // تعطيل التمرير
+    });
+
+    // ✅ إغلاق القائمة عند النقر على الخلفية (Overlay)
+    overlay.addEventListener("click", function () {
+        mobileMenu.classList.remove("active");
+        overlay.classList.remove("active");
+        body.classList.remove("no-scroll"); // إعادة التمرير
+    });
+
+    // ✅ إغلاق القائمة عند الضغط على زر (Esc)
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            mobileMenu.classList.remove("active");
+            overlay.classList.remove("active");
+            body.classList.remove("no-scroll"); // إعادة التمرير
+        }
+    });
+
+    // ✅ التحكم في القوائم الفرعية 📂
+    document.querySelectorAll(".subject").forEach(subject => {
+        subject.addEventListener("click", function () {
+            
+            // ✅ إغلاق أي قائمة فرعية مفتوحة قبل فتح القائمة الجديدة
+            document.querySelectorAll(".subject.open").forEach(openSubject => {
+                if (openSubject !== this) { // استثناء العنصر الحالي
+                    openSubject.classList.remove("open");
+                    let openSubmenu = openSubject.querySelector(".submenu");
+                    if (openSubmenu) {
+                        openSubmenu.style.display = "none";
+                    }
+                }
+            });
+
+            // ✅ تبديل القائمة الحالية بين الفتح والإغلاق
+            this.classList.toggle("open");
+            let submenu = this.querySelector(".submenu");
+            if (submenu) {
+                if (submenu.style.display === "block") {
+                    submenu.style.display = "none";
+                } else {
+                    submenu.style.display = "block";
+                }
+            }
+        });
+    });
+
 });
