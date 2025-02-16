@@ -31,29 +31,68 @@ header {
     font-weight: bold;
 }
 
-/* ✅ القائمة العلوية للكمبيوتر */
+/* ✅ السماح بعرض القائمة العلوية على جميع الأجهزة */
 .menu {
     list-style: none;
     padding: 0;
     margin: 5px 0 0;
-    display: flex;
+    display: flex; /* تأكد أنها مرنة */
     justify-content: center;
     gap: 15px;
+    flex-wrap: wrap; /* يسمح للعناصر بالنزول لو المساحة ضاقت */
 }
 
+/* ✅ تحسين شكل الروابط وتنسيق الألوان */
 .menu li a {
-    color: white;
+    color: #ffffff; /* أبيض عشان يظهر بوضوح */
     text-decoration: none;
-    font-size: 1rem;
-    padding: 8px;
-    transition: 0.3s;
+    font-size: 1.2rem;
+    padding: 10px;
+    transition: 0.3s ease-in-out;
 }
 
+/* ✅ تغيير اللون عند التمرير */
 .menu li a:hover {
-    background: #00d9ff;
-    color: #142850;
+    color: #00d9ff; /* أزرق سماوي عند التمرير */
+    background: rgba(255, 255, 255, 0.2); /* تأثير خفيف للخلفية */
     border-radius: 5px;
+    padding: 10px 15px;
 }
+
+@media (max-width: 768px) {
+    .menu {
+        display: flex; /* كان مخفي، رجعناه */
+        flex-direction: column; /* يخلي العناصر تحت بعض */
+        align-items: center;
+        background: #142850; /* نفس لون الهيدر */
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        padding: 10px 0;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .menu li {
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .menu li a {
+        display: block;
+        font-size: 1.2rem;
+        padding: 12px;
+        color: white; /* أبيض للنصوص */
+    }
+
+    .menu li a:hover {
+        background: #00d9ff;
+        color: #142850;
+        border-radius: 5px;
+    }
+}
+
 
 /* 🍔 زر القائمة الهامبرغر */
 .hamburger-menu {
@@ -79,18 +118,17 @@ header {
     transition: transform 0.3s ease;
 }
 
-/* 🔽 تحسين حجم صورة زر الهامبرغر للأجهزة الصغيرة */
 @media (max-width: 768px) {
-    .hamburger-menu img {
-        width: 36px;
-        height: 36px;
+    .hamburger-menu {
+        top: 10px;
+        right: 10px;
+        width: 50px;
+        height: 50px;
     }
-}
 
-@media (max-width: 480px) {
     .hamburger-menu img {
-        width: 30px;
-        height: 30px;
+        width: 45px;
+        height: 45px;
     }
 }
 
@@ -156,8 +194,8 @@ header {
     right: -200px; /* مخفية في البداية */
     width: 180px;
     height: 100vh;
-    background: #fff;
-    box-shadow: -8px 0 24px rgba(0,0,0,0.1);
+    background: #142850; /* نفس لون الهيدر لتناسق الألوان */
+    box-shadow: -8px 0 24px rgba(0,0,0,0.2);
     padding: 80px 8px 10px;
     transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     overflow-y: auto;
@@ -182,7 +220,7 @@ header {
 
 /* ✅ تحسين شكل الروابط داخل القائمة */
 .mobile-menu ul li a {
-    color: #2d4059;
+    color: #ffffff; /* أبيض ليكون واضحًا مع الخلفية الزرقاء */
     text-decoration: none;
     font-size: 1rem;
     padding: 10px 14px;
@@ -192,11 +230,13 @@ header {
     transition: all 0.2s ease;
 }
 
+/* ✅ تحسين لون التفاعل عند التمرير */
 .mobile-menu ul li a:hover {
-    background: #f0f4f9;
+    background: rgba(0, 217, 255, 0.2); /* تأثير أزرق شفاف خفيف */
     transform: translateX(4px);
-    color: #3a6ea5;
+    color: #00d9ff; /* أزرق سماوي عند التمرير */
 }
+
 
 /* 🗃️ القوائم الفرعية */
 .submenu {
@@ -405,4 +445,50 @@ footer {
         width: 100%;
         max-width: 280px;
     }
+}
+/* ✅ ضبط المسافات لكل قسم */
+section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.2rem; /* تقليل حجم العنوان */
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .cta {
+        font-size: 1.1rem;
+        padding: 12px 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.4rem;
+    }
+
+    .cta {
+        font-size: 1rem;
+        padding: 10px 20px;
+    }
+}
+/* ✅ إخفاء زر الهامبرغر عند النزول */
+.hamburger-menu {
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* ✅ إخفاء الزر عند التمرير للأسفل */
+.hamburger-hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none; /* يمنع التفاعل معه عند الإخفاء */
 }

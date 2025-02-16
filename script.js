@@ -106,3 +106,21 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 });
+document.addEventListener("DOMContentLoaded", function () {
+    let lastScrollTop = 0;
+    const hamburgerMenu = document.querySelector(".hamburger-menu");
+
+    window.addEventListener("scroll", function () {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+        if (scrollTop > lastScrollTop) {
+            // المستخدم نزل لتحت -> نخفي الزر
+            hamburgerMenu.classList.add("hamburger-hidden");
+        } else {
+            // المستخدم طلع لفوق -> نظهر الزر
+            hamburgerMenu.classList.remove("hamburger-hidden");
+        }
+
+        lastScrollTop = scrollTop;
+    });
+});
