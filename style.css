@@ -97,7 +97,7 @@ header {
 /* 🍔 زر القائمة الهامبرغر */
 .hamburger-menu {
     position: fixed;
-    top: 20px;
+    top: 20px; /* نفس مكانه في الكمبيوتر */
     right: 25px;
     cursor: pointer;
     z-index: 1100;
@@ -105,26 +105,21 @@ header {
     border: none;
     padding: 8px;
     border-radius: 50%;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s ease-in-out;
 }
 
-/* ✅ تحسين المظهر في الموبايل */
+/* تحسين مكان الزر في الموبايل ليكون مثل الصورة */
 @media (max-width: 768px) {
     .hamburger-menu {
-        top: 15px;
-        right: 15px;
-        width: 40px;
-        height: 40px;
-    }
-}
-
-/* ✅ تحسين المظهر للكمبيوتر بدون تخريب */
-@media (min-width: 1024px) {
-    .hamburger-menu {
-        top: 20px;
-        right: 30px;
-        width: 50px;
+        top: 10px; /* مكان أقرب للهيدر */
+        right: 5px; /* حركناه ناحية اليمين شوية */
+        width: 50px; /* تكبيره شوية */
         height: 50px;
+    }
+
+    .hamburger-menu img {
+        width: 45px; /* ضبط حجم الأيقونة */
+        height: 45px;
     }
 }
 
