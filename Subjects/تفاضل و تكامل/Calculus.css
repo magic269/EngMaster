@@ -4,17 +4,15 @@ body {
     padding: 0;
     background: linear-gradient(135deg, #1e3c72, #2a5298);
     color: white;
-    text-align: center;
-    opacity: 0;
-    animation: fadeIn 1.5s ease-in-out forwards;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    animation: fadeIn 1s ease-in-out;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 header {
@@ -29,6 +27,7 @@ header h1 {
     margin: 0;
     font-size: 2.5rem;
     color: #00d9ff;
+    animation: bounceInDown 1s;
 }
 
 .btn-back {
@@ -37,12 +36,18 @@ header h1 {
     right: 15px;
     background: rgba(255, 255, 255, 0.2);
     border: none;
-    padding: 15px;
+    padding: 10px;
     border-radius: 50%;
-    font-size: 2.5rem;
+    font-size: 1.5rem;
     color: #00d9ff;
     cursor: pointer;
     transition: background 0.3s ease, transform 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
 }
 
 .btn-back:hover {
@@ -50,31 +55,33 @@ header h1 {
     transform: scale(1.2);
 }
 
-main {
-    flex: 1;
-    padding-bottom: 60px;
+.content {
+    text-align: center;
+    padding: 50px 20px;
+    flex-grow: 1;
 }
 
 .content h2 {
     font-size: 2rem;
     margin-bottom: 20px;
     color: #00d9ff;
+    animation: fadeInUp 1s;
 }
 
 .content ul {
     list-style: none;
     padding: 0;
-    margin-top: 30px;
 }
 
 .content ul li {
     margin: 10px 0;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     background: rgba(255, 255, 255, 0.1);
     padding: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, background 0.3s ease;
+    animation: fadeInUp 1s ease-in-out;
 }
 
 .content ul li:hover {
@@ -85,24 +92,16 @@ main {
 .content ul li a {
     text-decoration: none;
     color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.content ul li i {
-    margin-left: 10px;
-    color: #00d9ff;
 }
 
 footer {
+    text-align: center;
+    padding: 20px;
     background-color: #142850;
     color: #00d9ff;
-    padding: 20px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    text-align: center;
+    font-size: 0.9rem;
+    margin-top: auto;
+    animation: fadeIn 1.5s;
 }
 
 @media (max-width: 768px) {
@@ -126,10 +125,6 @@ footer {
         font-size: 1rem;
         padding: 12px;
     }
-
-    .content ul li a {
-        font-size: 1rem;
-    }
 }
 
 @media (max-width: 480px) {
@@ -152,9 +147,5 @@ footer {
     .content ul li {
         font-size: 0.9rem;
         padding: 10px;
-    }
-
-    .content ul li a {
-        font-size: 0.9rem;
     }
 }
