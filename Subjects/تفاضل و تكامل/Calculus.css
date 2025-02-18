@@ -2,17 +2,19 @@ body {
     font-family: 'Cairo', sans-serif;
     margin: 0;
     padding: 0;
+    text-align: center;
     background: linear-gradient(135deg, #1e3c72, #2a5298);
     color: white;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    animation: fadeIn 1s ease-in-out;
+    opacity: 0;
+    animation: fadeIn 1.5s ease-in-out forwards;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
 header {
@@ -27,7 +29,6 @@ header h1 {
     margin: 0;
     font-size: 2.5rem;
     color: #00d9ff;
-    animation: bounceInDown 1s;
 }
 
 .btn-back {
@@ -58,14 +59,13 @@ header h1 {
 .content {
     text-align: center;
     padding: 50px 20px;
-    flex-grow: 1;
+    margin-top: 30px;
 }
 
 .content h2 {
     font-size: 2rem;
     margin-bottom: 20px;
     color: #00d9ff;
-    animation: fadeInUp 1s;
 }
 
 .content ul {
@@ -81,7 +81,6 @@ header h1 {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, background 0.3s ease;
-    animation: fadeInUp 1s ease-in-out;
 }
 
 .content ul li:hover {
@@ -99,9 +98,8 @@ footer {
     padding: 20px;
     background-color: #142850;
     color: #00d9ff;
-    font-size: 0.9rem;
     margin-top: auto;
-    animation: fadeIn 1.5s;
+    font-size: 0.9rem;
 }
 
 @media (max-width: 768px) {
@@ -125,6 +123,10 @@ footer {
         font-size: 1rem;
         padding: 12px;
     }
+
+    .content ul li a {
+        font-size: 1rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -147,5 +149,9 @@ footer {
     .content ul li {
         font-size: 0.9rem;
         padding: 10px;
+    }
+
+    .content ul li a {
+        font-size: 0.9rem;
     }
 }
