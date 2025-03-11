@@ -108,19 +108,19 @@
     </header>
     <main>
         <ul>
-            <li><a href="#" onclick="openVideo('https://www.youtube.com/embed/408Q1oT7fyc', this)">المحاضرة الأولى</a></li>
-            <li><a href="#" onclick="openVideo('https://www.youtube.com/embed/2SdLB5UN4so', this)">المحاضرة الثانية</a></li>
-            <li><a href="#" onclick="openVideo('https://www.youtube.com/embed/2qyfiYajHCs', this)">المحاضرة الثالثة</a></li>
-            <li><a href="#" onclick="openVideo('https://www.youtube.com/embed/hzl_UnUbaMM', this)">المحاضرة الرابعة</a></li>
-            <li><a href="#" onclick="openVideo('https://www.youtube.com/embed/1NhtgLRECGI', this)">المحاضرة الخامسة</a></li>
-            <li><a href="#" onclick="openVideo('https://www.youtube.com/embed/QVTi8dbJrGA', this)">المحاضرة السادسة</a></li>
-            <li><a href="#" onclick="openVideo('https://www.youtube.com/embed/R8_Ha3rv-xY', this)">المحاضرة السابعة</a></li>
-            <li><a href="#" onclick="openVideo('https://www.youtube.com/embed/bdJhFpMf3GI', this)">المحاضرة الثامنة</a></li>
-            <li><a href="#" onclick="openVideo('https://www.youtube.com/embed/L1h1AoqPcPU', this)">المحاضرة التاسعة</a></li>
-            <li><a href="#" onclick="openVideo('https://www.youtube.com/embed/RSkf0nQUg7c', this)">ورشة عمل</a></li>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/408Q1oT7fyc')">المحاضرة الأولى</a></li>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/2SdLB5UN4so')">المحاضرة الثانية</a></li>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/2qyfiYajHCs')">المحاضرة الثالثة</a></li>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/hzl_UnUbaMM')">المحاضرة الرابعة</a></li>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/1NhtgLRECGI')">المحاضرة الخامسة</a></li>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/QVTi8dbJrGA')">المحاضرة السادسة</a></li>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/R8_Ha3rv-xY')">المحاضرة السابعة</a></li>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/bdJhFpMf3GI')">المحاضرة الثامنة</a></li>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/L1h1AoqPcPU')">المحاضرة التاسعة</a></li>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/RSkf0nQUg7c')">ورشة عمل</a></li>
         </ul>
-
-        <div id="videoContainer"></div>
+        
+        <div id="videoContainer" class="video-container"></div>
     </main>
     <footer>
         &copy; 2025 دليل معادلة كلية الهندسة. جميع الحقوق محفوظة.
@@ -128,28 +128,49 @@
 
     <script>
         let lastOpenedVideo = null;
-        function openVideo(videoUrl, linkElement) {
-            if (lastOpenedVideo && lastOpenedVideo !== linkElement.parentElement) {
-                lastOpenedVideo.innerHTML = ''; // إغلاق الفيديو السابق
+    
+        function openVideo(event, linkElement, videoUrl) {
+            event.preventDefault();
+            let currentScrollPosition = window.scrollY;
+    
+            // إزالة الفيديو السابق إن وجد
+            if (lastOpenedVideo) {
+                lastOpenedVideo.innerHTML = '';
+                lastOpenedVideo.style.display = "none";
             }
+    
             let videoContainer = linkElement.nextElementSibling;
-            if (!videoContainer) {
+    
+            // إنشاء حاوية الفيديو لو لم تكن موجودة
+            if (!videoContainer || !videoContainer.classList.contains("video-container")) {
                 videoContainer = document.createElement('div');
                 videoContainer.className = 'video-container';
                 linkElement.parentElement.appendChild(videoContainer);
             }
+    
+            // التحقق مما إذا كان نفس الفيديو مفتوحًا مسبقًا
+            if (videoContainer.innerHTML.trim() !== '') {
+                videoContainer.innerHTML = '';  // إغلاق الفيديو إذا تم النقر عليه مجددًا
+                return;
+            }
+    
+            // إنشاء العنصر IFRAME
             const iframe = document.createElement('iframe');
             iframe.src = videoUrl;
             iframe.frameBorder = "0";
             iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
             iframe.allowFullscreen = true;
+    
             videoContainer.innerHTML = '';
             videoContainer.appendChild(iframe);
+            videoContainer.style.display = "block";  // عرض الفيديو
+    
             lastOpenedVideo = videoContainer;
+            window.scrollTo(0, currentScrollPosition);
         }
-
+    
         // ✅ التحقق من توفر الروابط وتلوين الروابط غير المتاحة بالأحمر
-        document.querySelectorAll("ul li a").forEach(link => {
+        document.querySelectorAll(".subject a").forEach(link => {
             fetch(link.href, { method: 'HEAD' })
                 .then(response => {
                     if (!response.ok) {
@@ -162,16 +183,44 @@
                     link.textContent += " (غير متاح)";
                 });
         });
-
-        // 🔥 منع أخطاء JavaScript من تعطيل الصفحة
-        try {
-            document.addEventListener("contextmenu", function (event) {
+    
+        // 🔒 منع النقر بزر الفأرة الأيمن
+        document.addEventListener("contextmenu", function (event) {
+            event.preventDefault();
+            alert("🚫 ممنوع النقر بزر الفأرة الأيمن!");
+        });
+    
+        // 🔒 منع تحديد النص
+        document.addEventListener("selectstart", function (event) {
+            event.preventDefault();
+        });
+    
+        // 🔒 منع النسخ
+        document.addEventListener("copy", function (event) {
+            event.preventDefault();
+            alert("🚫 النسخ غير مسموح!");
+        });
+    
+        // 🔒 منع فتح أدوات المطور (F12 و Ctrl+Shift+I و Ctrl+U و Ctrl+Shift+C)
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "F12" || 
+                (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "U" || event.key === "C"))) {
                 event.preventDefault();
-                alert("🚫 ممنوع النقر بزر الفأرة الأيمن!");
-            });
-        } catch (error) {
-            console.warn("حدث خطأ ولكن تم منعه: ", error);
-        }
+                alert("🚫 ممنوع الوصول إلى أدوات المطور!");
+            }
+        });
+    
+        // 🚫 تعطيل Console بالكامل
+        console.log = function() {};
+        console.warn = function() {};
+        console.error = function() {};
+        console.info = function() {};
+        console.debug = function() {};
+    
+        // 🔥 إخفاء Console كل 100ms لمنع التلاعب
+        setInterval(function() {
+            console.clear();
+        }, 100);
     </script>
 </body>
 </html>
