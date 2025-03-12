@@ -1,41 +1,47 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
+    <!-- ==========================================================================
+         Meta Tags
+         ========================================================================== -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload">
     <meta name="referrer" content="no-referrer">
-    <!-- تحسين محركات البحث SEO -->
-<meta name="description" content="موقع EngMaster - كل ما تحتاجه للنجاح في معادلة كلية الهندسة، محاضرات، تمارين، امتحانات سابقة، وكتب لجميع المواد الدراسية.">
-<meta name="keywords" content="معادلة كلية الهندسة, معادلة هندسة, eng master, EngMaster, مواد المعادلة, محاضرات المعادلة, امتحانات سابقة, كتب المعادلة, فيزياء, تفاضل وتكامل, ميكانيكا, كيمياء, جبر وهندسة فراغية, انجليزي">
-<meta name="author" content="EngMaster">
-<meta name="robots" content="index, follow">
-    
+
+    <!-- SEO Optimization -->
+    <meta name="description" content="موقع EngMaster - كل ما تحتاجه للنجاح في معادلة كلية الهندسة، محاضرات، تمارين، امتحانات سابقة، وكتب لجميع المواد الدراسية.">
+    <meta name="keywords" content="معادلة كلية الهندسة, معادلة هندسة, eng master, EngMaster, مواد المعادلة, محاضرات المعادلة, امتحانات سابقة, كتب المعادلة, فيزياء, تفاضل وتكامل, ميكانيكا, كيمياء, جبر وهندسة فراغية, انجليزي">
+    <meta name="author" content="EngMaster">
+    <meta name="robots" content="index, follow">
+
     <title>EngMaster</title>
 
-    <!-- تحسين الأداء -->
+    <!-- ==========================================================================
+         Performance and External Resources
+         ========================================================================== -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-
-    <!-- ربط ملف الـ CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
- <!-- زر القائمة الجانبية -->
-<div class="hamburger-menu" onclick="toggleMenu()">
-    <img src="images/menu.png" alt="Menu">
-</div>
-<div class="overlay" onclick="toggleMenu()"></div>
+    <!-- ==========================================================================
+         Hamburger Menu and Overlay
+         ========================================================================== -->
+    <div class="hamburger-menu" onclick="toggleMenu()">
+        <img src="images/menu.png" alt="Menu">
+    </div>
+    <div class="overlay" onclick="toggleMenu()"></div>
 
-    
-    <!-- القائمة الجانبية -->
+    <!-- ==========================================================================
+         Mobile Navigation Menu
+         ========================================================================== -->
     <nav class="mobile-menu">
         <ul class="subjects">
-          
             <li class="subject">
-                <a href="#" onclick="toggleSubMenu(event)"> فيزياء ⬇</a>
+                <a href="#" onclick="toggleSubMenu(event)">فيزياء ⬇</a>
                 <ul class="submenu">
                     <li><a class="subject" href="Subjects/فيزياء/Physics.html">محاضرات المادة</a></li>
                     <li><a class="subject" href="Subjects/فيزياء/حل كتاب الامتحان/index.html">حل كتاب الامتحان</a></li>
@@ -44,9 +50,8 @@
                     <li><a class="subject" href="Subjects/فيزياء/الكتب/index.html">الكتب</a></li>
                 </ul>
             </li>
-
             <li class="subject">
-                <a href="#" onclick="toggleSubMenu(event)"> تفاضل وتكامل ⬇</a>
+                <a href="#" onclick="toggleSubMenu(event)">تفاضل وتكامل ⬇</a>
                 <ul class="submenu">
                     <li><a class="subject" href="Subjects/تفاضل و تكامل/Calculus.html">محاضرات المادة</a></li>
                     <li><a class="subject" href="Subjects/تفاضل و تكامل/تمارين للمراجعه/index.html">تمارين للمراجعة</a></li>
@@ -54,9 +59,8 @@
                     <li><a class="subject" href="Subjects/تفاضل و تكامل/الكتب/index.html">الكتب</a></li>
                 </ul>
             </li>
-    
             <li class="subject">
-                <a href="#" onclick="toggleSubMenu(event)"> كيمياء ⬇</a>
+                <a href="#" onclick="toggleSubMenu(event)">كيمياء ⬇</a>
                 <ul class="submenu">
                     <li><a class="subject" href="Subjects/كيمياء/Chemistry.html">محاضرات المادة</a></li>
                     <li><a class="subject" href="Subjects/كيمياء/تمارين للمراجعه/index.html">تمارين للمراجعة</a></li>
@@ -64,9 +68,8 @@
                     <li><a class="subject" href="Subjects/كيمياء/الكتب/index.html">الكتب</a></li>
                 </ul>
             </li>
-    
             <li class="subject">
-                <a href="#" onclick="toggleSubMenu(event)"> ميكانيكا ⬇</a>
+                <a href="#" onclick="toggleSubMenu(event)">ميكانيكا ⬇</a>
                 <ul class="submenu">
                     <li><a class="subject" href="Subjects/ميكانيكا/Mechanics.html">محاضرات المادة</a></li>
                     <li><a class="subject" href="Subjects/ميكانيكا/تمارين للمراجعه/index.html">تمارين للمراجعة</a></li>
@@ -74,9 +77,8 @@
                     <li><a class="subject" href="Subjects/ميكانيكا/الكتب/index.html">الكتب</a></li>
                 </ul>
             </li>
-    
             <li class="subject">
-                <a href="#" onclick="toggleSubMenu(event)"> إنجليزي ⬇</a>
+                <a href="#" onclick="toggleSubMenu(event)">إنجليزي ⬇</a>
                 <ul class="submenu">
                     <li><a class="subject" href="Subjects/انجليزي/English.html">محاضرات المادة</a></li>
                     <li><a class="subject" href="Subjects/انجليزي/تمارين للمراجعه/index.html">تمارين للمراجعة</a></li>
@@ -84,9 +86,8 @@
                     <li><a class="subject" href="Subjects/انجليزي/الكتب/index.html">الكتب</a></li>
                 </ul>
             </li>
-    
             <li class="subject">
-                <a href="#" onclick="toggleSubMenu(event)"> جبر و هندسة فراغية ⬇</a>
+                <a href="#" onclick="toggleSubMenu(event)">جبر و هندسة فراغية ⬇</a>
                 <ul class="submenu">
                     <li><a class="subject" href="Subjects/جبر و هندسة فراغية/Algebra.html">محاضرات المادة</a></li>
                     <li><a class="subject" href="Subjects/جبر و هندسة فراغية/تمارين للمراجعه/index.html">تمارين للمراجعة</a></li>
@@ -97,7 +98,9 @@
         </ul>
     </nav>
 
-    <!-- الهيدر -->
+    <!-- ==========================================================================
+         Header Section
+         ========================================================================== -->
     <header>
         <div class="logo">معادلة <span>كلية الهندسة</span></div>
         <nav>
@@ -109,14 +112,18 @@
         </nav>
     </header>
 
-    <!-- قسم الهيرو -->
+    <!-- ==========================================================================
+         Hero Section
+         ========================================================================== -->
     <section id="home" class="hero">
         <h1>استعد للمعادلة بثقة</h1>
         <p>كل ما تحتاجه للنجاح: مواد دراسية، تمارين، وامتحانات سابقة.</p>
         <a href="#subjects" class="cta">ابدأ الآن</a>
     </section>
 
-    <!-- قسم المواد الدراسية -->
+    <!-- ==========================================================================
+         Subjects Section
+         ========================================================================== -->
     <section id="subjects">
         <h2>المواد الدراسية</h2>
         <div class="subjects-container">
@@ -159,7 +166,9 @@
         </div>
     </section>
 
-    <!-- قسم التواصل -->
+    <!-- ==========================================================================
+         Contact Section
+         ========================================================================== -->
     <section id="contact">
         <h2>تواصل معنا</h2>
         <a href="https://chat.whatsapp.com/LuDMTtHNkR8Dv3ZYfG9J0M" target="_blank" rel="noopener noreferrer" class="cta">
@@ -167,17 +176,24 @@
         </a>
     </section>
 
-    <!-- الفوتر -->
+    <!-- ==========================================================================
+         Footer Section
+         ========================================================================== -->
     <footer>
-        <p>&copy; 2025 EngMaster. جميع الحقوق محفوظة.</p>
+        <p>© 2025 EngMaster. جميع الحقوق محفوظة.</p>
         <p><a href="LICENSE">عرض شروط الترخيص</a></p>
     </footer>
 
-    <!-- زر العودة للأعلى -->
+    <!-- ==========================================================================
+         Back to Top Button
+         ========================================================================== -->
     <button id="back-to-top" onclick="scrollToTop()">⬆</button>
 
-    <!-- ربط ملف الـ JavaScript -->
+    <!-- ==========================================================================
+         Scripts
+         ========================================================================== -->
     <script src="script.js"></script>
+    <!-- Note: The following line seems redundant as styles.css is already linked in <head> -->
     <link rel="stylesheet" href="style.css">
 </body>
 </html>
