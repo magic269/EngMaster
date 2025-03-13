@@ -1,5 +1,4 @@
-document.addEventListener("DOMContentLoaded", function () { 
-
+document.addEventListener("DOMContentLoaded", function () {
     // ✅ التحقق من توفر الروابط وتلوين الروابط غير المتاحة بالأحمر
     document.querySelectorAll(".subject a").forEach(link => {
         fetch(link.href, { method: "HEAD" })
@@ -80,7 +79,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // ✅ التحكم في القوائم الفرعية 📂
     document.querySelectorAll(".subject").forEach(subject => {
         subject.addEventListener("click", function () {
-            
             // ✅ إغلاق أي قائمة فرعية مفتوحة قبل فتح القائمة الجديدة
             document.querySelectorAll(".subject.open").forEach(openSubject => {
                 if (openSubject !== this) { // استثناء العنصر الحالي
@@ -105,22 +103,29 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-});
-document.addEventListener("DOMContentLoaded", function () {
-    let lastScrollTop = 0;
+    // ✅ إخفاء زر الهامبرجر عند التمرير لأسفل وإظهاره فقط عند العودة للأعلى
     const hamburgerMenu = document.querySelector(".hamburger-menu");
 
     window.addEventListener("scroll", function () {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-        if (scrollTop > lastScrollTop) {
-            // المستخدم نزل لتحت -> نخفي الزر
+        if (scrollTop > 0) {
+            // المستخدم نزل لأسفل -> إخفاء الزر
             hamburgerMenu.classList.add("hamburger-hidden");
         } else {
-            // المستخدم طلع لفوق -> نظهر الزر
+            // المستخدم عاد لأعلى الصفحة تمامًا -> إظهار الزر
             hamburgerMenu.classList.remove("hamburger-hidden");
         }
+    });
+});
+document.addEventListener("DOMContentLoaded", function () {
+    // ✅ استعادة موضع التمرير عند تحميل الصفحة
+    if (sessionStorage.getItem("scrollPosition")) {
+        window.scrollTo(0, sessionStorage.getItem("scrollPosition"));
+    }
 
-        lastScrollTop = scrollTop;
+    // ✅ حفظ موضع التمرير قبل مغادرة الصفحة
+    window.addEventListener("beforeunload", function () {
+        sessionStorage.setItem("scrollPosition", window.scrollY);
     });
 });
