@@ -1,0 +1,93 @@
+/* General Styling */
+body {
+    font-family: 'Cairo', sans-serif;
+    background: #f5f7fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    direction: rtl; /* ضبط اتجاه النص */
+}
+
+/* Header Styling */
+header {
+    background: linear-gradient(135deg, #1a2a44, #00b7eb);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 10;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+.btn-back {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+    background: #fff;
+    color: #007bff;
+    transform: translateY(-2px);
+}
+
+/* Main Content Styling */
+main {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.subject {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 أعمدة */
+    gap: 20px;
+    list-style: none;
+    padding: 0;
+}
+
+.subject li a {
+    display: block;
+    background: linear-gradient(135deg, #8a2be2, #d48cff);
+    border-radius: 15px;
+    padding: 100px; /* زيادة ارتفاع الكروت */
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.subject li a:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer Styling */
+footer {
+    background: linear-gradient(135deg, #1a2a44, #00b7eb);
+    padding: 15px;
+    text-align: center;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 -5px 15px rgba(0, 183, 235, 0.3);
+    margin-top: 40px;
+    position: relative; /* جعل الفوتر مرنًا */
+}
