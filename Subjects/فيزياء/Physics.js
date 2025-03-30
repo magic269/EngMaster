@@ -1,74 +1,48 @@
-// Debounce للـ alerts
-let lastAlertTime = 0;
-const alertCooldown = 2000;
-
 // ✅ التحقق من توفر الروابط
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".subject a").forEach(link => {
-        if (link.href && !link.href.includes('javascript') && !link.href.includes('#')) {
-            fetch(link.href, { method: 'HEAD' })
-                .then(response => {
-                    if (!response.ok) {
-                        link.style.color = "red";
-                        link.textContent += " (غير متاح)";
-                    }
-                })
-                .catch(() => {
-                    link.style.color = "red";
-                    link.textContent += " (غير متاح)";
-                });
-        }
-    });
+document.querySelectorAll(".content ul li a").forEach(link => {
+    fetch(link.href, { method: 'HEAD' })
+        .then(response => {
+            if (!response.ok) {
+                link.style.color = "red";
+                link.textContent += " (غير متاح)";
+            }
+        })
+        .catch(() => {
+            link.style.color = "red";
+            link.textContent += " (غير متاح)";
+        });
 });
 
-// 🔒 منع النقر بزر الفأرة الأيمن
-document.addEventListener("contextmenu", e => {
-    e.preventDefault();
-    const now = Date.now();
-    if (now - lastAlertTime > alertCooldown) {
-        alert("🚫 ممنوع النقر بزر الفأرة الأيمن!");
-        lastAlertTime = now;
+// 🔒 إعدادات الحماية
+document.addEventListener("contextmenu", function (event) {
+    event.preventDefault();
+    alert("🚫 ممنوع النقر بزر الفأرة الأيمن!");
+});
+
+document.addEventListener("selectstart", function (event) {
+    event.preventDefault();
+});
+
+document.addEventListener("copy", function (event) {
+    event.preventDefault();
+    alert("🚫 النسخ غير مسموح!");
+});
+
+document.addEventListener("keydown", function (event) {
+    if (event.key === "F12" || 
+        (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "U" || event.key === "C"))) {
+        event.preventDefault();
+        alert("🚫 ممنوع الوصول إلى أدوات المطور!");
     }
 });
 
-// 🔒 منع تحديد النص
-document.addEventListener("selectstart", e => e.preventDefault());
+// 🚫 تعطيل الكونسول
+console.log = function() {};
+console.warn = function() {};
+console.error = function() {};
+console.info = function() {};
+console.debug = function() {};
 
-// 🔒 منع النسخ
-document.addEventListener("copy", e => {
-    e.preventDefault();
-    const now = Date.now();
-    if (now - lastAlertTime > alertCooldown) {
-        alert("🚫 النسخ غير مسموح!");
-        lastAlertTime = now;
-    }
-});
-
-// 🔒 منع فتح أدوات المطور
-document.addEventListener("keydown", e => {
-    if (
-        e.key === "F12" || 
-        (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) || 
-        (e.ctrlKey && e.key === "U")
-    ) {
-        e.preventDefault();
-        const now = Date.now();
-        if (now - lastAlertTime > alertCooldown) {
-            alert("🚫 ممنوع الوصول إلى أدوات المطور!");
-            lastAlertTime = now;
-        }
-    }
-});
-
-// 🚫 تعطيل Console
-(function() {
-    const disabledConsole = function() {};
-    console.log = disabledConsole;
-    console.warn = disabledConsole;
-    console.error = disabledConsole;
-    console.info = disabledConsole;
-    console.debug = disabledConsole;
-})();
-
-// 🔥 إخفاء Console كل 1000ms
-setInterval(() => console.clear(), 1000);
+setInterval(function() {
+    console.clear();
+}, 100);

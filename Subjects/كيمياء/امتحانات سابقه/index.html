@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>امتحانات سابقة - كيمياء</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Cairo', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      opacity: 0;
+      animation: fadeIn 1.5s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    header {
+      background-color: #142850;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      color: #00d9ff;
+    }
+
+    .btn-back {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      color: #00d9ff;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn-back:hover {
+      background: rgba(255, 255, 255, 0.4);
+      transform: scale(1.2);
+    }
+
+    .content {
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .content h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #00d9ff;
+    }
+
+    .content ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .content ul li {
+      margin: 10px 0;
+      font-size: 1.2rem;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .content ul li:hover {
+      transform: scale(1.05);
+      background: rgba(255, 255, 0, 0.2);
+    }
+
+    .content ul li a {
+      text-decoration: none;
+      color: white;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #142850;
+      color: #00d9ff;
+      margin-top: 30px;
+      font-size: 0.9rem;
+    }
+
+    /* Media Queries for responsiveness */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      .content h2 {
+        font-size: 1.5rem;
+      }
+
+      .content ul li {
+        font-size: 1rem;
+        padding: 12px;
+      }
+
+      .btn-back {
+        font-size: 2rem;
+        padding: 8px;
+      }
+
+      footer {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      body {
+        padding: 10px;
+      }
+
+      header {
+        padding: 15px;
+      }
+
+      header h1 {
+        font-size: 1.8rem;
+      }
+
+      .content h2 {
+        font-size: 1.3rem;
+      }
+
+      .content ul li {
+        font-size: 0.9rem;
+        padding: 10px;
+      }
+
+      .btn-back {
+        font-size: 1.6rem;
+        padding: 6px;
+      }
+
+      footer {
+        font-size: 0.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>امتحانات سابقة</h1>
+    <a href="javascript:history.back()" class="btn-back">&#8592;</a>
+  </header>
+  <main class="content">
+    <h2>أرشيف امتحانات معادلة كيمياء</h2>
+    <ul>
+      <li>
+        <a href="https://drive.google.com/file/d/153Jgz9efI6ZyzTYpeO-lTfMu8Efu5w1G/view" target="_blank">النموذج الاسترشادي</a>
+      </li>
+      <li>
+        <a href="https://drive.google.com/file/d/13cP6Jl1GGMIxvTiA_qXhx1ikkG7PcMXF/view" target="_blank">امتحان معادلة 2019</a>
+        <a href="https://drive.google.com/file/d/154hd-xpthVkr-PovQMt6eI5LVOUys6Ap/view" target="_blank" style="color: #00d9ff;"> | الحل</a>
+      </li>
+      <li>
+        <a href="https://drive.google.com/file/d/13C1SQDD93paMaJaTx79f109v2SmI-rvl/view" target="_blank">امتحان معادلة 2020</a>
+        <a href="https://drive.google.com/file/d/156HbxZFbzaGKmGO7D4KmJKL-7-ZyXBmm/view" target="_blank" style="color: #00d9ff;"> | الحل</a>
+      </li>
+      <li>
+        <a href="https://drive.google.com/file/d/139NjCWHci2MW72hRsoeMlhCw-bYOYp9y/view" target="_blank">امتحان معادلة 2021</a>
+        <a href="https://drive.google.com/file/d/158l3nfSDDnnPir6vOq7OysZ8nKVZUz7f/view" target="_blank" style="color: #00d9ff;"> | الحل</a>
+      </li>
+      <li>
+        <a href="https://drive.google.com/file/d/15DuTqwcJ-rGsj0ErWm5adgRbkd1riBV_/view" target="_blank">امتحان معادلة 2022</a>
+      </li>
+      <li>
+        <a href="https://drive.google.com/file/d/1ngWrK5uD0eRJjSniNwgE3ZgW49nRTLkA/view" target="_blank">امتحان معادلة 2023</a>
+      </li>
+      <li>
+        <a href="https://drive.google.com/file/d/1i5DjNhII4fzb0jI0NwKF4SJJaZS_1IQN/view" target="_blank">امتحان معادلة 2024</a>
+        <a href="https://drive.google.com/file/d/1vWsQENISnhwpk7SS9UnYEdZEfdlfQlF8/view" target="_blank" style="color: #00d9ff;"> | الحل</a>
+      </li>
+    </ul>
+  </main>
+  <footer>
+    &copy; 2025 دليل معادلة كلية الهندسة. جميع الحقوق محفوظة.
+  </footer>
+  <script>
+    // ✅ التحقق من توفر الروابط وتلوين الروابط غير المتاحة بالأحمر
+    document.querySelectorAll(".subject a").forEach(link => {
+        fetch(link.href, { method: 'HEAD' })
+            .then(response => {
+                if (!response.ok) {
+                    link.style.color = "red";
+                    link.textContent += " (غير متاح)";
+                }
+            })
+            .catch(() => {
+                link.style.color = "red";
+                link.textContent += " (غير متاح)";
+            });
+    });
+
+    // 🔒 منع النقر بزر الفأرة الأيمن
+    document.addEventListener("contextmenu", function (event) {
+        event.preventDefault();
+        alert("🚫 ممنوع النقر بزر الفأرة الأيمن!");
+    });
+
+    // 🔒 منع تحديد النص
+    document.addEventListener("selectstart", function (event) {
+        event.preventDefault();
+    });
+
+    // 🔒 منع النسخ
+    document.addEventListener("copy", function (event) {
+        event.preventDefault();
+        alert("🚫 النسخ غير مسموح!");
+    });
+
+    // 🔒 منع فتح أدوات المطور (F12 و Ctrl+Shift+I و Ctrl+U و Ctrl+Shift+C)
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "F12" || 
+            (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "U" || event.key === "C"))) {
+            event.preventDefault();
+            alert("🚫 ممنوع الوصول إلى أدوات المطور!");
+        }
+    });
+
+    // 🚫 تعطيل Console بالكامل
+    console.log = function() {};
+    console.warn = function() {};
+    console.error = function() {};
+    console.info = function() {};
+    console.debug = function() {};
+
+    // 🔥 إخفاء Console كل 100ms لمنع التلاعب
+    setInterval(function() {
+        console.clear();
+    }, 100);
+</script>
+
+</body>
+</html>
