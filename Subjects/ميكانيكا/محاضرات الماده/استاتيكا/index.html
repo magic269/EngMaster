@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>محاضرات مادة الاستاتيكا</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script> 
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in-out forwards;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            background-color: #142850;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: #00d9ff;
+        }
+
+        .btn-back {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 2.5rem;
+            color: #00d9ff;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.2);
+        }
+
+        main {
+            flex: 1;
+            padding-bottom: 60px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 30px;
+        }
+
+        ul li {
+            margin: 10px 0;
+            font-size: 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
+        ul li:hover {
+            transform: scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        ul li a {
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        ul li i {
+            margin-left: 10px;
+            color: #00d9ff;
+        }
+
+        footer {
+            background-color: #142850;
+            color: #00d9ff;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        iframe {
+            width: 100%;
+            height: 500px;
+            margin-top: 20px;
+            display: block;
+        }
+
+        /* Media Queries for Responsiveness */
+        @media screen and (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .btn-back {
+                font-size: 2rem;
+                padding: 12px;
+            }
+
+            ul li {
+                font-size: 1.2rem;
+                padding: 12px;
+            }
+
+            iframe {
+                height: 350px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            .btn-back {
+                font-size: 1.8rem;
+                padding: 10px;
+            }
+
+            ul li {
+                font-size: 1rem;
+                padding: 10px;
+            }
+
+            iframe {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>محاضرات مادة الاستاتيكا</h1>
+        <a href="javascript:history.back()" class="btn-back">&#8592;</a>
+    </header>
+    <main>
+        <ul>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/dPQYXyRqIKo')"><i class="fas fa-play-circle"></i> المتجهات</a></li>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/_LmxNT0BGBs')"><i class="fas fa-play-circle"></i> القوي</a></li>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/RuWqelSmc_0')"><i class="fas fa-play-circle"></i> الاحتكاك 1 - اتزان جسم علي مستوي افقي خشن</a></li>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/5o6_NQeBph8')"><i class="fas fa-play-circle"></i> الاحتكاك 2 - اتزان جسم علي مستوي مائل خشن</a></li>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/lCVqNx0SOzQ')"><i class="fas fa-play-circle"></i> العزوم 1 - في ثنائي الابعاد (المتجهات)</a></li>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/Yip6MBDOfzU')"><i class="fas fa-play-circle"></i> العزوم 2 - في ثنائي الابعاد (الاشكال المستوية)</a></li>
+            <li><a href="https://www.youtube.com/watch?v=OTt0-1vRrcg&list=PLZPjO0btaJA4eOqEcZpb__U9_OJaaoRNd&index=7" target="_blank"><i class="fas fa-play-circle"></i> المحاضرة السابعة - العزوم 3</a></li>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/qWiuL-3qmNA')"><i class="fas fa-play-circle"></i> القوي المتوازية 1 - محصلة قوتين متوازيتين</a></li>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/jvO8lFL8eJU')"><i class="fas fa-play-circle"></i> القوي المتوازية 2 - محصلة عدة قوي متوازية</a></li>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/bjtOitEWe6w')"><i class="fas fa-play-circle"></i> القوي المتوازية 3 - اتزان جسم تحت تأثير قوي متوازية</a></li>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/u3LiLDXadcQ')"><i class="fas fa-play-circle"></i> الاتزان العام 1</a></li>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/ppFu3EahtfU')"><i class="fas fa-play-circle"></i> الاتزان العام 2</a></li>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/Q8KeBUNWIkc')"><i class="fas fa-play-circle"></i> الازدواج</a></li>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/SAw4IkNeHX8')"><i class="fas fa-play-circle"></i> الازدواج المحصل</a></li>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/mayiI8jhzjg')"><i class="fas fa-play-circle"></i> مركز الثقل</a></li>
+            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/1eHjl0VlaUU')"><i class="fas fa-play-circle"></i> الكتلة السالبة</a></li>
+        </ul>
+    </main>
+    <footer>
+        &copy; 2025 دليل معادلة كلية الهندسة. جميع الحقوق محفوظة.
+    </footer>
+
+    <script>
+        let lastOpenedVideo = null;  // لتتبع آخر فيديو تم فتحه
+
+        function openVideo(event, linkElement, videoUrl) {
+            event.preventDefault();  // منع الرابط من إعادة تحميل الصفحة
+
+            // أولًا، تحقق إذا كان هناك فيديو مفتوح حاليًا وأغلقه
+            if (lastOpenedVideo) {
+                lastOpenedVideo.innerHTML = ''; // إغلاق الفيديو السابق
+            }
+
+            // إنشاء الفيديو الجديد تحت الرابط الذي تم الضغط عليه
+            let videoContainer = linkElement.nextElementSibling;
+            if (!videoContainer || !videoContainer.classList.contains('video-container')) {
+                videoContainer = document.createElement('div');
+                videoContainer.className = 'video-container';
+                linkElement.parentElement.appendChild(videoContainer);
+            }
+
+            const iframe = document.createElement('iframe');
+            iframe.src = videoUrl;
+            iframe.frameBorder = "0";
+            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+            iframe.allowFullscreen = true;
+
+            // إضافة الفيديو الجديد
+            videoContainer.innerHTML = '';
+            videoContainer.appendChild(iframe);
+
+            // تعيين الفيديو الحالي كآخر فيديو تم فتحه
+            lastOpenedVideo = videoContainer;
+        }
+    // ✅ التحقق من توفر الروابط وتلوين الروابط غير المتاحة بالأحمر
+    document.querySelectorAll(".subject a").forEach(link => {
+        fetch(link.href, { method: 'HEAD' })
+            .then(response => {
+                if (!response.ok) {
+                    link.style.color = "red";
+                    link.textContent += " (غير متاح)";
+                }
+            })
+            .catch(() => {
+                link.style.color = "red";
+                link.textContent += " (غير متاح)";
+            });
+    });
+
+    // 🔒 منع النقر بزر الفأرة الأيمن
+    document.addEventListener("contextmenu", function (event) {
+        event.preventDefault();
+        alert("🚫 ممنوع النقر بزر الفأرة الأيمن!");
+    });
+
+    // 🔒 منع تحديد النص
+    document.addEventListener("selectstart", function (event) {
+        event.preventDefault();
+    });
+
+    // 🔒 منع النسخ
+    document.addEventListener("copy", function (event) {
+        event.preventDefault();
+        alert("🚫 النسخ غير مسموح!");
+    });
+
+    // 🔒 منع فتح أدوات المطور (F12 و Ctrl+Shift+I و Ctrl+U و Ctrl+Shift+C)
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "F12" || 
+            (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "U" || event.key === "C"))) {
+            event.preventDefault();
+            alert("🚫 ممنوع الوصول إلى أدوات المطور!");
+        }
+    });
+
+    // 🚫 تعطيل Console بالكامل
+    console.log = function() {};
+    console.warn = function() {};
+    console.error = function() {};
+    console.info = function() {};
+    console.debug = function() {};
+
+    // 🔥 إخفاء Console كل 100ms لمنع التلاعب
+    setInterval(function() {
+        console.clear();
+    }, 100);
+</script>
+
+</body>
+</html>

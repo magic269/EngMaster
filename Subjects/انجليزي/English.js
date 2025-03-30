@@ -1,15 +1,23 @@
-// Debounce للـ alerts
-let lastAlertTime = 0;
-const alertCooldown = 2000; // 2 ثانية
+// script.js
+// ✅ التحقق من توفر الروابط وتلوين الروابط غير المتاحة بالأحمر
+document.querySelectorAll(".content ul li a").forEach(link => {
+    fetch(link.href, { method: 'HEAD' })
+        .then(response => {
+            if (!response.ok) {
+                link.style.color = "red";
+                link.textContent += " (غير متاح)";
+            }
+        })
+        .catch(() => {
+            link.style.color = "red";
+            link.textContent += " (غير متاح)";
+        });
+});
 
 // 🔒 منع النقر بزر الفأرة الأيمن
 document.addEventListener("contextmenu", function (event) {
     event.preventDefault();
-    const now = Date.now();
-    if (now - lastAlertTime > alertCooldown) {
-        alert("🚫 ممنوع النقر بزر الفأرة الأيمن!");
-        lastAlertTime = now;
-    }
+    alert("🚫 ممنوع النقر بزر الفأرة الأيمن!");
 });
 
 // 🔒 منع تحديد النص
@@ -20,11 +28,7 @@ document.addEventListener("selectstart", function (event) {
 // 🔒 منع النسخ
 document.addEventListener("copy", function (event) {
     event.preventDefault();
-    const now = Date.now();
-    if (now - lastAlertTime > alertCooldown) {
-        alert("🚫 النسخ غير مسموح!");
-        lastAlertTime = now;
-    }
+    alert("🚫 النسخ غير مسموح!");
 });
 
 // 🔒 منع فتح أدوات المطور (F12 و Ctrl+Shift+I و Ctrl+U و Ctrl+Shift+C)
@@ -32,11 +36,7 @@ document.addEventListener("keydown", function (event) {
     if (event.key === "F12" || 
         (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "U" || event.key === "C"))) {
         event.preventDefault();
-        const now = Date.now();
-        if (now - lastAlertTime > alertCooldown) {
-            alert("🚫 ممنوع الوصول إلى أدوات المطور!");
-            lastAlertTime = now;
-        }
+        alert("🚫 ممنوع الوصول إلى أدوات المطور!");
     }
 });
 
@@ -47,7 +47,7 @@ console.error = function() {};
 console.info = function() {};
 console.debug = function() {};
 
-// 🔥 إخفاء Console كل 500ms
+// 🔥 إخفاء Console كل 100ms لمنع التلاعب
 setInterval(function() {
     console.clear();
-}, 500);
+}, 100);
