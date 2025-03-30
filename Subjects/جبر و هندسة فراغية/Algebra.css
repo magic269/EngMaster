@@ -1,157 +1,294 @@
+/* Algebra.css */
+
+/* General Styling */
 body {
     font-family: 'Cairo', sans-serif;
+    background: #f5f7fa;
+    color: #333;
     margin: 0;
     padding: 0;
-    text-align: center;
-    background: linear-gradient(135deg, #1e3c72, #2a5298);
-    color: white;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    direction: rtl;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    opacity: 0;
-    animation: fadeIn 1.5s ease-in-out forwards;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
+/* Header Styling */
 header {
-    background-color: #142850;
-    padding: 20px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(135deg, #1a2a44, #00b7eb); /* لون الهيدر الأساسي */
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     position: relative;
+    z-index: 10;
 }
 
 header h1 {
-    margin: 0;
     font-size: 2.5rem;
-    color: #00d9ff;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
 }
 
 .btn-back {
-    position: absolute;
-    top: 15px;
-    right: 15px;
     background: rgba(255, 255, 255, 0.2);
-    border: none;
-    padding: 10px;
-    border-radius: 50%;
-    font-size: 1.5rem;
-    color: #00d9ff;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.3s ease;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    font-weight: 500;
     text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 .btn-back:hover {
-    background: rgba(255, 255, 255, 0.4);
-    transform: scale(1.2);
+    background: #fff;
+    color: #007bff;
+    transform: translateY(-2px);
 }
 
-.content {
+/* Main Content Styling */
+main.content {
+    padding: 60px 20px;
+    max-width: 1300px;
+    margin: 0 auto;
     text-align: center;
-    padding: 50px 20px;
-    margin-top: 30px;
+    flex-grow: 1;
 }
 
-.content h2 {
-    font-size: 2rem;
-    margin-bottom: 20px;
-    color: #00d9ff;
+main.content h2 {
+    font-size: 2.5rem;
+    color: #1a2a44;
+    margin-bottom: 40px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.8s ease-out;
 }
 
-.content ul {
+main.content ul {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 كروت على الكمبيوتر */
+    gap: 25px;
     list-style: none;
     padding: 0;
 }
 
-.content ul li {
-    margin: 10px 0;
-    font-size: 1.2rem;
-    background: rgba(255, 255, 255, 0.1);
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, background 0.3s ease;
-}
-
-.content ul li:hover {
-    transform: scale(1.05);
-    background: rgba(255, 255, 255, 0.2);
-}
-
-.content ul li a {
-    text-decoration: none;
-    color: white;
-}
-
-footer {
-    text-align: center;
+main.content ul li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #ff69b4 0%, #ff99cc 100%); /* لون الجبر من styles.css */
+    border-radius: 15px;
+    min-height: 250px;
+    max-height: 250px; /* الكروت متساوية في الحجم */
     padding: 20px;
-    background-color: #142850;
-    color: #00d9ff;
-    margin-top: auto;
-    font-size: 0.9rem;
+    text-align: center;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.6s ease-out forwards;
 }
 
-@media (max-width: 768px) {
+main.content ul li a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+    z-index: 0;
+}
+
+main.content ul li a:hover::before {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+main.content ul li a:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+main.content ul li a span {
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    max-width: 100%;
+}
+
+/* Footer Styling */
+footer {
+    background: linear-gradient(135deg, #1a2a44, #00b7eb); /* لون الفوتر الأساسي */
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 -5px 15px rgba(0, 212, 255, 0.3);
+    position: relative;
+    margin-top: auto;
+}
+
+/* Dark Mode Styling */
+body.dark-mode {
+    background: #1a1a1a;
+}
+
+body.dark-mode header {
+    background: linear-gradient(135deg, #2c2c2c, #00d4ff);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .btn-back {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+body.dark-mode .btn-back:hover {
+    background: #ddd;
+    color: #007bff;
+}
+
+body.dark-mode main.content h2 {
+    color: #fff;
+}
+
+body.dark-mode main.content ul li a {
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode main.content ul li a:hover {
+    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode footer {
+    background: linear-gradient(135deg, #2c2c2c, #00d4ff);
+    box-shadow: 0 -5px 15px rgba(0, 212, 255, 0.4);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    header {
+        padding: 15px 20px;
+    }
+
     header h1 {
         font-size: 2rem;
     }
 
+    main.content {
+        padding: 40px 15px;
+    }
+
+    main.content h2 {
+        font-size: 2rem;
+    }
+
+    main.content ul {
+        grid-template-columns: repeat(2, 1fr); /* 2 عمود على شاشات الموبايل الكبيرة */
+        gap: 20px;
+    }
+
+    main.content ul li a {
+        min-height: 200px;
+        max-height: 200px;
+        font-size: 1.6rem;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 10px 15px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
     .btn-back {
-        top: 10px;
-        right: 10px;
-        font-size: 1.2rem;
-        width: 35px;
-        height: 35px;
-    }
-
-    .content h2 {
-        font-size: 1.5rem;
-    }
-
-    .content ul li {
+        padding: 8px 16px;
         font-size: 1rem;
-        padding: 12px;
     }
 
-    .content ul li a {
-        font-size: 1rem;
+    main.content {
+        padding: 30px 10px;
+    }
+
+    main.content h2 {
+        font-size: 1.8rem;
+    }
+
+    main.content ul {
+        grid-template-columns: 1fr; /* عمود واحد على الشاشات الصغيرة */
+        gap: 15px;
+    }
+
+    main.content ul li a {
+        min-height: 180px;
+        max-height: 180px;
+        font-size: 1.4rem;
     }
 }
 
 @media (max-width: 480px) {
+    header {
+        padding: 8px 10px;
+    }
+
     header h1 {
         font-size: 1.5rem;
     }
 
     .btn-back {
-        top: 8px;
-        right: 8px;
-        font-size: 1rem;
-        width: 30px;
-        height: 30px;
+        padding: 6px 12px;
+        font-size: 0.9rem;
     }
 
-    .content h2 {
+    main.content {
+        padding: 20px 10px;
+    }
+
+    main.content h2 {
+        font-size: 1.5rem;
+        margin-bottom: 30px;
+    }
+
+    main.content ul {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    main.content ul li a {
+        min-height: 160px;
+        max-height: 160px;
         font-size: 1.2rem;
-    }
-
-    .content ul li {
-        font-size: 0.9rem;
-        padding: 10px;
-    }
-
-    .content ul li a {
-        font-size: 0.9rem;
     }
 }

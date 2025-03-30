@@ -4,29 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>كيمياء - دليل معادلة كلية الهندسة</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="Chemistry.css">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" as="style" onload="this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    </noscript>
+    <link rel="stylesheet" href="../../styles.css"> <!-- ربط ملف الـ CSS الرئيسي -->
+    <link rel="stylesheet" href="Chemistry.css"> <!-- ربط ملف CSS الخاص -->
 </head>
 <body>
     <header>
         <h1>كيمياء</h1>
-        <a href="../../index.html" class="btn-back">&#8592;</a>
+        <a href="../../index.html" class="btn-back">←</a>
     </header>
-    
     <main class="content">
         <h2>مرحبًا بك في مادة كيمياء!</h2>
-        <ul>
-            <li><a href="محاضرات الماده/index.html">محاضرات المادة</a></li>
-            <li><a href="تمارين للمراجعه/index.html">تمارين للمراجعة</a></li>
-            <li><a href="امتحانات سابقه/index.html">امتحانات سابقة</a></li>
-            <li><a href="الكتب/index.html">الكتب</a></li>
+        <ul class="subject">
+            <li><a href="محاضرات الماده/ChemistryLectures.html">محاضرات المادة</a></li>
+            <li><a href="تمارين للمراجعه/Exercises.html">تمارين للمراجعة</a></li>
+            <li><a href="امتحانات سابقه/Exams.html">امتحانات سابقة</a></li>
+            <li><a href="الكتب/Books.html">الكتب</a></li>
         </ul>
     </main>
-
     <footer>
-        &copy; 2025 دليل معادلة كلية الهندسة. جميع الحقوق محفوظة.
+        © 2025 دليل معادلة كلية الهندسة. جميع الحقوق محفوظة.
     </footer>
-    
-    <script src="Chemistry.js"></script>
+    <script src="Chemistry.js"></script> <!-- ربط ملف JavaScript الخاص -->
+    <script type="module" src="../../script.js" defer></script> <!-- ربط ملف الـ JavaScript الرئيسي -->
 </body>
 </html>

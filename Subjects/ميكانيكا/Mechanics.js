@@ -1,4 +1,4 @@
-// ✅ التحقق من توفر الروابط
+// التحقق من توفر الروابط
 document.querySelectorAll(".content ul li a").forEach(link => {
     fetch(link.href, { method: 'HEAD' })
         .then(response => {
@@ -13,36 +13,62 @@ document.querySelectorAll(".content ul li a").forEach(link => {
         });
 });
 
-// 🔒 إعدادات الحماية
+// Debounce للـ alerts
+let lastAlertTime = 0;
+const alertCooldown = 2000; // 2 ثانية
+
+// 🔒 منع النقر بزر الفأرة الأيمن
 document.addEventListener("contextmenu", function (event) {
     event.preventDefault();
-    alert("🚫 ممنوع النقر بزر الفأرة الأيمن!");
+    const now = Date.now();
+    if (now - lastAlertTime > alertCooldown) {
+        alert("🚫 ممنوع النقر بزر الفأرة الأيمن!");
+        lastAlertTime = now;
+    }
 });
 
+// 🔒 منع تحديد النص
 document.addEventListener("selectstart", function (event) {
     event.preventDefault();
 });
 
+// 🔒 منع النسخ
 document.addEventListener("copy", function (event) {
     event.preventDefault();
-    alert("🚫 النسخ غير مسموح!");
-});
-
-document.addEventListener("keydown", function (event) {
-    if (event.key === "F12" || 
-        (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "U" || event.key === "C"))) {
-        event.preventDefault();
-        alert("🚫 ممنوع الوصول إلى أدوات المطور!");
+    const now = Date.now();
+    if (now - lastAlertTime > alertCooldown) {
+        alert("🚫 النسخ غير مسموح!");
+        lastAlertTime = now;
     }
 });
 
-// 🚫 تعطيل الكونسول
-console.log = function() {};
-console.warn = function() {};
-console.error = function() {};
-console.info = function() {};
-console.debug = function() {};
+// 🔒 منع فتح أدوات المطور
+document.addEventListener("keydown", function (event) {
+    if (
+        event.key === "F12" || 
+        (event.ctrlKey && event.shiftKey && ["I", "U", "C"].includes(event.key)) || 
+        (event.ctrlKey && event.key === "U")
+    ) {
+        event.preventDefault();
+        const now = Date.now();
+        if (now - lastAlertTime > alertCooldown) {
+            alert("🚫 ممنوع الوصول إلى أدوات المطور!");
+            lastAlertTime = now;
+        }
+    }
+});
 
+// 🚫 تعطيل Console
+(function() {
+    const disabledConsole = function() {};
+    console.log = disabledConsole;
+    console.warn = disabledConsole;
+    console.error = disabledConsole;
+    console.info = disabledConsole;
+    console.debug = disabledConsole;
+})();
+
+// 🔥 إخفاء Console كل 500ms
 setInterval(function() {
     console.clear();
-}, 100);
+}, 500);

@@ -1,0 +1,322 @@
+/* Unit1.css */
+
+/* استيراد الخط */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+/* ✅ إعدادات عامة */
+body {
+    font-family: 'Cairo', sans-serif;
+    background: #f5f7fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    direction: rtl;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    user-select: none; /* منع تحديد النص */
+}
+
+/* ✅ تصميم الهيدر */
+header {
+    background: linear-gradient(135deg, #1a2a44, #00b7eb);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 10;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+    line-height: 1.2;
+}
+
+.btn-back {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-back:hover {
+    background: #fff;
+    color: #007bff;
+    transform: translateY(-2px);
+}
+
+/* ✅ تصميم المحتوى الرئيسي */
+main {
+    padding: 60px 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+    flex-grow: 1;
+}
+
+/* ✅ تصميم قائمة المحاضرات */
+.subject {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+}
+
+.subject li {
+    background: linear-gradient(135deg, #1e90ff 0%, #00d4ff 100%); /* تدرج الفيزياء */
+    border-radius: 15px;
+    min-height: 220px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    animation: slideUp 0.6s ease-out forwards;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.subject li:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.subject li::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+    z-index: 0;
+}
+
+.subject li:hover::before {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.subject li a {
+    position: relative;
+    z-index: 1;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.8rem;
+    font-weight: 700;
+    padding: 20px;
+    text-align: center;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s ease;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    display: block;
+}
+
+.subject li a:hover {
+    opacity: 0.8;
+}
+
+/* ✅ تصميم حاوية الفيديو */
+.video-container {
+    display: none;
+    margin-top: 10px;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
+.video-container.active {
+    display: block;
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 200px; /* ارتفاع افتراضي للفيديو */
+    border: none;
+    border-radius: 10px;
+}
+
+/* ✅ تصميم الفوتر */
+footer {
+    background: linear-gradient(135deg, #1a2a44, #00b7eb);
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 -5px 15px rgba(0, 212, 255, 0.3);
+    position: relative;
+    margin-top: auto;
+}
+
+/* Dark Mode Styling */
+body.dark-mode {
+    background: #1a1a1a;
+    color: #ddd;
+}
+
+body.dark-mode header {
+    background: linear-gradient(135deg, #2c2c2c, #00d4ff);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .btn-back {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+body.dark-mode .btn-back:hover {
+    background: #ddd;
+    color: #007bff;
+}
+
+body.dark-mode .subject li {
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .subject li:hover {
+    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .video-container {
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode footer {
+    background: linear-gradient(135deg, #2c2c2c, #00d4ff);
+    box-shadow: 0 -5px 15px rgba(0, 212, 255, 0.4);
+}
+
+/* Animations */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    header {
+        padding: 15px 20px;
+    }
+
+    header h1 {
+        font-size: 2.2rem;
+    }
+
+    main {
+        padding: 40px 15px;
+    }
+
+    .subject {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .subject li {
+        min-height: 200px;
+    }
+
+    .subject li a {
+        font-size: 1.6rem;
+    }
+
+    .video-container iframe {
+        height: 180px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 10px 15px;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .btn-back {
+        padding: 8px 16px;
+        font-size: 1rem;
+    }
+
+    main {
+        padding: 30px 10px;
+    }
+
+    .subject {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .subject li {
+        min-height: 180px;
+    }
+
+    .subject li a {
+        font-size: 1.4rem;
+    }
+
+    .video-container iframe {
+        height: 160px;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 8px 10px;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .btn-back {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+
+    main {
+        padding: 20px 10px;
+    }
+
+    .subject {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .subject li {
+        min-height: 160px;
+    }
+
+    .subject li a {
+        font-size: 1.2rem;
+    }
+
+    .video-container iframe {
+        height: 140px;
+    }
+}

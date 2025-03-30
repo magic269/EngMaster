@@ -1,0 +1,109 @@
+/* General Styling */
+body {
+    font-family: 'Cairo', sans-serif;
+    background: #f5f7fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    direction: rtl;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Header Styling */
+header {
+    background: linear-gradient(135deg, #1a2a44, #00b7eb);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 10;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+.btn-back {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+    background: #fff;
+    color: #007bff;
+    transform: translateY(-2px);
+}
+
+/* Main Content Styling */
+main {
+    padding: 60px 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+    text-align: center;
+    flex-grow: 1;
+}
+
+/* تعديل لتوسيط الكروت مع تحريكها لليسار */
+.subject {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    list-style: none;
+    padding: 0;
+    margin: right100px; /* تحريك الكروت لليسار */
+}
+
+/* تصميم الكروت */
+.subject li a {
+    display: block;
+    background: linear-gradient(135deg, #8a2be2 0%, #d48cff 100%);
+    border-radius: 15px;
+    min-height: 250px;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.subject li a:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer Styling */
+footer {
+    background: linear-gradient(135deg, #1a2a44, #00b7eb);
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 -5px 15px rgba(0, 212, 255, 0.3);
+    position: relative;
+    margin-top: auto;
+}
