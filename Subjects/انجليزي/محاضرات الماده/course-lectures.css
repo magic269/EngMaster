@@ -1,0 +1,131 @@
+body {
+    font-family: 'Cairo', sans-serif;
+    background: #f5f7fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    direction: rtl;
+}
+
+header {
+    background: linear-gradient(135deg, #1a2a44, #00b7eb);
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 10;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+.btn-back {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+    background: #fff;
+    color: #007bff;
+    transform: translateY(-2px);
+}
+
+main {
+    padding: 30px 15px;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.subject {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    list-style: none;
+    padding: 0;
+}
+
+.subject li a {
+    display: block;
+    background: linear-gradient(135deg, #4682b4 0%, #87cefa 100%);
+    border-radius: 12px;
+    padding: 70px;
+    color: #fff;
+    font-size: 2rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.subject li a:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+    background: linear-gradient(135deg, #1a2a44, #00b7eb);
+    padding: 10px;
+    text-align: center;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 500;
+    box-shadow: 0 -5px 15px rgba(0, 183, 235, 0.3);
+    margin-top: 30px;
+    position: relative;
+}
+
+@media (max-width: 1024px) {
+    .subject {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 10px 20px;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .btn-back {
+        padding: 6px 15px;
+        font-size: 0.9rem;
+    }
+
+    .subject {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .subject li a {
+        padding: 50px;
+        font-size: 1.5rem;
+    }
+
+    footer {
+        padding: 8px;
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .subject {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

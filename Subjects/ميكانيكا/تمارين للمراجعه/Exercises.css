@@ -1,0 +1,97 @@
+/* استيراد الخط */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
+
+/* إعدادات عامة */
+body {
+    font-family: 'Cairo', sans-serif;
+    background: #f5f7fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    direction: rtl;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* تصميم الهيدر */
+header {
+    background: linear-gradient(135deg, #1a2a44, #00b7eb);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+}
+
+.btn-back {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+    background: #fff;
+    color: #1a2a44;
+}
+
+/* تصميم المحتوى الرئيسي */
+main {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    flex-grow: 1;
+    text-align: center;
+}
+
+h2 {
+    color: #1a2a44;
+}
+
+ul.subject {
+    list-style: none;
+    padding: 0;
+}
+
+ul.subject li {
+    background: linear-gradient(135deg, #4682b4, #87cefa);
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px 0;
+    text-align: center;
+    transition: 0.3s;
+}
+
+ul.subject li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+ul.subject li:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* تصميم الفوتر */
+footer {
+    background: linear-gradient(135deg, #1a2a44, #00b7eb);
+    padding: 15px;
+    text-align: center;
+    color: #fff;
+    font-size: 0.9rem;
+}

@@ -4,30 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>التفاضل والتكامل - دليل معادلة كلية الهندسة</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="Calculus.css">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" as="style" onload="this.rel='stylesheet'">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" as="style" onload="this.rel='stylesheet'">
+    <noscript>
+        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    </noscript>
+    <link rel="stylesheet" href="../../../styles.css"> <!-- ربط ملف الـ CSS الرئيسي -->
+    <link rel="stylesheet" href="Calculus.css"> <!-- ملف CSS الخاص بالصفحة -->
 </head>
 <body>
     <header>
         <h1>التفاضل والتكامل</h1>
-        <button class="btn-back" onclick="window.location.href='../../index.html'">&#8592;</button>
+        <button class="btn-back" onclick="window.location.href='../../index.html'">←</button>
     </header>
     
     <main class="content">
         <h2>مرحبًا بك في مادة التفاضل والتكامل!</h2>
-        <ul>
-            <li><a href="محاضرات%20الماده/index.html">محاضرات المادة</a></li>
-            <li><a href="تمارين%20للمراجعه/index.html">تمارين للمراجعة</a></li>
-            <li><a href="امتحانات%20سابقه/index.html">امتحانات سابقة</a></li>
-            <li><a href="الكتب/index.html">الكتب</a></li>            
+        <ul class="subject"> <!-- أضفت كلاس subject زي Unit 1 -->
+            <li><a href="محاضرات%20الماده/CourseLectures.html">محاضرات المادة</a></li>
+            <li><a href="تمارين%20للمراجعه/ReviewExercises.html">تمارين للمراجعة</a></li>
+            <li><a href="امتحانات%20سابقه/PastExams.html">امتحانات سابقة</a></li>
+            <li><a href="الكتب/Books.html">الكتب</a></li>            
         </ul>
     </main>
 
     <footer>
-        &copy; 2025 دليل معادلة كلية الهندسة. جميع الحقوق محفوظة.
+        © 2025 دليل معادلة كلية الهندسة. جميع الحقوق محفوظة.
     </footer>
     
     <script src="Calculus.js"></script>
+    <script type="module" src="../../script.js"></script>
 </body>
 </html>

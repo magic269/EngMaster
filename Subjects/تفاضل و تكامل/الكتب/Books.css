@@ -1,0 +1,231 @@
+body {
+    font-family: 'Cairo', sans-serif;
+    background: #f5f7fa;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    direction: rtl;
+}
+
+header {
+    background: linear-gradient(135deg, #1a2a44, #00b7eb);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 10;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+    margin: 0;
+}
+
+.btn-back {
+    background: rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+}
+
+.btn-back:hover {
+    background: #fff;
+    color: #007bff;
+    transform: translateY(-2px);
+}
+
+main {
+    padding: 60px 20px;
+    max-width: 1300px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.subject {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    list-style: none;
+    padding: 0;
+}
+
+.subject li a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #4682b4 0%, #87cefa 100%);
+    border-radius: 15px;
+    min-height: 220px;
+    padding: 20px;
+    text-align: center;
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.subject li a i {
+    margin-left: 10px;
+}
+
+.subject li a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+    z-index: 0;
+}
+
+.subject li a:hover::before {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.subject li a:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.subject li a span {
+    position: relative;
+    z-index: 1;
+}
+
+footer {
+    background: linear-gradient(135deg, #1a2a44, #00b7eb);
+    padding: 15px 20px;
+    text-align: center;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-top: 1px solid rgba(0, 212, 255, 0.5);
+    box-shadow: 0 -5px 15px rgba(0, 183, 235, 0.3);
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #00d4ff, #ff00ff, #00d4ff);
+    animation: borderGlow 3s linear infinite;
+}
+
+footer p {
+    margin: 0;
+    text-shadow: 0 0 5px rgba(0, 212, 255, 0.5);
+    transition: transform 0.3s ease;
+}
+
+footer p:hover {
+    transform: scale(1.05);
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
+}
+
+@media (max-width: 1024px) {
+    .subject {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 8px 10px;
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    .btn-back {
+        padding: 6px 12px;
+        font-size: 1rem;
+        border-radius: 6px;
+    }
+
+    main {
+        padding: 30px 10px;
+    }
+
+    .subject {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .subject li a {
+        min-height: 180px;
+        font-size: 1.4rem;
+        padding: 15px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+        padding: 10px 15px;
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        padding: 5px 10px;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .btn-back {
+        padding: 5px 10px;
+        font-size: 0.9rem;
+    }
+
+    main {
+        padding: 20px 10px;
+    }
+
+    .subject {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .subject li a {
+        min-height: 150px;
+        font-size: 1.2rem;
+        padding: 10px;
+    }
+
+    footer {
+        padding: 8px 12px;
+        font-size: 0.7rem;
+    }
+}
+
+@keyframes borderGlow {
+    0% { background-position: 0%; }
+    100% { background-position: 200%; }
+}
