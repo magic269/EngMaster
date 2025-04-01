@@ -55,34 +55,3 @@ document.addEventListener("copy", function (event) {
         lastAlertTime = now;
     }
 });
-
-// 🔒 منع فتح أدوات المطور
-document.addEventListener("keydown", function (event) {
-    if (
-        event.key === "F12" || 
-        (event.ctrlKey && event.shiftKey && ["I", "U", "C"].includes(event.key)) || 
-        (event.ctrlKey && event.key === "U")
-    ) {
-        event.preventDefault();
-        const now = Date.now();
-        if (now - lastAlertTime > alertCooldown) {
-            alert("🚫 ممنوع الوصول إلى أدوات المطور!");
-            lastAlertTime = now;
-        }
-    }
-});
-
-// 🚫 تعطيل Console
-(function() {
-    const disabledConsole = function() {};
-    console.log = disabledConsole;
-    console.warn = disabledConsole;
-    console.error = disabledConsole;
-    console.info = disabledConsole;
-    console.debug = disabledConsole;
-})();
-
-// 🔥 إخفاء Console كل 500ms
-setInterval(function() {
-    console.clear();
-}, 500);
