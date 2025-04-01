@@ -102,6 +102,10 @@ footer {
     font-weight: 500;
     box-shadow: 0 -5px 15px rgba(0, 212, 255, 0.3);
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex-wrap: wrap; 
 }
 
 /* Responsive Design */

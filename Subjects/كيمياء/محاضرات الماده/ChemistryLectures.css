@@ -113,17 +113,17 @@ main {
 
 footer {
     background: linear-gradient(135deg, #1a2a44, #00b7eb);
-    padding: 15px 20px;
+    padding: 20px;
     text-align: center;
     color: #fff;
     font-size: 0.9rem;
     font-weight: 500;
-    border-top: 1px solid rgba(0, 212, 255, 0.5);
-    box-shadow: 0 -5px 15px rgba(0, 183, 235, 0.3);
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    box-shadow: 0 -5px 15px rgba(0, 212, 255, 0.3);
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    flex-wrap: wrap; 
 }
 
 footer::before {
