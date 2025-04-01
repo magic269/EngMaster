@@ -6,6 +6,7 @@ body {
     padding: 0;
     overflow-x: hidden;
     scroll-behavior: smooth;
+    direction: rtl;
 }
 
 header {
@@ -54,14 +55,16 @@ main {
 
 .subject {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 25px;
     list-style: none;
     padding: 0;
 }
 
 .subject li a {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: linear-gradient(135deg, #4682b4 0%, #87cefa 100%);
     border-radius: 15px;
     min-height: 220px;
@@ -75,10 +78,11 @@ main {
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     position: relative;
     overflow: hidden;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.subject li a i {
+    margin-left: 10px;
 }
 
 .subject li a::before {
@@ -144,68 +148,15 @@ footer p:hover {
     text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
 }
 
-body.dark-mode {
-    background: #1a1a1a;
-}
-
-body.dark-mode header {
-    background: linear-gradient(135deg, #2c2c2c, #00d4ff);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-}
-
-body.dark-mode .btn-back {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-}
-
-body.dark-mode .btn-back:hover {
-    background: #ddd;
-    color: #007bff;
-}
-
-body.dark-mode .subject li a {
-    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
-}
-
-body.dark-mode .subject li a:hover {
-    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
-}
-
-body.dark-mode footer {
-    background: linear-gradient(135deg, #2c2c2c, #00d4ff);
-    box-shadow: 0 -5px 15px rgba(0, 212, 255, 0.4);
-}
-
 @media (max-width: 1024px) {
-    header {
-        padding: 15px 20px;
-    }
-
-    header h1 {
-        font-size: 2rem;
-    }
-
-    main {
-        padding: 40px 15px;
-    }
-
     .subject {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 20px;
-    }
-
-    .subject li a {
-        min-height: 200px;
-        font-size: 1.6rem;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 768px) {
     header {
         padding: 8px 10px;
-        flex-wrap: nowrap;
-        justify-content: space-between;
-        align-items: center;
     }
 
     header h1 {
@@ -223,16 +174,14 @@ body.dark-mode footer {
     }
 
     .subject {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 10px;
-        padding: 0 5px;
     }
 
     .subject li a {
-        min-height: 140px;
-        border-radius: 10px;
-        font-size: 1.2rem;
-        padding: 10px;
+        min-height: 180px;
+        font-size: 1.4rem;
+        padding: 15px;
         box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     }
 
@@ -243,31 +192,14 @@ body.dark-mode footer {
 }
 
 @media (max-width: 480px) {
-    header {
-        padding: 6px 8px;
-    }
-
-    header h1 {
-        font-size: 1.5rem;
-    }
-
-    .btn-back {
-        padding: 5px 10px;
-        font-size: 0.9rem;
-    }
-
-    main {
-        padding: 20px 10px;
-    }
-
     .subject {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
+        grid-template-columns: repeat(1, 1fr);
     }
 
     .subject li a {
-        min-height: 120px;
-        font-size: 1rem;
+        min-height: 150px;
+        font-size: 1.2rem;
+        padding: 10px;
     }
 
     footer {
@@ -279,9 +211,4 @@ body.dark-mode footer {
 @keyframes borderGlow {
     0% { background-position: 0%; }
     100% { background-position: 200%; }
-}
-
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
 }
