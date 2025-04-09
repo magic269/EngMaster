@@ -846,7 +846,6 @@ body.dark-mode .search-no-results { color: #aaa; }
     .search-bar,
     .search-results { max-width: 500px; }
 }
-
 @media (max-width: 768px) {
     .app-header { padding: 8px 10px; }
     .logo-container .logo { font-size: 20px; }
@@ -861,6 +860,7 @@ body.dark-mode .search-no-results { color: #aaa; }
     body.dark-mode .auth-btn:hover { background: rgba(0, 191, 255, 0.2); color: #00bfff; }
     .dark-mode-toggle { padding: 6px; }
     .mode-icon { width: 32px; height: 32px; }
+    .username-display { display: none; }
     .hero-section { padding-top: 60px; }
     .hero-slide { flex-direction: column; height: 60vh; justify-content: center; text-align: center; padding: 15px; }
     .hero-content { max-width: 100%; text-align: center; }
