@@ -1,6 +1,7 @@
 // استيراد الدوال من Firebase
 import { auth, db, onAuthStateChanged, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, doc, setDoc, getDoc } from './firebase-config.js';
 
+// مصفوفة البحث
 const searchPaths = [
     { path: "/Subjects/انجليزي/English.html", title: "مادة الإنجليزي", desc: "الصفحة الرئيسية لمادة اللغة الإنجليزية" },
     { path: "/Subjects/انجليزي/الكتب/books.html", title: "كتب الإنجليزي", desc: "صفحة كتب مادة الإنجليزي" },
@@ -54,7 +55,7 @@ const searchPaths = [
     { path: "/Subjects/ميكانيكا/محاضرات الماده/استاتيكا/الوحدة الثانية/index.html", title: "محاضرات الوحدة الثانية استاتيكا", desc: "صفحة محاضرات الوحدة الثانية في الاستاتيكا" },
     { path: "/Subjects/ميكانيكا/محاضرات الماده/استاتيكا/الوحدة الثالثة/index.html", title: "محاضرات الوحدة الثالثة استاتيكا", desc: "صفحة محاضرات الوحدة الثالثة في الاستاتيكا" },
     { path: "/Subjects/ميكانيكا/محاضرات الماده/استاتيكا/الوحدة الرابعة/index.html", title: "محاضرات الوحدة الرابعة استاتيكا", desc: "صفحة محاضرات الوحدة الرابعة في الاستاتيكا" },
-    { path買取: "/Subjects/ميكانيكا/محاضرات الماده/استاتيكا/الوحدة الخامسة/index.html", title: "محاضرات الوحدة الخامسة استاتيكا", desc: "صفحة محاضرات الوحدة الخامسة في الاستاتيكا" },
+    { path: "/Subjects/ميكانيكا/محاضرات الماده/استاتيكا/الوحدة الخامسة/index.html", title: "محاضرات الوحدة الخامسة استاتيكا", desc: "صفحة محاضرات الوحدة الخامسة في الاستاتيكا" },
     { path: "/Subjects/ميكانيكا/محاضرات الماده/استاتيكا/الوحدة الخامسة/الدرس الأول/index.html", title: "محاضرة الدرس الأول استاتيكا وحدة 5", desc: "الدرس الأول في الوحدة الخامسة استاتيكا" },
     { path: "/Subjects/ميكانيكا/محاضرات الماده/ديناميكا/DynamicsLectures.html", title: "محاضرات الديناميكا", desc: "صفحة محاضرات الديناميكا في الميكانيكا" },
     { path: "/Subjects/ميكانيكا/محاضرات الماده/ديناميكا/الوحدة الثانية/index.html", title: "محاضرات الوحدة الثانية ديناميكا", desc: "صفحة محاضرات الوحدة الثانية في الديناميكا" },
@@ -115,14 +116,17 @@ if (slides.length) {
     heroSection.addEventListener('mouseleave', () => autoSlideInterval = setInterval(nextSlide, 5000));
 }
 
-// Dark Mode Logic
+// Dark Mode Logic with Device Preference
 function applyDarkMode(isDark) {
     if (isDark) {
+        document.body.classList.remove('light-mode');
         document.body.classList.add('dark-mode');
+        localStorage.setItem('theme', 'dark');
     } else {
         document.body.classList.remove('dark-mode');
+        document.body.classList.add('light-mode');
+        localStorage.setItem('theme', 'light');
     }
-    localStorage.setItem('darkMode', isDark); // حفظ الحالة في localStorage
     const toggleButton = document.querySelector('.dark-mode-toggle');
     if (toggleButton) {
         toggleButton.innerHTML = isDark ? 
@@ -131,16 +135,43 @@ function applyDarkMode(isDark) {
     }
 }
 
-// Read More Toggle
+// Check Device Preference and Apply Initial Theme
+const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
+const savedTheme = localStorage.getItem('theme');
+
+if (savedTheme) {
+    applyDarkMode(savedTheme === 'dark');
+} else {
+    applyDarkMode(prefersDarkScheme.matches);
+}
+
+// Dark Mode Toggle Listener
+document.addEventListener('DOMContentLoaded', () => {
+    const darkModeToggle = document.querySelector('.dark-mode-toggle');
+    if (darkModeToggle) {
+        darkModeToggle.addEventListener('click', () => {
+            const isCurrentlyDark = document.body.classList.contains('dark-mode');
+            applyDarkMode(!isCurrentlyDark);
+        });
+    }
+});
+
+// Read More Toggle (With Animation)
 function toggleReadMore() {
     const content = document.querySelector('.equation-content');
     const readMoreBtn = document.querySelector('.read-more-btn');
     const readLessBtn = document.querySelector('.read-less-btn');
     
     if (content && readMoreBtn && readLessBtn) {
-        const isVisible = content.classList.toggle('visible');
-        readMoreBtn.classList.toggle('hidden', isVisible);
-        readLessBtn.classList.toggle('hidden', !isVisible);
+        if (content.classList.contains('visible')) {
+            content.classList.remove('visible');
+            readMoreBtn.classList.remove('hidden');
+            readLessBtn.classList.add('hidden');
+        } else {
+            content.classList.add('visible');
+            readMoreBtn.classList.add('hidden');
+            readLessBtn.classList.remove('hidden');
+        }
     }
 }
 
@@ -156,20 +187,29 @@ async function handleLogout() {
     }
 }
 
-// Header Hide/Show on Scroll
+// Header and Footer Hide/Show on Scroll
 let lastScrollTop = 0;
 const header = document.querySelector('.app-header');
+const footer = document.querySelector('.app-footer');
 
 window.addEventListener('scroll', () => {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
+    // التحكم في الهيدر
     if (scrollTop > 50) {
         header.classList.add('hidden');
     } else {
         header.classList.remove('hidden');
     }
 
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    // التحكم في الفوتر
+    if (scrollTop > lastScrollTop) {
+        footer.classList.add('hidden');
+    } else {
+        footer.classList.remove('hidden');
+    }
+
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // تحديث آخر موقع للتمرير
 });
 
 // Search Logic
@@ -178,8 +218,7 @@ document.getElementById('search-bar')?.addEventListener('input', function(e) {
     const resultsContainer = document.getElementById('search-results');
     if (!resultsContainer) return;
 
-    resultsContainer.innerHTML = ''; // تفريغ النتائج
-
+    resultsContainer.innerHTML = '';
     if (searchTerm.length < 2) {
         resultsContainer.innerHTML = '<div class="search-no-results">اكتب أكثر من حرفين للبحث</div>';
         return;
@@ -209,18 +248,6 @@ document.getElementById('search-bar')?.addEventListener('input', function(e) {
 
 // DOM Content Loaded Event
 document.addEventListener('DOMContentLoaded', () => {
-    // تحميل حالة الـ Dark Mode من localStorage عند فتح الصفحة
-    const isDark = localStorage.getItem('darkMode') === 'true';
-    applyDarkMode(isDark); // تطبيق الحالة المحفوظة
-
-    const darkModeToggle = document.querySelector('.dark-mode-toggle');
-    if (darkModeToggle) {
-        darkModeToggle.addEventListener('click', () => {
-            const currentMode = document.body.classList.contains('dark-mode');
-            applyDarkMode(!currentMode); // تغيير الحالة عند الضغط
-        });
-    }
-
     const authButton = document.getElementById("authButton");
     const usernameDisplay = document.getElementById('usernameDisplay');
 
@@ -295,32 +322,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Reveal on Scroll
+// Reveal on Scroll (بدون Animation)
 function revealOnScroll() {
     let elements = document.querySelectorAll('.hidden');
     elements.forEach(element => {
         let position = element.getBoundingClientRect().top;
         let screenHeight = window.innerHeight;
         if (position < screenHeight - 50) {
-            element.classList.add('show');
+            element.classList.remove('hidden');
         }
     });
 }
 
 window.addEventListener('scroll', revealOnScroll);
 document.addEventListener("DOMContentLoaded", revealOnScroll);
-
-// Fade-in Animation
-document.addEventListener('DOMContentLoaded', () => {
-    const fadeElements = document.querySelectorAll('.fade-in');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.1 });
-
-    fadeElements.forEach(element => observer.observe(element));
-});
