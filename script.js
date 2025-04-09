@@ -1,7 +1,5 @@
-// استيراد الدوال من Firebase
 import { auth, db, onAuthStateChanged, signOut, signInWithEmailAndPassword, createUserWithEmailAndPassword, doc, setDoc, getDoc } from './firebase-config.js';
 
-// مصفوفة البحث
 const searchPaths = [
     { path: "/Subjects/انجليزي/English.html", title: "مادة الإنجليزي", desc: "الصفحة الرئيسية لمادة اللغة الإنجليزية" },
     { path: "/Subjects/انجليزي/الكتب/books.html", title: "كتب الإنجليزي", desc: "صفحة كتب مادة الإنجليزي" },
@@ -63,7 +61,6 @@ const searchPaths = [
     { path: "/Subjects/ميكانيكا/محاضرات الماده/ديناميكا/الوحدة الرابعة/index.html", title: "محاضرة الوحدة الرابعة ديناميكا", desc: "محاضرة الوحدة الرابعة في الديناميكا" }
 ];
 
-// Smooth Scroll for Navigation Links
 document.querySelectorAll('.nav-link, .hero-cta-secondary').forEach(link => {
     link.addEventListener('click', (e) => {
         e.preventDefault();
@@ -78,7 +75,6 @@ document.querySelectorAll('.nav-link, .hero-cta-secondary').forEach(link => {
     });
 });
 
-// Hero Slider
 let currentSlide = 0;
 const slides = document.querySelectorAll('.hero-slide');
 const dots = document.querySelectorAll('.dot');
@@ -116,7 +112,6 @@ if (slides.length) {
     heroSection.addEventListener('mouseleave', () => autoSlideInterval = setInterval(nextSlide, 5000));
 }
 
-// Dark Mode Logic with Device Preference
 function applyDarkMode(isDark) {
     if (isDark) {
         document.body.classList.remove('light-mode');
@@ -135,7 +130,6 @@ function applyDarkMode(isDark) {
     }
 }
 
-// Check Device Preference and Apply Initial Theme
 const prefersDarkScheme = window.matchMedia("(prefers-color-scheme: dark)");
 const savedTheme = localStorage.getItem('theme');
 
@@ -145,7 +139,6 @@ if (savedTheme) {
     applyDarkMode(prefersDarkScheme.matches);
 }
 
-// Dark Mode Toggle Listener
 document.addEventListener('DOMContentLoaded', () => {
     const darkModeToggle = document.querySelector('.dark-mode-toggle');
     if (darkModeToggle) {
@@ -156,7 +149,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Read More Toggle (With Animation)
 function toggleReadMore() {
     const content = document.querySelector('.equation-content');
     const readMoreBtn = document.querySelector('.read-more-btn');
@@ -175,7 +167,6 @@ function toggleReadMore() {
     }
 }
 
-// Authentication Logic
 async function handleLogout() {
     try {
         await signOut(auth);
@@ -187,32 +178,28 @@ async function handleLogout() {
     }
 }
 
-// Header and Footer Hide/Show on Scroll
 let lastScrollTop = 0;
 const header = document.querySelector('.app-header');
 const footer = document.querySelector('.app-footer');
 
-window.addEventListener('scroll', () => {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+window.addEventListener('scroll', function () {
+    const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
-    // التحكم في الهيدر
-    if (scrollTop > 50) {
-        header.classList.add('hidden');
+    if (currentScroll > lastScrollTop) {
+        header.style.top = '-100px';
     } else {
-        header.classList.remove('hidden');
+        header.style.top = '0';
     }
 
-    // التحكم في الفوتر
-    if (scrollTop > lastScrollTop) {
+    if (currentScroll > lastScrollTop) {
         footer.classList.add('hidden');
     } else {
         footer.classList.remove('hidden');
     }
 
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // تحديث آخر موقع للتمرير
-});
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+}, false);
 
-// Search Logic
 document.getElementById('search-bar')?.addEventListener('input', function(e) {
     const searchTerm = e.target.value.trim().toLowerCase();
     const resultsContainer = document.getElementById('search-results');
@@ -246,7 +233,6 @@ document.getElementById('search-bar')?.addEventListener('input', function(e) {
     }
 });
 
-// DOM Content Loaded Event
 document.addEventListener('DOMContentLoaded', () => {
     const authButton = document.getElementById("authButton");
     const usernameDisplay = document.getElementById('usernameDisplay');
@@ -322,7 +308,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Reveal on Scroll (بدون Animation)
 function revealOnScroll() {
     let elements = document.querySelectorAll('.hidden');
     elements.forEach(element => {
