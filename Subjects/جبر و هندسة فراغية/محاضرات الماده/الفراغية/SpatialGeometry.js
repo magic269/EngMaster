@@ -1,91 +1,98 @@
-// SpatialGeometry.js
+const videoUrls = {
+    video1: "https://www.youtube.com/embed/bmX6EhZYKpE",
+    video2: "https://www.youtube.com/embed/uTulYC_e8U8",
+    video3: "https://www.youtube.com/embed/mTH1uJ4tomM",
+    video4: "https://www.youtube.com/embed/-389I5ELU9I",
+    video5: "https://www.youtube.com/embed/XrU_0ToUxTs",
+    video6: "https://www.youtube.com/embed/3CkIvHwsv58",
+    video7: "https://www.youtube.com/embed/n0nOPBrsiCM"
+};
 
-// Debounce للـ alerts
-let lastAlertTime = 0;
-const alertCooldown = 2000;
+const isValidUrl = (url) => /^https:\/\/www\.youtube\.com\/embed\//.test(url);
 
-// دالة لتشغيل/إغلاق الفيديو
-let activeVideo = null;
-function toggleVideo(videoId) {
-    let videoDiv = document.getElementById(videoId);
-    if (activeVideo && activeVideo !== videoDiv) activeVideo.style.display = "none";
-    videoDiv.style.display = (videoDiv.style.display === "block") ? "none" : "block";
-    activeVideo = (videoDiv.style.display === "block") ? videoDiv : null;
-}
-
-// دالة زر الرجوع
-function goBack() {
-    history.back();
-}
-
-// ✅ التحقق من توفر الروابط
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".subject li[onclick^='window.open']").forEach(link => {
-        const url = link.getAttribute("onclick").match(/'([^']+)'/)[1];
-        if (url && !url.includes('javascript') && !url.includes('#')) {
-            fetch(url, { method: 'HEAD' })
-                .then(response => {
-                    if (!response.ok) {
-                        link.style.color = "red";
-                        link.textContent += " (غير متاح)";
-                    }
-                })
-                .catch(() => {
-                    link.style.color = "red";
-                    link.textContent += " (غير متاح)";
-                });
-        }
+const showVideo = (element, videoId) => {
+    const videoContainer = document.getElementById(videoId);
+    if (!videoContainer) return;
+    const videoUrl = videoUrls[videoId];
+    if (!videoUrl || !isValidUrl(videoUrl)) return;
+    const allLinks = document.querySelectorAll(".subject li a");
+    const allContainers = document.querySelectorAll(".video-container");
+    allLinks.forEach((link) => link.classList.remove("active"));
+    allContainers.forEach((container) => {
+        container.innerHTML = "";
+        container.classList.remove("visible");
     });
-});
+    element.classList.add("active");
+    if (videoContainer.querySelector("iframe")?.src === videoUrl) return;
+    const iframe = document.createElement("iframe");
+    iframe.src = videoUrl;
+    iframe.width = "100%";
+    iframe.height = "100%";
+    iframe.frameBorder = "0";
+    iframe.allow = "autoplay; encrypted-media; picture-in-picture";
+    iframe.allowFullscreen = true;
+    iframe.setAttribute("sandbox", "allow-scripts allow-same-origin allow-popups");
+    videoContainer.innerHTML = "";
+    videoContainer.appendChild(iframe);
+    videoContainer.classList.add("visible");
+    videoContainer.scrollIntoView({ behavior: "smooth", block: "center" });
+};
 
-// 🔒 منع النقر بزر الفأرة الأيمن
-document.addEventListener("contextmenu", e => {
-    e.preventDefault();
-    const now = Date.now();
-    if (now - lastAlertTime > alertCooldown) {
-        alert("🚫 ممنوع النقر بزر الفأرة الأيمن!");
-        lastAlertTime = now;
+document.addEventListener("click", (e) => {
+    const videoContainer = e.target.closest(".video-container");
+    const link = e.target.closest(".subject li a");
+    if (!videoContainer && !link) {
+        document.querySelectorAll(".video-container").forEach((container) => {
+            container.innerHTML = "";
+            container.classList.remove("visible");
+        });
+        document.querySelectorAll(".subject li a").forEach((link) => link.classList.remove("active"));
     }
 });
 
-// 🔒 منع تحديد النص
-document.addEventListener("selectstart", e => e.preventDefault());
-
-// 🔒 منع النسخ
-document.addEventListener("copy", e => {
-    e.preventDefault();
-    const now = Date.now();
-    if (now - lastAlertTime > alertCooldown) {
-        alert("🚫 النسخ غير مسموح!");
-        lastAlertTime = now;
+document.addEventListener("DOMContentLoaded", () => {
+    const links = document.querySelectorAll(".subject li a");
+    links.forEach((link) => {
+        if (link.getAttribute("href") && link.getAttribute("href").startsWith("https://www.youtube.com")) {
+            return;
+        }
+        link.addEventListener("click", (e) => {
+            e.preventDefault();
+            const videoId = link.getAttribute("onclick")?.match(/'([^']+)'/)[1];
+            if (videoId) {
+                showVideo(link, videoId);
+            }
+        });
+    });
+    if ("IntersectionObserver" in window) {
+        const containers = document.querySelectorAll(".video-container");
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) {
+                        entry.target.innerHTML = "";
+                        entry.target.classList.remove("visible");
+                    }
+                });
+            },
+            { threshold: 0 }
+        );
+        containers.forEach((container) => observer.observe(container));
     }
 });
 
-// 🔒 منع فتح أدوات المطور
-document.addEventListener("keydown", e => {
-    if (
-        e.key === "F12" || 
-        (e.ctrlKey && e.shiftKey && ["I", "J", "C"].includes(e.key)) || 
-        (e.ctrlKey && e.key === "U")
-    ) {
-        e.preventDefault();
-        const now = Date.now();
-        if (now - lastAlertTime > alertCooldown) {
-            alert("🚫 ممنوع الوصول إلى أدوات المطور!");
-            lastAlertTime = now;
+window.addEventListener("error", (e) => {
+    if (e.target.tagName === "IFRAME") {
+        const container = e.target.closest(".video-container");
+        if (container) {
+            const errorMsg = document.createElement("p");
+            errorMsg.style.color = "red";
+            errorMsg.style.textAlign = "center";
+            errorMsg.style.padding = "20px";
+            errorMsg.innerHTML = `عذرًا، هذا الفيديو غير متاح للتشغيل هنا. <a href="${e.target.src.replace('/embed/', '/watch?v=')}" target="_blank" style="color: #007bff; text-decoration: underline;">شاهد الفيديو على يوتيوب</a>`;
+            container.innerHTML = "";
+            container.appendChild(errorMsg);
+            container.classList.add("visible");
         }
     }
-});
-
-// 🚫 تعطيل Console
-(function() {
-    const disabledConsole = function() {};
-    console.log = disabledConsole;
-    console.warn = disabledConsole;
-    console.error = disabledConsole;
-    console.info = disabledConsole;
-    console.debug = disabledConsole;
-})();
-
-// 🔥 إخفاء Console كل 1000ms
-setInterval(() => console.clear(), 1000);
+}, true);

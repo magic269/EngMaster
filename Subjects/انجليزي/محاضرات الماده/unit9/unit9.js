@@ -1,72 +1,85 @@
-function showVideo(link, videoUrl) {
-    const allVideos = document.querySelectorAll('.video-container');
-    allVideos.forEach((video) => {
-        video.innerHTML = ''; // إغلاق الفيديوهات القديمة
+const videoUrls = {
+    video1: "https://www.youtube.com/embed/nLE-sCBLpcY?list=PLcnhTg3Redx0V9EimrsbDq9wQUGRdU5Bz&index=22"
+  };
+  
+  const isValidUrl = (url) => /^https:\/\/www\.youtube\.com\/embed\//.test(url);
+  
+  const showVideo = (element, videoId) => {
+    const videoContainer = document.getElementById(videoId);
+    if (!videoContainer) return;
+    const videoUrl = videoUrls[videoId];
+    if (!videoUrl || !isValidUrl(videoUrl)) return;
+    const allLinks = document.querySelectorAll(".subject li a");
+    const allContainers = document.querySelectorAll(".video-container");
+    allLinks.forEach((link) => link.classList.remove("active"));
+    allContainers.forEach((container) => {
+      container.innerHTML = "";
+      container.classList.remove("visible");
     });
-
-    const videoContainer = link.nextElementSibling; // الحاوية الخاصة بالرابط
-    if (!videoContainer) return; // فحص وجود الحاوية
-
-    const iframe = document.createElement('iframe');
+    element.classList.add("active");
+    if (videoContainer.querySelector("iframe")?.src === videoUrl) return;
+    const iframe = document.createElement("iframe");
     iframe.src = videoUrl;
+    iframe.width = "100%";
+    iframe.height = "100%";
     iframe.frameBorder = "0";
-    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+    iframe.allow = "autoplay; encrypted-media; picture-in-picture";
     iframe.allowFullscreen = true;
-    
-    videoContainer.innerHTML = ''; // تأكد من أن الحاوية فارغة
+    iframe.setAttribute("sandbox", "allow-scripts allow-same-origin allow-popups");
+    videoContainer.innerHTML = "";
     videoContainer.appendChild(iframe);
-}
-
-// Debounce للـ alerts
-let lastAlertTime = 0;
-const alertCooldown = 2000; // 2 ثانية
-
-// 🔒 منع النقر بزر الفأرة الأيمن
-document.addEventListener("contextmenu", function (event) {
-    event.preventDefault();
-    const now = Date.now();
-    if (now - lastAlertTime > alertCooldown) {
-        alert("🚫 ممنوع النقر بزر الفأرة الأيمن!");
-        lastAlertTime = now;
+    videoContainer.classList.add("visible");
+    videoContainer.scrollIntoView({ behavior: "smooth", block: "center" });
+  };
+  
+  document.addEventListener("click", (e) => {
+    const videoContainer = e.target.closest(".video-container");
+    const link = e.target.closest(".subject li a");
+    if (!videoContainer && !link) {
+      document.querySelectorAll(".video-container").forEach((container) => {
+        container.innerHTML = "";
+        container.classList.remove("visible");
+      });
+      document.querySelectorAll(".subject li a").forEach((link) => link.classList.remove("active"));
     }
-});
-
-// 🔒 منع تحديد النص
-document.addEventListener("selectstart", function (event) {
-    event.preventDefault();
-});
-
-// 🔒 منع النسخ
-document.addEventListener("copy", function (event) {
-    event.preventDefault();
-    const now = Date.now();
-    if (now - lastAlertTime > alertCooldown) {
-        alert("🚫 النسخ غير مسموح!");
-        lastAlertTime = now;
+  });
+  
+  document.addEventListener("DOMContentLoaded", () => {
+    const links = document.querySelectorAll(".subject li a");
+    links.forEach((link) => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        const videoId = link.getAttribute("data-video-id");
+        showVideo(link, videoId);
+      });
+    });
+    if ("IntersectionObserver" in window) {
+      const containers = document.querySelectorAll(".video-container");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) {
+              entry.target.innerHTML = "";
+              entry.target.classList.remove("visible");
+            }
+          });
+        },
+        { threshold: 0 }
+      );
+      containers.forEach((container) => observer.observe(container));
     }
-});
-
-// 🔒 منع فتح أدوات المطور (F12 و Ctrl+Shift+I و Ctrl+U و Ctrl+Shift+C)
-document.addEventListener("keydown", function (event) {
-    if (event.key === "F12" || 
-        (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "U" || event.key === "C"))) {
-        event.preventDefault();
-        const now = Date.now();
-        if (now - lastAlertTime > alertCooldown) {
-            alert("🚫 ممنوع الوصول إلى أدوات المطور!");
-            lastAlertTime = now;
-        }
+  });
+  
+  window.addEventListener("error", (e) => {
+    if (e.target.tagName === "IFRAME") {
+      const container = e.target.closest(".video-container");
+      if (container) {
+        const errorMsg = document.createElement("p");
+        errorMsg.style.color = "red";
+        errorMsg.style.textAlign = "center";
+        errorMsg.textContent = "خطأ في تحميل الفيديو، حاول مرة أخرى لاحقًا.";
+        container.innerHTML = "";
+        container.appendChild(errorMsg);
+      }
     }
-});
-
-// 🚫 تعطيل Console بالكامل
-console.log = function() {};
-console.warn = function() {};
-console.error = function() {};
-console.info = function() {};
-console.debug = function() {};
-
-// 🔥 إخفاء Console كل 500ms
-setInterval(function() {
-    console.clear();
-}, 500);
+  }, true);

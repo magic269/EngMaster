@@ -75,19 +75,22 @@ main {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
+
 footer {
     background: linear-gradient(135deg, #1a2a44, #00b7eb);
-    padding: 10px;
+    padding: 20px;
     text-align: center;
     color: #fff;
-    font-size: 0.8rem;
+    font-size: 0.9rem;
     font-weight: 500;
-    box-shadow: 0 -5px 15px rgba(0, 183, 235, 0.3);
+    box-shadow: 0 -5px 15px rgba(0, 212, 255, 0.3);
     position: fixed; 
     bottom: 0; 
-    width: 100%; 
-    left: 0; 
+    left: 0;
+    width: 100%;
+    z-index: 10; 
 }
+
 
 @media (max-width: 1024px) {
     .subject {

@@ -1,38 +1,44 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course Lectures</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../../../styles.css"> <!-- ربط ملف الـ CSS الرئيسي -->
-    <link rel="stylesheet" href="course-lectures.css"> <!-- ربط ملف CSS الخاص بالصفحة -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Course Lectures</title>
+
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'nonce-secure'; style-src 'self' https://fonts.googleapis.com 'nonce-secure'; font-src https://fonts.gstatic.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; worker-src 'self';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet" integrity="sha384-Bz8SDH3Wv3aQj3+0f6V0gXh7k3qJ6e8v7k3qJ6e8v7k3qJ6e8v7k3qJ6e8v7k3q" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../../../styles.css" nonce="secure" />
+  <link rel="stylesheet" href="course-lectures.css" nonce="secure" />
 </head>
 <body>
-    <header>
-        <h1>Course Lectures</h1>
-        <a href="javascript:history.back()" class="btn-back">←</a>
-    </header>
-    <main>
-        <ul class="subject">
-            <li><a href="unit1/unit1.html">unit 1</a></li>
-            <li><a href="unit2/unit2.html">unit 2</a></li>
-            <li><a href="unit3/unit3.html">Unit 3</a></li>
-            <li><a href="unit4/unit4.html">Unit 4</a></li>
-            <li><a href="unit5/unit5.html">Unit 5</a></li>
-            <li><a href="unit6/unit6.html">Unit 6</a></li>
-            <li><a href="unit7/unit7.html">Unit 7</a></li>
-            <li><a href="unit8/unit8.html">Unit 8</a></li>
-            <li><a href="unit9/unit9.html">Unit 9</a></li>
-            <li><a href="unit10/unit10.html">Unit 10</a></li>
-            <li><a href="unit11/unit11.html">Unit 11</a></li>
-            <li><a href="unit12/unit12.html">Unit 12</a></li>
-        </ul>
-    </main>
-    <footer>
-        © 2025 دليل معادلة كلية الهندسة. جميع الحقوق محفوظة.
-    </footer>
-    <script src="course-lectures.js"></script>
-    <script type="module" src="../../../script.js" defer></script>
+  <header>
+    <h1>Course Lectures</h1>
+    <a href="/" class="btn-back">← العودة</a>
+  </header>
+  <main>
+    <ul class="subject" id="unit-list">
+      <li><a href="unit1/unit1.html" rel="noopener noreferrer">Unit 1</a></li>
+      <li><a href="unit2/unit2.html" rel="noopener noreferrer">Unit 2</a></li>
+      <li><a href="unit3/unit3.html" rel="noopener noreferrer">Unit 3</a></li>
+      <li><a href="unit4/unit4.html" rel="noopener noreferrer">Unit 4</a></li>
+      <li><a href="unit5/unit5.html" rel="noopener noreferrer">Unit 5</a></li>
+      <li><a href="unit6/unit6.html" rel="noopener noreferrer">Unit 6</a></li>
+      <li><a href="unit7/unit7.html" rel="noopener noreferrer">Unit 7</a></li>
+      <li><a href="unit8/unit8.html" rel="noopener noreferrer">Unit 8</a></li>
+      <li><a href="unit9/unit9.html" rel="noopener noreferrer">Unit 9</a></li>
+      <li><a href="unit10/unit10.html" rel="noopener noreferrer">Unit 10</a></li>
+      <li><a href="unit11/unit11.html" rel="noopener noreferrer">Unit 11</a></li>
+      <li><a href="unit12/unit12.html" rel="noopener noreferrer">Unit 12</a></li>
+    </ul>
+  </main>
+  <footer>© <span id="current-year"></span> دليل معادلة كلية الهندسة. جميع الحقوق محفوظة.</footer>
+  <script nonce="secure" src="course-lectures.js"></script>
+  <script nonce="secure" type="module" src="../../../script.js"></script>
 </body>
 </html>

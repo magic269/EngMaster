@@ -1,116 +1,90 @@
-// Debounce للـ alerts
-let lastAlertTime = 0;
-const alertCooldown = 2000; // 2 ثانية
+const videoUrls = {
+    video1: "https://www.youtube.com/embed/h1LdanfrheE",
+    video2: "https://www.youtube.com/embed/2znl_GNfJZQ",
+    video3: "https://www.youtube.com/embed/To25i8uzDd8",
+    video4: "https://www.youtube.com/embed/PIOfJO2rRgo",
+    video5: "https://www.youtube.com/embed/vNjQ7SZ1EA8",
+    video6: "https://www.youtube.com/embed/nUq1LQuiY6g"
+};
 
-let lastOpenedVideo = null; // لتتبع آخر فيديو تم فتحه
+const isValidUrl = (url) => /^https:\/\/www\.youtube\.com\/embed\//.test(url);
 
-function openVideo(event, linkElement, videoUrl) {
-    event.preventDefault(); // منع الرابط من إعادة تحميل الصفحة
-
-    // أولًا، تحقق إذا كان هناك فيديو مفتوح حاليًا وأغلقه
-    if (lastOpenedVideo) {
-        lastOpenedVideo.innerHTML = ''; // إغلاق الفيديو السابق
-    }
-
-    // إذا كان الفيديو موجود في YouTube مباشرة، نفتح الرابط مباشرة
-    if (videoUrl.includes('youtube.com/watch')) {
-        window.open(videoUrl, '_blank');
-        return;
-    }
-
-    // إنشاء الفيديو الجديد
-    let videoContainer = linkElement.nextElementSibling;
-    if (!videoContainer) {
-        videoContainer = document.createElement('div');
-        videoContainer.className = 'video-container';
-        linkElement.parentElement.appendChild(videoContainer);
-    }
-
-    const iframe = document.createElement('iframe');
-    iframe.src = videoUrl;
-    iframe.frameBorder = "0";
-    iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
-    iframe.allowFullscreen = true;
-
-    // إضافة الفيديو الجديد
-    videoContainer.innerHTML = '';
-    videoContainer.appendChild(iframe);
-
-    // تعيين الفيديو الحالي كآخر فيديو تم فتحه
-    lastOpenedVideo = videoContainer;
-}
-
-// ✅ التحقق من توفر الروابط وتلوين الروابط غير المتاحة بالأحمر
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll(".subject a").forEach(link => {
-        if (link.href && !link.href.includes('javascript') && !link.href.includes('#')) {
-            fetch(link.href, { method: 'HEAD' })
-                .then(response => {
-                    if (!response.ok) {
-                        link.style.color = "red";
-                        link.textContent += " (غير متاح)";
-                    }
-                })
-                .catch(() => {
-                    link.style.color = "red";
-                    link.textContent += " (غير متاح)";
-                });
-        }
+const showVideo = (element, videoId) => {
+    const videoContainer = document.getElementById(videoId);
+    if (!videoContainer) return;
+    const videoUrl = videoUrls[videoId];
+    if (!videoUrl || !isValidUrl(videoUrl)) return;
+    const allLinks = document.querySelectorAll(".subject li a");
+    const allContainers = document.querySelectorAll(".video-container");
+    allLinks.forEach((link) => link.classList.remove("active"));
+    allContainers.forEach((container) => {
+        container.innerHTML = "";
+        container.classList.remove("visible");
     });
-});
+    element.classList.add("active");
+    if (videoContainer.querySelector("iframe")?.src === videoUrl) return;
+    const iframe = document.createElement("iframe");
+    iframe.src = videoUrl;
+    iframe.width = "100%";
+    iframe.height = "100%";
+    iframe.frameBorder = "0";
+    iframe.allow = "autoplay; encrypted-media; picture-in-picture";
+    iframe.allowFullscreen = true;
+    iframe.setAttribute("sandbox", "allow-scripts allow-same-origin allow-popups");
+    videoContainer.innerHTML = "";
+    videoContainer.appendChild(iframe);
+    videoContainer.classList.add("visible");
+    videoContainer.scrollIntoView({ behavior: "smooth", block: "center" });
+};
 
-// 🔒 منع النقر بزر الفأرة الأيمن
-document.addEventListener("contextmenu", function (event) {
-    event.preventDefault();
-    const now = Date.now();
-    if (now - lastAlertTime > alertCooldown) {
-        alert("🚫 ممنوع النقر بزر الفأرة الأيمن!");
-        lastAlertTime = now;
+document.addEventListener("click", (e) => {
+    const videoContainer = e.target.closest(".video-container");
+    const link = e.target.closest(".subject li a");
+    if (!videoContainer && !link) {
+        document.querySelectorAll(".video-container").forEach((container) => {
+            container.innerHTML = "";
+            container.classList.remove("visible");
+        });
+        document.querySelectorAll(".subject li a").forEach((link) => link.classList.remove("active"));
     }
 });
 
-// 🔒 منع تحديد النص
-document.addEventListener("selectstart", function (event) {
-    event.preventDefault();
-});
-
-// 🔒 منع النسخ
-document.addEventListener("copy", function (event) {
-    event.preventDefault();
-    const now = Date.now();
-    if (now - lastAlertTime > alertCooldown) {
-        alert("🚫 النسخ غير مسموح!");
-        lastAlertTime = now;
+document.addEventListener("DOMContentLoaded", () => {
+    const links = document.querySelectorAll(".subject li a");
+    links.forEach((link) => {
+        link.addEventListener("click", (e) => {
+            e.preventDefault();
+            const videoId = link.getAttribute("data-video-id") || link.getAttribute("onclick").match(/'video\d+'/)[0].replace(/'/g, "");
+            showVideo(link, videoId);
+        });
+    });
+    if ("IntersectionObserver" in window) {
+        const containers = document.querySelectorAll(".video-container");
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) {
+                        entry.target.innerHTML = "";
+                        entry.target.classList.remove("visible");
+                    }
+                });
+            },
+            { threshold: 0 }
+        );
+        containers.forEach((container) => observer.observe(container));
     }
 });
 
-// 🔒 منع فتح أدوات المطور (F12 و Ctrl+Shift+I/J/C و Ctrl+U)
-document.addEventListener("keydown", function (event) {
-    if (
-        event.key === "F12" || 
-        (event.ctrlKey && event.shiftKey && ["I", "J", "C"].includes(event.key)) || 
-        (event.ctrlKey && event.key === "U")
-    ) {
-        event.preventDefault();
-        const now = Date.now();
-        if (now - lastAlertTime > alertCooldown) {
-            alert("🚫 ممنوع الوصول إلى أدوات المطور!");
-            lastAlertTime = now;
+window.addEventListener("error", (e) => {
+    if (e.target.tagName === "IFRAME") {
+        const container = e.target.closest(".video-container");
+        if (container) {
+            const errorMsg = document.createElement("p");
+            errorMsg.style.color = "red";
+            errorMsg.style.textAlign = "center";
+            errorMsg.textContent = "خطأ في تحميل الفيديو، حاول مرة أخرى لاحقًا.";
+            container.innerHTML = "";
+            container.appendChild(errorMsg);
         }
     }
-});
-
-// 🚫 تعطيل Console بالكامل
-(function() {
-    const disabledConsole = function() {};
-    console.log = disabledConsole;
-    console.warn = disabledConsole;
-    console.error = disabledConsole;
-    console.info = disabledConsole;
-    console.debug = disabledConsole;
-})();
-
-// 🔥 إخفاء Console كل 1000ms (تقليل التكرار من 100ms)
-setInterval(function() {
-    console.clear();
-}, 1000);
+}, true);

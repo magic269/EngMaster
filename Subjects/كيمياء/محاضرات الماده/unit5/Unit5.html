@@ -8,81 +8,62 @@
     <noscript>
         <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     </noscript>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../../../../styles.css"> <!-- ربط ملف الـ CSS الرئيسي -->
-    <link rel="stylesheet" href="Unit5.css"> <!-- ربط ملف CSS الخاص -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous" defer></script>
+    <link rel="stylesheet" href="../../../../styles.css">
+    <link rel="stylesheet" href="Unit5.css">
 </head>
 <body>
     <header>
-        <h1>الكيمياء - الباب الخامس</h1>
+        <h1> الباب الخامس</h1>
         <a href="javascript:history.back()" class="btn-back">←</a>
     </header>
     <main>
         <ul class="subject">
-            <ul>
-                <li>
-                    <a href="javascript:void(0);" onclick="showVideo(this, 'https://www.youtube.com/embed/bMo1s96ssx4')">
-                        <i class="fas fa-play-circle"></i> المحاضرة 1: التأسيس الأقوى في الكيمياء العضوية | رسم المركبات وتسمية الأيوباك
-                    </a>
-                    <div class="video-container" id="video1"></div>
-                </li>
-                <li>
-                    <a href="javascript:void(0);" onclick="showVideo(this, 'https://www.youtube.com/embed/ZiFRYK_BBb0')">
-                        <i class="fas fa-play-circle"></i> المحاضرة 2: المركبات العضوية
-                    </a>
-                    <div class="video-container" id="video2"></div>
-                </li>
-                <li>
-                    <a href="javascript:void(0);" onclick="showVideo(this, 'https://www.youtube.com/embed/syvZ-SWdzMc')">
-                        <i class="fas fa-play-circle"></i> المحاضرة 3: الميثان
-                    </a>
-                    <div class="video-container" id="video3"></div>
-                </li>
-                <li>
-                    <a href="javascript:void(0);" onclick="showVideo(this, 'https://www.youtube.com/embed/mWEeR9AaF6k')">
-                        <i class="fas fa-play-circle"></i> المحاضرة 4: أقوى شرح للألكينات بالكامل الجزء الأول
-                    </a>
-                    <div class="video-container" id="video4"></div>
-                </li>
-                <li>
-                    <a href="javascript:void(0);" onclick="showVideo(this, 'https://www.youtube.com/embed/3S9-slPf8co')">
-                        <i class="fas fa-play-circle"></i> المحاضرة 5: أقوى شرح للألكينات بالكامل الجزء الثاني
-                    </a>
-                    <div class="video-container" id="video5"></div>
-                </li>
-                <li>
-                    <a href="javascript:void(0);" onclick="showVideo(this, 'https://www.youtube.com/embed/0OcGtTwpLj4')">
-                        <i class="fas fa-play-circle"></i> المحاضرة 6: أقوى شرح للألكاينات عضوية
-                    </a>
-                    <div class="video-container" id="video6"></div>
-                </li>
-                <li>
-                    <a href="javascript:void(0);" onclick="showVideo(this, 'https://www.youtube.com/embed/dng8Xp31fSQ')">
-                        <i class="fas fa-play-circle"></i> المحاضرة 7: شرح الألكانات الحلقية والبنزين كاملاً
-                    </a>
-                    <div class="video-container" id="video7"></div>
-                </li>
-                <li>
-                    <a href="javascript:void(0);" onclick="showVideo(this, 'https://www.youtube.com/embed/wg4LRlhtqoQ')">
-                        <i class="fas fa-play-circle"></i> المحاضرة 8: شرح مقدمة المشتقات والكحولات عضوية
-                    </a>
-                    <div class="video-container" id="video8"></div>
-                </li>
-                <li>
-                    <a href="javascript:void(0);" onclick="showVideo(this, 'https://www.youtube.com/embed/videoseries?list=PLJwyTXdjPfG1F4vvTymM0Hywvun8NBjWa')">
-                        <i class="fas fa-play-circle"></i> المحاضرة 9: شرح مقدمة المشتقات والكحولات عضوية (قائمة تشغيل)
-                    </a>
-                    <div class="video-container" id="video9"></div>
-                </li>
-                <li>
-                    <a href="#" class="coming-soon">المحاضرة 10 - قريبًا</a>
-                </li>
-            </ul>
-    </main>    
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video1')"><i class="fas fa-play-circle"></i> المحاضرة 1: التأسيس الأقوى في الكيمياء العضوية | رسم المركبات وتسمية الأيوباك</a>
+                <div class="video-container" id="video1"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video2')"><i class="fas fa-play-circle"></i> المحاضرة 2: المركبات العضوية</a>
+                <div class="video-container" id="video2"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video3')"><i class="fas fa-play-circle"></i> المحاضرة 3: الميثان</a>
+                <div class="video-container" id="video3"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video4')"><i class="fas fa-play-circle"></i> المحاضرة 4: أقوى شرح للألكينات بالكامل الجزء الأول</a>
+                <div class="video-container" id="video4"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video5')"><i class="fas fa-play-circle"></i> المحاضرة 5: أقوى شرح للألكينات بالكامل الجزء الثاني</a>
+                <div class="video-container" id="video5"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video6')"><i class="fas fa-play-circle"></i> المحاضرة 6: أقوى شرح للألكاينات عضوية</a>
+                <div class="video-container" id="video6"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video7')"><i class="fas fa-play-circle"></i> المحاضرة 7: شرح الألكانات الحلقية والبنزين كاملاً</a>
+                <div class="video-container" id="video7"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video8')"><i class="fas fa-play-circle"></i> المحاضرة 8: شرح مقدمة المشتقات والكحولات عضوية</a>
+                <div class="video-container" id="video8"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video9')"><i class="fas fa-play-circle"></i> المحاضرة 9: شرح مقدمة المشتقات والكحولات عضوية (قائمة تشغيل)</a>
+                <div class="video-container" id="video9"></div>
+            </li>
+            <li>
+                <a href="#" class="coming-soon">المحاضرة 10 - قريبًا</a>
+            </li>
+        </ul>
+    </main>
     <footer>
         © 2025 دليل معادلة كلية الهندسة. جميع الحقوق محفوظة.
     </footer>
-    <script src="Unit5.js"></script> <!-- ربط ملف JavaScript الخاص -->
-    <script type="module"ipt src="../../../../script.js" defer></script> <!-- ربط ملف الـ JavaScript الرئيسي -->
+    <script src="Unit5.js"></script>
+    <script type="module" src="../../../../script.js" defer></script>
 </body>
 </html>

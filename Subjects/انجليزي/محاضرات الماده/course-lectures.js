@@ -1,53 +1,112 @@
-// Debounce للـ alerts
-let lastAlertTime = 0;
-const alertCooldown = 2000; // 2 ثانية
+(() => {
+  "use strict";
 
-// 🔒 منع النقر بزر الفأرة الأيمن
-document.addEventListener("contextmenu", function (event) {
-    event.preventDefault();
-    const now = Date.now();
-    if (now - lastAlertTime > alertCooldown) {
-        alert("🚫 ممنوع النقر بزر الفأرة الأيمن!");
-        lastAlertTime = now;
+  if (typeof window !== "object" || typeof document !== "object" || window.self !== window.top) {
+    document.documentElement.innerHTML = "";
+    return;
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const $b = document.body,
+          $t = document.getElementById("darkModeToggle"),
+          $l = document.querySelectorAll("#unit-list li a"),
+          $y = document.getElementById("current-year"),
+          iD = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24"><path d="M12 2a1 1 0 011 1v1a1 1 0 01-2 0V3a1 1 0 011-1zm5.66 3.34a1 1 0 010 1.41l-.7.7a1 1 0 11-1.41-1.41l.7-.7a1 1 0 011.41 0zM21 11a1 1 0 100 2h-1a1 1 0 100-2h1zm-2.34 7.66a1 1 0 01-1.41 0l-.7-.7a1 1 0 111.41-1.41l.7.7a1 1 0 010 1.41zM13 20a1 1 0 10-2 0v1a1 1 0 102 0v-1zm-7.66-2.34a1 1 0 010-1.41l.7-.7a1 1 0 011.41 1.41l-.7.7a1 1 0 01-1.41 0zM4 13a1 1 0 100-2H3a1 1 0 100 2h1zm2.34-7.66a1 1 0 011.41 0l.7.7a1 1 0 11-1.41 1.41l-.7-.7a1 1 0 010-1.41zM12 6a6 6 0 100 12A6 6 0 0012 6z"/></svg>`,
+          iL = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="black" viewBox="0 0 24 24"><path d="M21.75 15.5a9.73 9.73 0 01-4.16 4.16 10 10 0 01-13.58-13.58A9.73 9.73 0 0112 2a1 1 0 01.92 1.39A8 8 0 1019.61 13.1a1 1 0 011.39.92 9.73 9.73 0 01-.25 1.48z"/></svg>`;
+
+    // Sanitize function to prevent XSS
+    const sanitizeHTML = str => {
+      const div = document.createElement("div");
+      div.textContent = str;
+      return div.innerHTML;
+    };
+
+    // Apply theme
+    const applyTheme = t => {
+      if (!$b || !$t) return;
+      $b.classList.toggle("dark-mode", t === "dark");
+      $t.innerHTML = t === "dark" ? iD : iL;
+    };
+
+    // Save theme
+    const saveTheme = t => {
+      try {
+        localStorage.setItem("theme", t);
+      } catch (_) {}
+    };
+
+    // Load theme
+    const loadTheme = () => {
+      try {
+        return localStorage.getItem("theme");
+      } catch (_) {
+        return null;
+      }
+    };
+
+    // Set theme
+    const setTheme = () => {
+      if (!$b || !$t) return;
+      let t = loadTheme();
+      if (!t) {
+        t = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+        saveTheme(t);
+      }
+      applyTheme(t);
+    };
+
+    // Theme toggle
+    $t?.addEventListener("click", () => {
+      const t = $b.classList.contains("dark-mode") ? "light" : "dark";
+      saveTheme(t);
+      applyTheme(t);
+    });
+
+    // Listen for system theme changes
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", e => {
+      const t = e.matches ? "dark" : "light";
+      saveTheme(t);
+      applyTheme(t);
+    });
+
+    // Sync theme across tabs
+    window.addEventListener("storage", () => {
+      setTheme();
+    });
+
+    // Initialize theme
+    setTheme();
+
+    // Set current year
+    if ($y) {
+      $y.textContent = sanitizeHTML(new Date().getFullYear().toString());
     }
-});
 
-// 🔒 منع تحديد النص
-document.addEventListener("selectstart", function (event) {
-    event.preventDefault();
-});
+    // Validate links
+    const allowed = [
+      "unit1/unit1.html", "unit2/unit2.html", "unit3/unit3.html",
+      "unit4/unit4.html", "unit5/unit5.html", "unit6/unit6.html",
+      "unit7/unit7.html", "unit8/unit8.html", "unit9/unit9.html",
+      "unit10/unit10.html", "unit11/unit11.html", "unit12/unit12.html"
+    ];
 
-// 🔒 منع النسخ
-document.addEventListener("copy", function (event) {
-    event.preventDefault();
-    const now = Date.now();
-    if (now - lastAlertTime > alertCooldown) {
-        alert("🚫 النسخ غير مسموح!");
-        lastAlertTime = now;
-    }
-});
+    $l.forEach(a => {
+      if (!allowed.includes(a.getAttribute("href"))) {
+        a.closest("li")?.remove();
+      }
+    });
 
-// 🔒 منع فتح أدوات المطور (F12 و Ctrl+Shift+I و Ctrl+U و Ctrl+Shift+C)
-document.addEventListener("keydown", function (event) {
-    if (event.key === "F12" || 
-        (event.ctrlKey && event.shiftKey && (event.key === "I" || event.key === "U" || event.key === "C"))) {
-        event.preventDefault();
-        const now = Date.now();
-        if (now - lastAlertTime > alertCooldown) {
-            alert("🚫 ممنوع الوصول إلى أدوات المطور!");
-            lastAlertTime = now;
+    // MutationObserver to block unauthorized scripts/iframes
+    new MutationObserver(m => {
+      for (const mutation of m) {
+        if (mutation.type === "childList") {
+          mutation.addedNodes.forEach(node => {
+            if (node.nodeName === "SCRIPT" || node.nodeName === "IFRAME") {
+              node.remove();
+            }
+          });
         }
-    }
-});
-
-// 🚫 تعطيل Console بالكامل
-console.log = function() {};
-console.warn = function() {};
-console.error = function() {};
-console.info = function() {};
-console.debug = function() {};
-
-// 🔥 إخفاء Console كل 500ms
-setInterval(function() {
-    console.clear();
-}, 500);
+      }
+    }).observe(document.body, { childList: true, subtree: true });
+  });
+})();

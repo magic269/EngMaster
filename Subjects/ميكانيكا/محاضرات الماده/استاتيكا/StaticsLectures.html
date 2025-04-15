@@ -8,9 +8,9 @@
     <noscript>
         <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     </noscript>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../../../../styles.css"> <!-- ربط ملف الـ CSS الرئيسي -->
-    <link rel="stylesheet" href="StaticsLectures.css"> <!-- ربط ملف CSS الخاص -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous" defer></script>
+    <link rel="stylesheet" href="../../../../styles.css">
+    <link rel="stylesheet" href="StaticsLectures.css">
 </head>
 <body>
     <header>
@@ -19,28 +19,75 @@
     </header>
     <main>
         <ul class="subject">
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/dPQYXyRqIKo')"><i class="fas fa-play-circle"></i> المتجهات</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/_LmxNT0BGBs')"><i class="fas fa-play-circle"></i> القوي</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/RuWqelSmc_0')"><i class="fas fa-play-circle"></i> الاحتكاك 1 - اتزان جسم علي مستوي افقي خشن</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/5o6_NQeBph8')"><i class="fas fa-play-circle"></i> الاحتكاك 2 - اتزان جسم علي مستوي مائل خشن</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/lCVqNx0SOzQ')"><i class="fas fa-play-circle"></i> العزوم 1 - في ثنائي الابعاد (المتجهات)</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/Yip6MBDOfzU')"><i class="fas fa-play-circle"></i> العزوم 2 - في ثنائي الابعاد (الاشكال المستوية)</a></li>
-            <li><a href="https://www.youtube.com/watch?v=OTt0-1vRrcg&list=PLZPjO0btaJA4eOqEcZpb__U9_OJaaoRNd&index=7" target="_blank"><i class="fas fa-play-circle"></i> المحاضرة السابعة - العزوم 3</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/qWiuL-3qmNA')"><i class="fas fa-play-circle"></i> القوي المتوازية 1 - محصلة قوتين متوازيتين</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/jvO8lFL8eJU')"><i class="fas fa-play-circle"></i> القوي المتوازية 2 - محصلة عدة قوي متوازية</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/bjtOitEWe6w')"><i class="fas fa-play-circle"></i> القوي المتوازية 3 - اتزان جسم تحت تأثير قوي متوازية</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/u3LiLDXadcQ')"><i class="fas fa-play-circle"></i> الاتزان العام 1</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/ppFu3EahtfU')"><i class="fas fa-play-circle"></i> الاتزان العام 2</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/Q8KeBUNWIkc')"><i class="fas fa-play-circle"></i> الازدواج</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/SAw4IkNeHX8')"><i class="fas fa-play-circle"></i> الازدواج المحصل</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/mayiI8jhzjg')"><i class="fas fa-play-circle"></i> مركز الثقل</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/1eHjl0VlaUU')"><i class="fas fa-play-circle"></i> الكتلة السالبة</a></li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video1')"><i class="fas fa-play-circle"></i> المتجهات</a>
+                <div class="video-container" id="video1"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video2')"><i class="fas fa-play-circle"></i> القوي</a>
+                <div class="video-container" id="video2"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video3')"><i class="fas fa-play-circle"></i> الاحتكاك 1 - اتزان جسم علي مستوي افقي خشن</a>
+                <div class="video-container" id="video3"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video4')"><i class="fas fa-play-circle"></i> الاحتكاك 2 - اتزان جسم علي مستوي مائل خشن</a>
+                <div class="video-container" id="video4"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video5')"><i class="fas fa-play-circle"></i> العزوم 1 - في ثنائي الابعاد (المتجهات)</a>
+                <div class="video-container" id="video5"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video6')"><i class="fas fa-play-circle"></i> العزوم 2 - في ثنائي الابعاد (الاشكال المستوية)</a>
+                <div class="video-container" id="video6"></div>
+            </li>
+            <li>
+                <a href="https://www.youtube.com/watch?v=OTt0-1vRrcg" target="_blank" rel="noopener noreferrer"><i class="fas fa-play-circle"></i> العزوم 3</a>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video8')"><i class="fas fa-play-circle"></i> القوي المتوازية 1 - محصلة قوتين متوازيتين</a>
+                <div class="video-container" id="video8"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video9')"><i class="fas fa-play-circle"></i> القوي المتوازية 2 - محصلة عدة قوي متوازية</a>
+                <div class="video-container" id="video9"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video10')"><i class="fas fa-play-circle"></i> القوي المتوازية 3 - اتزان جسم تحت تأثير قوي متوازية</a>
+                <div class="video-container" id="video10"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video11')"><i class="fas fa-play-circle"></i> الاتزان العام 1</a>
+                <div class="video-container" id="video11"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video12')"><i class="fas fa-play-circle"></i> الاتزان العام 2</a>
+                <div class="video-container" id="video12"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video13')"><i class="fas fa-play-circle"></i> الازدواج</a>
+                <div class="video-container" id="video13"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video14')"><i class="fas fa-play-circle"></i> الازدواج المحصل</a>
+                <div class="video-container" id="video14"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video15')"><i class="fas fa-play-circle"></i> مركز الثقل</a>
+                <div class="video-container" id="video15"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video16')"><i class="fas fa-play-circle"></i> الكتلة السالبة</a>
+                <div class="video-container" id="video16"></div>
+            </li>
         </ul>
     </main>
     <footer>
         © 2025 دليل معادلة كلية الهندسة. جميع الحقوق محفوظة.
     </footer>
-    <script src="StaticsLectures.js"></script> <!-- ربط ملف JavaScript الخاص -->
-    <script type="module" src="../../../../script.js" defer></script> <!-- ربط ملف الـ JavaScript الرئيسي -->
+    <script src="StaticsLectures.js"></script>
+    <script type="module" src="../../../../script.js" defer></script>
 </body>
 </html>

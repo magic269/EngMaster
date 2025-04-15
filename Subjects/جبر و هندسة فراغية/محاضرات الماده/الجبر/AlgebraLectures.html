@@ -14,95 +14,66 @@
 <body>
     <header>
         <h1>محاضرات الجبر</h1>
-        <button class="btn-back" onclick="goBack()">←</button>
+        <button class="btn-back" onclick="history.back()">←</button>
     </header>
     <main>
         <ul class="subject">
-            <div class="lecture-item">
-                <li onclick="toggleVideo('video1')">المحاضرة 1: التباديل والتوافيق - الجزء الأول</li>
-                <div id="video1" class="video-container">
-                    <iframe src="https://www.youtube.com/embed/Lc2MzMw8-Nc" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="lecture-item">
-                <li onclick="toggleVideo('video2')">المحاضرة 2: التباديل والتوافيق - الجزء الثاني</li>
-                <div id="video2" class="video-container">
-                    <iframe src="https://www.youtube.com/embed/DOHDC0_oPt4" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="lecture-item">
-                <li onclick="toggleVideo('video3')">المحاضرة 3: التباديل والتوافيق - مبدأ العد</li>
-                <div id="video3" class="video-container">
-                    <iframe src="https://www.youtube.com/embed/L6rq3mIm7no" allowfullscreen></iframe>
-                </div>
-            </div>
-            <!-- باقي المحاضرات بنفس الطريقة -->
-            <div class="lecture-item">
-                <li onclick="toggleVideo('video4')">المحاضرة 4: نظرية ذات الحدين</li>
-                <div id="video4" class="video-container">
-                    <iframe src="https://www.youtube.com/embed/IJqgKgcrhos" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="lecture-item">
-                <li onclick="toggleVideo('video5')">المحاضرة 5: تمارين مهمة على نظرية ذات الحدين</li>
-                <div id="video5" class="video-container">
-                    <iframe src="https://www.youtube.com/embed/LunaIKnInpg" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="lecture-item">
-                <li onclick="toggleVideo('video6')">المحاضرة 6: تمارين على نظرية ذات الحدين</li>
-                <div id="video6" class="video-container">
-                    <iframe src="https://www.youtube.com/embed/A4Z9tk5Ud9M" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="lecture-item">
-                <li onclick="toggleVideo('video7')">المحاضرة 7: الأعداد المركبة</li>
-                <div id="video7" class="video-container">
-                    <iframe src="https://www.youtube.com/embed/_0gm9ZgGRg8" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="lecture-item">
-                <li onclick="toggleVideo('video8')">المحاضرة 8: تمارين على الأعداد المركبة</li>
-                <div id="video8" class="video-container">
-                    <iframe src="https://www.youtube.com/embed/Xw0uftHxQHU" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="lecture-item">
-                <li onclick="toggleVideo('video9')">المحاضرة 9: الجذور التكعيبية للواحد الصحيح</li>
-                <div id="video9" class="video-container">
-                    <iframe src="https://www.youtube.com/embed/2osLaRO9mBE" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="lecture-item">
-                <li onclick="toggleVideo('video10')">المحاضرة 10: خواص المحددات - الجزء الأول</li>
-                <div id="video10" class="video-container">
-                    <iframe src="https://www.youtube.com/embed/hZVxl5IchPk" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="lecture-item">
-                <li onclick="toggleVideo('video11')">المحاضرة 11: خواص المحددات - الجزء الثاني</li>
-                <div id="video11" class="video-container">
-                    <iframe src="https://www.youtube.com/embed/6AzrLQgdF9o" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="lecture-item">
-                <li onclick="toggleVideo('video12')">المحاضرة 12: خواص المحددات - الجزء الثالث</li>
-                <div id="video12" class="video-container">
-                    <iframe src="https://www.youtube.com/embed/0VSIptBLD2Y" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="lecture-item">
-                <li onclick="toggleVideo('video13')">المحاضرة 13: لايف عن الأعداد المركبة</li>
-                <div id="video13" class="video-container">
-                    <iframe src="https://www.youtube.com/embed/LSi6EzZTpEc" allowfullscreen></iframe>
-                </div>
-            </div>
-            <div class="lecture-item">
-                <li onclick="toggleVideo('video14')">المحاضرة 14: لايف هام على المحددات وحل لأهم الأسئلة</li>
-                <div id="video14" class="video-container">
-                    <iframe src="https://www.youtube.com/embed/i-b9VIeuGbk" allowfullscreen></iframe>
-                </div>
-            </div>
+            <li class="lecture-item">
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video1')">المحاضرة 1: التباديل والتوافيق - الجزء الأول</a>
+                <div id="video1" class="video-container"></div>
+            </li>
+            <li class="lecture-item">
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video2')">المحاضرة 2: التباديل والتوافيق - الجزء الثاني</a>
+                <div id="video2" class="video-container"></div>
+            </li>
+            <li class="lecture-item">
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video3')">المحاضرة 3: التباديل والتوافيق - مبدأ العد</a>
+                <div id="video3" class="video-container"></div>
+            </li>
+            <li class="lecture-item">
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video4')">المحاضرة 4: نظرية ذات الحدين</a>
+                <div id="video4" class="video-container"></div>
+            </li>
+            <li class="lecture-item">
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video5')">المحاضرة 5: تمارين مهمة على نظرية ذات الحدين</a>
+                <div id="video5" class="video-container"></div>
+            </li>
+            <li class="lecture-item">
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video6')">المحاضرة 6: تمارين على نظرية ذات الحدين</a>
+                <div id="video6" class="video-container"></div>
+            </li>
+            <li class="lecture-item">
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video7')">المحاضرة 7: الأعداد المركبة</a>
+                <div id="video7" class="video-container"></div>
+            </li>
+            <li class="lecture-item">
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video8')">المحاضرة 8: تمارين على الأعداد المركبة</a>
+                <div id="video8" class="video-container"></div>
+            </li>
+            <li class="lecture-item">
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video9')">المحاضرة 9: الجذور التكعيبية للواحد الصحيح</a>
+                <div id="video9" class="video-container"></div>
+            </li>
+            <li class="lecture-item">
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video10')">المحاضرة 10: خواص المحددات - الجزء الأول</a>
+                <div id="video10" class="video-container"></div>
+            </li>
+            <li class="lecture-item">
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video11')">المحاضرة 11: خواص المحددات - الجزء الثاني</a>
+                <div id="video11" class="video-container"></div>
+            </li>
+            <li class="lecture-item">
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video12')">المحاضرة 12: خواص المحددات - الجزء الثالث</a>
+                <div id="video12" class="video-container"></div>
+            </li>
+            <li class="lecture-item">
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video13')">المحاضرة 13: لايف عن الأعداد المركبة</a>
+                <div id="video13" class="video-container"></div>
+            </li>
+            <li class="lecture-item">
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video14')">المحاضرة 14: لايف هام على المحددات وحل لأهم الأسئلة</a>
+                <div id="video14" class="video-container"></div>
+            </li>
         </ul>
     </main>
     <footer>

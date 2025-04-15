@@ -1,6 +1,3 @@
-/* English.css */
-
-/* General Styling */
 body {
     font-family: 'Cairo', sans-serif;
     background: #f5f7fa;
@@ -11,7 +8,6 @@ body {
     scroll-behavior: smooth;
 }
 
-/* Header Styling */
 header {
     background: linear-gradient(135deg, #1a2a44, #00b7eb);
     padding: 20px 40px;
@@ -49,7 +45,6 @@ header h1 {
     transform: translateY(-2px);
 }
 
-/* Main Content Styling */
 .content {
     padding: 60px 20px;
     max-width: 1300px;
@@ -74,7 +69,7 @@ header h1 {
 
 .content ul li a {
     display: block;
-    background: linear-gradient(135deg, #4682b4 0%, #87cefa 100%); /* لون مادة الميكانيكا */
+    background: linear-gradient(135deg, #4682b4 0%, #87cefa 100%);
     border-radius: 15px;
     min-height: 220px;
     padding: 20px;
@@ -119,7 +114,6 @@ header h1 {
     z-index: 1;
 }
 
-/* Footer Styling */
 footer {
     background: linear-gradient(135deg, #1a2a44, #00b7eb);
     padding: 15px 20px;
@@ -157,7 +151,6 @@ footer p:hover {
     text-shadow: 0 0 10px rgba(0, 212, 255, 0.8);
 }
 
-/* Dark Mode Styling */
 body.dark-mode {
     background: #1a1a1a;
 }
@@ -194,7 +187,6 @@ body.dark-mode footer {
     box-shadow: 0 -5px 15px rgba(0, 212, 255, 0.4);
 }
 
-/* Responsive Design */
 @media (max-width: 1024px) {
     header {
         padding: 15px 20px;
@@ -309,7 +301,6 @@ body.dark-mode footer {
     }
 }
 
-/* Animations */
 @keyframes borderGlow {
     0% { background-position: 0%; }
     100% { background-position: 200%; }

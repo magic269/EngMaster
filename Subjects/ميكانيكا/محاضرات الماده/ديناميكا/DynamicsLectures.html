@@ -8,9 +8,9 @@
     <noscript>
         <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     </noscript>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../../../../styles.css"> <!-- ربط ملف الـ CSS الرئيسي -->
-    <link rel="stylesheet" href="DynamicsLectures.css"> <!-- ربط ملف CSS الخاص -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous" defer></script>
+    <link rel="stylesheet" href="../../../../styles.css">
+    <link rel="stylesheet" href="DynamicsLectures.css">
 </head>
 <body>
     <header>
@@ -19,30 +19,84 @@
     </header>
     <main>
         <ul class="subject">
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/v8U39hOVhoc')"><i class="fas fa-play-circle"></i> المحاضرة الأولى | تفاضل الدوال المتجهة</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/3MVG5aCJqfs')"><i class="fas fa-play-circle"></i> المحاضرة الثانية | قراءة المنحنيات</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/ZA6jfjDsJGE')"><i class="fas fa-play-circle"></i> المحاضرة الثالثة | تكامل الدوال المتجهة</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/3wY-b-mqnDQ')"><i class="fas fa-play-circle"></i> المحاضرة الرابعة | كمية الحركة</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/XJ6_VsS8hWs')"><i class="fas fa-play-circle"></i> المحاضرة الخامسة | نيوتن الأول</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/F7DuzfPKTk0')"><i class="fas fa-play-circle"></i> المحاضرة السادسة | نيوتن الثاني</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/QCZL3Boj5ns')"><i class="fas fa-play-circle"></i> المحاضرة السابعة | نيوتن الثالث</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/lQdda2KChvQ')"><i class="fas fa-play-circle"></i> المحاضرة الثامنة | الحركة على مستوي مائل أملس</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/0_A65W1-_gY')"><i class="fas fa-play-circle"></i> المحاضرة التاسعة | حركة جسم على مستوي خشن</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/qdB5qlaEHC4')"><i class="fas fa-play-circle"></i> المحاضرة العاشرة | البكرات 1</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/gpljcKXn7l0')"><i class="fas fa-play-circle"></i> المحاضرة الحادية عشر | البكرات 2</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/TKYrD7Pwgno')"><i class="fas fa-play-circle"></i> المحاضرة الثانية عشر | البكرات 3</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/oVcC7-579lM')"><i class="fas fa-play-circle"></i> المحاضرة الثالثة عشر | الدفع</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/saCMfXps1u4')"><i class="fas fa-play-circle"></i> المحاضرة الرابعة عشر | التصادم</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/hM_3a7OpSbc')"><i class="fas fa-play-circle"></i> المحاضرة الخامسة عشر | الشغل</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/yjacW_M9e-s')"><i class="fas fa-play-circle"></i> المحاضرة السادسة عشر | مبدأ الشغل والطاقة</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/6R8CJh5vS5U')"><i class="fas fa-play-circle"></i> المحاضرة السابعة عشر | طاقة الوضع</a></li>
-            <li><a href="#" onclick="openVideo(event, this, 'https://www.youtube.com/embed/r-vhUdvT9b0')"><i class="fas fa-play-circle"></i> المحاضرة الثامنة عشر | القدرة</a></li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video1')"><i class="fas fa-play-circle"></i> المحاضرة الأولى: تفاضل الدوال المتجهة</a>
+                <div class="video-container" id="video1"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video2')"><i class="fas fa-play-circle"></i> المحاضرة الثانية: قراءة المنحنيات</a>
+                <div class="video-container" id="video2"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video3')"><i class="fas fa-play-circle"></i> المحاضرة الثالثة: تكامل الدوال المتجهة</a>
+                <div class="video-container" id="video3"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video4')"><i class="fas fa-play-circle"></i> المحاضرة الرابعة: كمية الحركة</a>
+                <div class="video-container" id="video4"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video5')"><i class="fas fa-play-circle"></i> المحاضرة الخامسة: نيوتن الأول</a>
+                <div class="video-container" id="video5"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video6')"><i class="fas fa-play-circle"></i> المحاضرة السادسة: نيوتن الثاني</a>
+                <div class="video-container" id="video6"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video7')"><i class="fas fa-play-circle"></i> المحاضرة السابعة: نيوتن الثالث</a>
+                <div class="video-container" id="video7"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video8')"><i class="fas fa-play-circle"></i> المحاضرة الثامنة: الحركة على مستوي مائل أملس</a>
+                <div class="video-container" id="video8"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video9')"><i class="fas fa-play-circle"></i> المحاضرة التاسعة: حركة جسم على مستوي خشن</a>
+                <div class="video-container" id="video9"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video10')"><i class="fas fa-play-circle"></i> المحاضرة العاشرة: البكرات 1</a>
+                <div class="video-container" id="video10"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video11')"><i class="fas fa-play-circle"></i> المحاضرة الحادية عشر: البكرات 2</a>
+                <div class="video-container" id="video11"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video12')"><i class="fas fa-play-circle"></i> المحاضرة الثانية عشر: البكرات 3</a>
+                <div class="video-container" id="video12"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video13')"><i class="fas fa-play-circle"></i> المحاضرة الثالثة عشر: الدفع</a>
+                <div class="video-container" id="video13"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video14')"><i class="fas fa-play-circle"></i> المحاضرة الرابعة عشر: التصادم</a>
+                <div class="video-container" id="video14"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video15')"><i class="fas fa-play-circle"></i> المحاضرة الخامسة عشر: الشغل</a>
+                <div class="video-container" id="video15"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video16')"><i class="fas fa-play-circle"></i> المحاضرة السادسة عشر: مبدأ الشغل والطاقة</a>
+                <div class="video-container" id="video16"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video17')"><i class="fas fa-play-circle"></i> المحاضرة السابعة عشر: طاقة الوضع</a>
+                <div class="video-container" id="video17"></div>
+            </li>
+            <li>
+                <a href="javascript:void(0);" onclick="showVideo(this, 'video18')"><i class="fas fa-play-circle"></i> المحاضرة الثامنة عشر: القدرة</a>
+                <div class="video-container" id="video18"></div>
+            </li>
         </ul>
     </main>
     <footer>
         © 2025 دليل معادلة كلية الهندسة. جميع الحقوق محفوظة.
     </footer>
-    <script src="DynamicsLectures.js"></script> <!-- ربط ملف JavaScript الخاص -->
-    <script type="module" src="../../../../script.js" defer></script> <!-- ربط ملف الـ JavaScript الرئيسي -->
+    <script src="DynamicsLectures.js"></script>
+    <script type="module" src="../../../../script.js" defer></script>
 </body>
 </html>

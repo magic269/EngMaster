@@ -6,7 +6,6 @@ body {
     padding: 0;
     overflow-x: hidden;
     scroll-behavior: smooth;
-    direction: rtl;
 }
 
 header {
@@ -38,8 +37,6 @@ header h1 {
     text-decoration: none;
     transition: all 0.3s ease;
     box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
-    border: none;
-    cursor: pointer;
 }
 
 .btn-back:hover {
@@ -62,7 +59,7 @@ header h1 {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.subject {
+.content ul {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 25px;
@@ -70,7 +67,7 @@ header h1 {
     padding: 0;
 }
 
-.subject li a {
+.content ul li a {
     display: block;
     background: linear-gradient(135deg, #4682b4 0%, #87cefa 100%);
     border-radius: 15px;
@@ -91,7 +88,7 @@ header h1 {
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-.subject li a::before {
+.content ul li a::before {
     content: '';
     position: absolute;
     top: 0;
@@ -103,16 +100,16 @@ header h1 {
     z-index: 0;
 }
 
-.subject li a:hover::before {
+.content ul li a:hover::before {
     background: rgba(0, 0, 0, 0.4);
 }
 
-.subject li a:hover {
+.content ul li a:hover {
     transform: translateY(-10px);
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
-.subject li a span {
+.content ul li a span {
     position: relative;
     z-index: 1;
 }
@@ -177,11 +174,11 @@ body.dark-mode .content h2 {
     color: #fff;
 }
 
-body.dark-mode .subject li a {
+body.dark-mode .content ul li a {
     box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
 }
 
-body.dark-mode .subject li a:hover {
+body.dark-mode .content ul li a:hover {
     box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
 }
 
@@ -207,12 +204,12 @@ body.dark-mode footer {
         font-size: 2rem;
     }
 
-    .subject {
+    .content ul {
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 20px;
     }
 
-    .subject li a {
+    .content ul li a {
         min-height: 200px;
         font-size: 1.6rem;
     }
@@ -245,13 +242,13 @@ body.dark-mode footer {
         margin-bottom: 20px;
     }
 
-    .subject {
+    .content ul {
         grid-template-columns: repeat(3, 1fr);
         gap: 10px;
         padding: 0 5px;
     }
 
-    .subject li a {
+    .content ul li a {
         min-height: 140px;
         border-radius: 10px;
         font-size: 1.2rem;
@@ -288,12 +285,12 @@ body.dark-mode footer {
         margin-bottom: 30px;
     }
 
-    .subject {
+    .content ul {
         grid-template-columns: repeat(3, 1fr);
         gap: 8px;
     }
 
-    .subject li a {
+    .content ul li a {
         min-height: 120px;
         font-size: 1rem;
     }

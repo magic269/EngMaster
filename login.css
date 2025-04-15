@@ -13,9 +13,9 @@ body {
 /* 🔹 الحاوية الأساسية */
 .login-container {
     position: relative;
-    width: 750px; /* الحجم المصغر */
+    width: 900px; /* العرض الأصلي */
     max-width: 100%; /* التأكد إن العرض ما يتعداش الشاشة */
-    height: 400px; /* الحجم المصغر */
+    height: 500px; /* الارتفاع الأصلي */
     border-radius: 10px;
     box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
     overflow: hidden;
@@ -189,6 +189,16 @@ a:hover {
     color: #00b3b3;
 }
 
+/* 🔹 رسائل الخطأ */
+.error-message {
+    color: #ff4d4d;
+    font-size: 14px;
+    margin: 10px 0;
+    text-align: center;
+    font-weight: 400;
+    min-height: 20px; /* لضمان عدم تحرك العناصر */
+}
+
 /* 🔹 Media Queries للتكيف مع الأجهزة */
 
 /* شاشات متوسطة (تابلت - حتى 768px) */
@@ -221,6 +231,11 @@ a:hover {
 
     .input-group {
         width: 85%; /* زيادة العرض قليلاً */
+    }
+
+    .error-message {
+        font-size: 13px;
+        margin: 8px 0;
     }
 
     /* الاحتفاظ بالانميشن والألوان */
@@ -285,6 +300,11 @@ a:hover {
         font-size: 14px;
     }
 
+    .error-message {
+        font-size: 12px;
+        margin: 6px 0;
+    }
+
     /* الاحتفاظ بالانميشن والألوان */
     .black-layer {
         clip-path: polygon(0 0, 0 100%, 70% 100%, 85% 0);
@@ -338,6 +358,11 @@ a:hover {
 
     a {
         font-size: 12px;
+    }
+
+    .error-message {
+        font-size: 11px;
+        margin: 5px 0;
     }
 
     /* الاحتفاظ بالانميشن والألوان */

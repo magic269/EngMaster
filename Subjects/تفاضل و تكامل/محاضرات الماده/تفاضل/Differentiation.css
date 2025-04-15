@@ -28,7 +28,6 @@ header h1 {
     font-weight: 700;
     color: #fff;
     margin: 0;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
 }
 
 .btn-back {
@@ -40,7 +39,6 @@ header h1 {
     font-weight: 500;
     text-decoration: none;
     transition: all 0.3s ease;
-    cursor: pointer;
 }
 
 .btn-back:hover {
@@ -66,13 +64,10 @@ main {
 }
 
 .subject li a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #4e89a3 0%, #6ab1d7 100%);
+    display: block;
+    background: linear-gradient(135deg, #4682b4 0%, #87cefa 100%);
     border-radius: 15px;
     min-height: 250px;
-    max-height: 250px;
     padding: 20px;
     text-align: center;
     color: #fff;
@@ -83,23 +78,10 @@ main {
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-}
-
-.subject li a::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.2);
-    transition: background 0.3s ease;
-    z-index: 0;
-}
-
-.subject li a:hover::before {
-    background: rgba(0, 0, 0, 0.4);
 }
 
 .subject li a:hover {
@@ -107,99 +89,46 @@ main {
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
-.subject li a i {
-    margin-left: 10px;
-    font-size: 2rem;
-    flex-shrink: 0;
+.subject li a.active {
+    background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
 }
 
-.subject li a span {
-    position: relative;
-    z-index: 1;
+.video-container {
+    display: none;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
     overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.video-container.visible {
     display: block;
-    max-width: 100%;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 footer {
     background: linear-gradient(135deg, #1a2a44, #00b7eb);
-    padding: 20px 40px;
+    padding: 20px;
     text-align: center;
     color: #fff;
     font-size: 0.9rem;
     font-weight: 500;
     box-shadow: 0 -5px 15px rgba(0, 212, 255, 0.3);
-    position: relative;
     margin-top: auto;
-}
-
-body.dark-mode {
-    background: #1a1a1a;
-}
-
-body.dark-mode header {
-    background: linear-gradient(135deg, #2c2c2c, #00d4ff);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-}
-
-body.dark-mode .btn-back {
-    background: rgba(255, 255, 255, 0.1);
-    color: #fff;
-}
-
-body.dark-mode .btn-back:hover {
-    background: #ddd;
-    color: #007bff;
-}
-
-body.dark-mode .subject li a {
-    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
-}
-
-body.dark-mode .subject li a:hover {
-    box-shadow: 0 15px 30px rgba(255, 255, 255, 0.2);
-}
-
-body.dark-mode footer {
-    background: linear-gradient(135deg, #2c2c2c, #00d4ff);
-    box-shadow: 0 -5px 15px rgba(0, 212, 255, 0.4);
-}
-
-@media (max-width: 1024px) {
-    header {
-        padding: 15px 20px;
-    }
-
-    header h1 {
-        font-size: 2rem;
-    }
-
-    main {
-        padding: 40px 15px;
-    }
-
-    .subject {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-
-    .subject li a {
-        min-height: 200px;
-        max-height: 200px;
-        font-size: 1.6rem;
-    }
-
-    .subject li a i {
-        font-size: 1.4rem;
-    }
 }
 
 @media (max-width: 768px) {
     header {
         padding: 8px 10px;
-        min-height: 60px;
     }
 
     header h1 {
@@ -207,8 +136,9 @@ body.dark-mode footer {
     }
 
     .btn-back {
-        padding: 8px 16px;
+        padding: 6px 12px;
         font-size: 1rem;
+        border-radius: 6px;
     }
 
     main {
@@ -216,30 +146,33 @@ body.dark-mode footer {
     }
 
     .subject {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
         gap: 15px;
+        padding: 0 5px;
     }
 
     .subject li a {
-        min-height: 180px;
-        max-height: 180px;
-        font-size: 1.4rem;
+        min-height: 200px;
+        border-radius: 12px;
+        font-size: 1.5rem;
+        padding: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     }
 
-    .subject li a i {
-        font-size: 1.2rem;
+    .video-container {
+        max-width: 100%;
+        margin: 15px auto;
     }
 
     footer {
         padding: 10px 15px;
-        min-height: 40px;
+        font-size: 0.8rem;
     }
 }
 
 @media (max-width: 480px) {
     header {
         padding: 6px 8px;
-        min-height: 50px;
     }
 
     header h1 {
@@ -247,7 +180,7 @@ body.dark-mode footer {
     }
 
     .btn-back {
-        padding: 6px 12px;
+        padding: 5px 10px;
         font-size: 0.9rem;
     }
 
@@ -262,16 +195,11 @@ body.dark-mode footer {
 
     .subject li a {
         min-height: 160px;
-        max-height: 160px;
         font-size: 1.2rem;
     }
 
-    .subject li a i {
-        font-size: 1rem;
-    }
-
     footer {
-        padding: 8px 10px;
-        min-height: 35px;
+        padding: 10px 15px;
+        font-size: 0.8rem;
     }
 }

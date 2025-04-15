@@ -1,4 +1,3 @@
-/* General Styling */
 body {
     font-family: 'Cairo', sans-serif;
     background: #f5f7fa;
@@ -13,7 +12,6 @@ body {
     min-height: 100vh;
 }
 
-/* Header Styling */
 header {
     background: linear-gradient(135deg, #1a2a44, #00b7eb);
     padding: 20px 40px;
@@ -49,7 +47,6 @@ header h1 {
     transform: translateY(-2px);
 }
 
-/* Main Content Styling */
 main {
     padding: 60px 20px;
     max-width: 1300px;
@@ -92,7 +89,32 @@ main {
     box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* Footer Styling */
+.subject li a.active {
+    background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px);
+}
+
+.video-container {
+    display: none;
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.video-container.visible {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
 footer {
     background: linear-gradient(135deg, #1a2a44, #00b7eb);
     padding: 20px;
@@ -108,7 +130,6 @@ footer {
     z-index: 10;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     header {
         padding: 8px 10px;
@@ -140,6 +161,11 @@ footer {
         font-size: 1.5rem;
         padding: 15px;
         box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .video-container {
+        max-width: 100%;
+        margin: 15px auto;
     }
 
     footer {
@@ -179,5 +205,5 @@ footer {
     footer {
         padding: 10px 15px;
         font-size: 0.8rem;
-    } 
+    }
 }

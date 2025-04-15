@@ -4,12 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>محاضرات المادة - كيمياء</title>
+
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self'; script-src 'self' 'nonce-secure'; style-src 'self' https://fonts.googleapis.com 'nonce-secure'; font-src https://fonts.gstatic.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; worker-src 'self';">
+
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta name="referrer" content="no-referrer" />
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains; preload" />
+
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" as="style" onload="this.rel='stylesheet'">
     <noscript>
         <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
     </noscript>
-    <link rel="stylesheet" href="../../../styles.css"> <!-- ربط ملف الـ CSS الرئيسي -->
-    <link rel="stylesheet" href="ChemistryLectures.css"> <!-- ربط ملف CSS الخاص -->
+
+    <link rel="stylesheet" href="../../../styles.css" nonce="secure">
+    <link rel="stylesheet" href="ChemistryLectures.css" nonce="secure">
 </head>
 <body>
     <header>
@@ -17,19 +27,19 @@
         <a href="javascript:history.back()" class="btn-back">←</a>
     </header>
     <main class="content">
-        <h2>أبواب مادة الكيمياء</h2>
+        <h2></h2>
         <ul class="subject">
-            <li><a href="unit1/Unit1.html">الباب الأول</a></li>
-            <li><a href="unit2/Unit2.html">الباب الثاني</a></li>
-            <li><a href="unit3/Unit3.html">الباب الثالث</a></li>
-            <li><a href="unit4/Unit4.html">الباب الرابع</a></li>
-            <li><a href="unit5/Unit5.html">الباب الخامس</a></li>
+            <li><a href="unit1/Unit1.html" rel="noopener noreferrer">الباب الأول</a></li>
+            <li><a href="unit2/Unit2.html" rel="noopener noreferrer">الباب الثاني</a></li>
+            <li><a href="unit3/Unit3.html" rel="noopener noreferrer">الباب الثالث</a></li>
+            <li><a href="unit4/Unit4.html" rel="noopener noreferrer">الباب الرابع</a></li>
+            <li><a href="unit5/Unit5.html" rel="noopener noreferrer">الباب الخامس</a></li>
         </ul>
     </main>
     <footer>
         © 2025 دليل معادلة كلية الهندسة. جميع الحقوق محفوظة.
     </footer>
-    <script src="ChemistryLectures.js"></script> <!-- ربط ملف JavaScript الخاص -->
-    <script type="module" src="../../../script.js" defer></script> <!-- ربط ملف الـ JavaScript الرئيسي -->
+    <script src="ChemistryLectures.js" nonce="secure"></script>
+    <script type="module" src="../../../script.js" defer nonce="secure"></script>
 </body>
 </html>

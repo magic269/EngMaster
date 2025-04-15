@@ -1,31 +1,46 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>محاضرات جبر وهندسة فراغية</title>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" as="style" onload="this.rel='stylesheet'">
-    <noscript>
-        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
-    </noscript>
-    <link rel="stylesheet" href="../../../../../styles.css"> <!-- ربط ملف الـ CSS الرئيسي -->
-    <link rel="stylesheet" href="AlgebraGeometry.css"> <!-- ربط ملف CSS الخاص بالصفحة -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>محاضرات جبر وهندسة فراغية</title>
+
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'nonce-secure'; style-src 'self' https://fonts.googleapis.com 'nonce-secure'; font-src https://fonts.gstatic.com; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'; worker-src 'self';">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+  <meta http-equiv="X-Frame-Options" content="DENY" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" 
+        rel="stylesheet" 
+        integrity="sha384-Bz8SDH3Wv3aQj3+0f6V0gXh7k3qJ6e8v7k3qJ6e8v7k3qJ6e8v7k3qJ6e8v7k3q" 
+        crossorigin="anonymous" />
+
+  <link rel="stylesheet" href="../../../../../styles.css" nonce="secure" />
+  <link rel="stylesheet" href="AlgebraGeometry.css" nonce="secure" />
 </head>
 <body>
-    <header>
-        <h1>محاضرات جبر وهندسة فراغية</h1>
-        <a href="javascript:history.back()" class="btn-back">←</a>
-    </header>
-    <main>
-        <ul class="subject"> <!-- أضفت كلاس subject للتوافق مع الـ Dark Mode -->
-            <li><a href="الجبر/AlgebraLectures.html">الجبر</a></li>
-            <li><a href="الفراغية/SpatialGeometry.html">الفراغية</a></li>
-        </ul>
-    </main>
-    <footer>
-        © 2025 دليل معادلة كلية الهندسة. جميع الحقوق محفوظة.
-    </footer>
-    <script src="AlgebraGeometry.js"></script> <!-- ربط ملف JavaScript الخاص بالصفحة -->
-    <script type="module"ript src="../../../../../script.js" defer></script> <!-- ربط ملف الـ JavaScript الرئيسي -->
+  <header>
+    <h1>جبر وهندسة فراغية</h1>
+    <a href="/" class="btn-back">← العودة</a>
+  </header>
+
+  <main>
+    <ul class="subject">
+      <li><a href="الجبر/AlgebraLectures.html">الجبر</a></li>
+      <li><a href="الفراغية/SpatialGeometry.html">الفراغية</a></li>
+    </ul>
+  </main>
+
+  <footer>
+    <p>© <span id="current-year"></span> دليل معادلة كلية الهندسة. جميع الحقوق محفوظة.</p>
+  </footer>
+
+  <script nonce="secure" src="AlgebraGeometry.js"></script>
+  <script nonce="secure" type="module" src="../../../../../script.js"></script>
+  <script nonce="secure">
+    document.getElementById("current-year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
