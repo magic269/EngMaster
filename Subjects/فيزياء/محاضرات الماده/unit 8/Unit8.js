@@ -1,8 +1,9 @@
 const videoUrls = {
-    video25: "https://www.youtube.com/embed/gqPZH1YqwTU",
-    video26: "https://www.youtube.com/embed/7_Wjc7M7nDQ",
-    video27: "https://www.youtube.com/embed/6n6KVDtTh2o"
+    video25: "https://www.youtube.com/embed/qymXl470Hdo",
+    video26: "https://www.youtube.com/embed/CEYhZ-3sAP8",
+    video27: "https://www.youtube.com/embed/tsjiu8ICoYY"
 };
+
 
 const isValidUrl = (url) => url && /^https:\/\/www\.youtube\.com\/embed\//.test(url);
 

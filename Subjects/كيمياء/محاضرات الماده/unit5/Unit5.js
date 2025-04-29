@@ -7,7 +7,10 @@ const videoUrls = {
     video6: "https://www.youtube.com/embed/0OcGtTwpLj4",
     video7: "https://www.youtube.com/embed/dng8Xp31fSQ",
     video8: "https://www.youtube.com/embed/wg4LRlhtqoQ",
-    video9: "https://www.youtube.com/embed/videoseries?list=PLJwyTXdjPfG1F4vvTymM0Hywvun8NBjWa"
+    video9: "https://www.youtube.com/embed/videoseries?list=PLJwyTXdjPfG1F4vvTymM0Hywvun8NBjWa",
+    video10: "https://www.youtube.com/embed/ZplxMcCsE5A",
+    video11: "https://www.youtube.com/embed/jlUQZXE5mqw",
+    video12: "https://www.youtube.com/embed/zjFcZOO0tmg"
 };
 
 const isValidUrl = (url) => /^https:\/\/www\.youtube\.com\/embed\//.test(url);
