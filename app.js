@@ -80,7 +80,7 @@ async function handleLogin(e) {
 
         if (!userDoc.exists()) throw new Error('الحساب غير موجود!');
         
-        window.location.href = "index.html"; // حذف التحقق من الاشتراك
+        window.location.href = "index.html"; 
 
         e.target.reset();
     } catch (error) {
@@ -110,7 +110,7 @@ async function handleRegister(e) {
 
         await setDoc(doc(db, "users", userCredential.user.uid), {
             email: email,
-            username: username // حذف حقل subscribed
+            username: username 
         });
 
         console.log("تم حفظ بيانات المستخدم في Firestore بنجاح!");
