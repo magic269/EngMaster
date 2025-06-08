@@ -34,66 +34,64 @@ import { auth, db, onAuthStateChanged, signOut, getDoc, doc } from './firebase-c
 
     let currentSlide = 0;
     let slideInterval;
+    const hiddenClass = 'hidden';
 
+    // --- المصفوفة المحدثة بالمسارات الإنجليزية الصحيحة ---
     const subjects = [
-        { title: "مادة الإنجليزي", desc: "الصفحة الرئيسية لمادة اللغة الإنجليزية", link: "/Subjects/انجليزي/English.html" },
-        { title: "كتب الإنجليزي", desc: "صفحة كتب مادة الإنجليزي", link: "/Subjects/انجليزي/الكتب/books.html" },
-        { title: "كتاب شرح الإنجليزي", desc: "صفحة كتاب دراسي لشرح مادة الإنجليزي", link: "/Subjects/انجليزي/الكتب/كتاب الشرح/explanation-book.html" },
-        { title: "كتاب مراجعة الإنجليزي", desc: "صفحة كتاب مراجعة نهائية للإنجليزي", link: "/Subjects/انجليزي/الكتب/كتاب المراجعة/review-book.html" },
-        { title: "امتحانات سابقة إنجليزي", desc: "صفحة امتحانات سابقة لمادة الإنجليزي", link: "/Subjects/انجليزي/امتحانات سابقه/past-exams.html" },
-        { title: "تمارين مراجعة إنجليزي", desc: "صفحة تمارين لمراجعة مادة الإنجليزي", link: "/Subjects/انجليزي/تمارين للمراجعه/review-exercises.html" },
-        { title: "محاضرات مادة الإنجليزي", desc: "صفحة محاضرات مادة الإنجليزي", link: "/Subjects/انجليزي/محاضرات الماده/course-lectures.html" },
-        { title: "مادة التفاضل والتكامل", desc: "الصفحة الرئيسية لمادة التفاضل والتكامل", link: "/Subjects/تفاضل و تكامل/Calculus.html" },
-        { title: "كتب التفاضل والتكامل", desc: "صفحة كتب مادة التفاضل والتكامل", link: "/Subjects/تفاضل و تكامل/الكتب/Books.html" },
-        { title: "امتحانات سابقة تفاضل وتكامل", desc: "صفحة امتحانات سابقة للتفاضل والتكامل", link: "/Subjects/تفاضل و تكامل/امتحانات سابقه/PastExams.html" },
-        { title: "تمارين مراجعة تفاضل وتكامل", desc: "صفحة تمارين لمراجعة التفاضل والتكامل", link: "/Subjects/تفاضل و تكامل/تمارين للمراجعه/ReviewExercises.html" },
-        { title: "محاضرات التفاضل والتكامل", desc: "صفحة محاضرات مادة التفاضل والتكامل", link: "/Subjects/تفاضل و تكامل/محاضرات الماده/CourseLectures.html" },
-        { title: "محاضرة تفاضل", desc: "محاضرة عن التفاضل", link: "/Subjects/تفاضل و تكامل/محاضرات الماده/تفاضل/Differentiation.html" },
-        { title: "محاضرة تكامل", desc: "محاضرة عن التكامل", link: "/Subjects/تفاضل و تكامل/محاضرات الماده/تكامل/Integration.html" },
-        { title: "مادة الجبر والهندسة الفراغية", desc: "الصفحة الرئيسية للجبر والهندسة الفراغية", link: "/Subjects/جبر و هندسة فراغية/Algebra.html" },
-        { title: "امتحانات سابقة جبر وهندسة", desc: "صفحة امتحانات سابقة للجبر والهندسة", link: "/Subjects/جبر و هندسة فراغية/امتحانات سابقه/PastExams.html" },
-        { title: "تمارين مراجعة جبر وهندسة", desc: "صفحة تمارين لمراجعة الجبر والهندسة", link: "/Subjects/جبر و هندسة فراغية/تمارين للمراجعه/ReviewExercises.html" },
-        { title: "كتب الجبر والهندسة", desc: "صفحة كتب الجبر والهندسة الفراغية", link: "/Subjects/جبر و هندسة فراغية/كتب/Books.html" },
-        { title: "محاضرات الجبر والهندسة", desc: "صفحة محاضرات الجبر والهندسة الفراغية", link: "/Subjects/جبر و هندسة فراغية/محاضرات الماده/AlgebraGeometry.html" },
-        { title: "محاضرة الجبر", desc: "محاضرة عن الجبر", link: "/Subjects/جبر و هندسة فراغية/محاضرات الماده/الجبر/AlgebraLectures.html" },
-        { title: "محاضرة الهندسة الفراغية", desc: "محاضرة عن الهندسة الفراغية", link: "/Subjects/جبر و هندسة فراغية/محاضرات الماده/الفراغية/SpatialGeometry.html" },
-        { title: "مادة الفيزياء", desc: "الصفحة الرئيسية لمادة الفيزياء", link: "/Subjects/فيزياء/Physics.html" },
-        { title: "كتب الفيزياء", desc: "صفحة كتب مادة الفيزياء", link: "/Subjects/فيزياء/الكتب/Books.html" },
-        { title: "امتحانات سابقة فيزياء", desc: "صفحة امتحانات سابقة لمادة الفيزياء", link: "/Subjects/فيزياء/امتحانات سابقه/PreviousExams.html" },
-        { title: "تمارين مراجعة فيزياء", desc: "صفحة تمارين لمراجعة مادة الفيزياء", link: "/Subjects/فيزياء/تمارين للمراجعه/ReviewExercises.html" },
-        { title: "حل كتاب الامتحان فيزياء", desc: "صفحة حلول كتاب الامتحان في الفيزياء", link: "/Subjects/فيزياء/حل كتاب الامتحان/Lectures.html" },
-        { title: "محاضرات الفيزياء", desc: "صفحة محاضرات مادة الفيزياء", link: "/Subjects/فيزياء/محاضرات الماده/Lectures.html" },
-        { title: "محاضرة Unit 1 فيزياء", desc: "محاضرة الوحدة الأولى في الفيزياء", link: "/Subjects/فيزياء/محاضرات الماده/unit 1/Unit1.html" },
-        { title: "مادة الكيمياء", desc: "الصفحة الرئيسية لمادة الكيمياء", link: "/Subjects/كيمياء/Chemistry.html" },
-        { title: "كتب الكيمياء", desc: "صفحة كتب مادة الكيمياء", link: "/Subjects/كيمياء/الكتب/Books.html" },
-        { title: "كتاب شرح الكيمياء", desc: "صفحة كتاب دراسي لشرح مادة الكيمياء", link: "/Subjects/كيمياء/الكتب/كتاب الشرح/ExplanationBook.html" },
-        { title: "كتاب مراجعة الكيمياء", desc: "صفحة كتاب مراجعة نهائية للكيمياء", link: "/Subjects/كيمياء/الكتب/كتاب المراجعة/index.html" },
-        { title: "امتحانات سابقة كيمياء", desc: "صفحة امتحانات سابقة لمادة الكيمياء", link: "/Subjects/كيمياء/امتحانات سابقه/Exams.html" },
-        { title: "تمارين مراجعة كيمياء", desc: "صفحة تمارين لمراجعة مادة الكيمياء", link: "/Subjects/كيمياء/تمارين للمراجعه/Exercises.html" },
-        { title: "محاضرات الكيمياء", desc: "صفحة محاضرات مادة الكيمياء", link: "/Subjects/كيمياء/محاضرات الماده/ChemistryLectures.html" },
-        { title: "محاضرة Unit 1 كيمياء", desc: "محاضرة الوحدة الأولى في الكيمياء", link: "/Subjects/كيمياء/محاضرات الماده/unit1/Unit1.html" },
-        { title: "محاضرة Unit 2 كيمياء", desc: "محاضرة الوحدة الثانية في الكيمياء", link: "/Subjects/كيمياء/محاضرات الماده/unit2/Unit2.html" },
-        { title: "محاضرة Unit 3 كيمياء", desc: "محاضرة الوحدة الثالثة في الكيمياء", link: "/Subjects/كيمياء/محاضرات الماده/unit3/Unit3.html" },
-        { title: "محاضرة Unit 4 كيمياء", desc: "محاضرة الوحدة الرابعة في الكيمياء", link: "/Subjects/كيمياء/محاضرات الماده/unit4/Unit4.html" },
-        { title: "محاضرة Unit 5 كيمياء", desc: "محاضرة الوحدة الخامسة في الكيمياء", link: "/Subjects/كيمياء/محاضرات الماده/unit5/Unit5.html" },
-        { title: "مادة الميكانيكا", desc: "الصفحة الرئيسية لمادة الميكانيكا", link: "/Subjects/ميكانيكا/Mechanics.html" },
-        { title: "كتب الميكانيكا", desc: "صفحة كتب مادة الميكانيكا", link: "/Subjects/ميكانيكا/الكتب/Books.html" },
-        { title: "كتب الاستاتيكا", desc: "صفحة كتب الاستاتيكا في الميكانيكا", link: "/Subjects/ميكانيكا/الكتب/استاتيكا/StaticsBooks.html" },
-        { title: "كتب الديناميكا", desc: "صفحة كتب الديناميكا في الميكانيكا", link: "/Subjects/ميكانيكا/الكتب/ديناميكا/DynamicsBooks.html" },
-        { title: "امتحانات سابقة ميكانيكا", desc: "صفحة امتحانات سابقة لمادة الميكانيكا", link: "/Subjects/ميكانيكا/امتحانات سابقه/Exams.html" },
-        { title: "تمارين مراجعة ميكانيكا", desc: "صفحة تمارين لمراجعة مادة الميكانيكا", link: "/Subjects/ميكانيكا/تمارين للمراجعه/Exercises.html" },
-        { title: "محاضرات الميكانيكا", desc: "صفحة محاضرات مادة الميكانيكا", link: "/Subjects/ميكانيكا/محاضرات الماده/Lectures.html" },
-        { title: "محاضرات الاستاتيكا", desc: "صفحة محاضرات الاستاتيكا في الميكانيكا", link: "/Subjects/ميكانيكا/محاضرات الماده/استاتيكا/StaticsLectures.html" },
-        { title: "محاضرات الوحدة الأولى استاتيكا", desc: "صفحة محاضرات الوحدة الأولى في الاستاتيكا", link: "/Subjects/ميكانيكا/محاضرات الماده/استاتيكا/الوحدة الأولى/index.html" },
-        { title: "محاضرات الوحدة الثانية استاتيكا", desc: "صفحة محاضرات الوحدة الثانية في الاستاتيكا", link: "/Subjects/ميكانيكا/محاضرات الماده/استاتيكا/الوحدة الثانية/index.html" },
-        { title: "محاضرات الوحدة الثالثة استاتيكا", desc: "صفحة محاضرات الوحدة الثالثة في الاستاتيكا", link: "/Subjects/ميكانيكا/محاضرات الماده/استاتيكا/الوحدة الثالثة/index.html" },
-        { title: "محاضرات الوحدة الرابعة استاتيكا", desc: "صفحة محاضرات الوحدة الرابعة في الاستاتيكا", link: "/Subjects/ميكانيكا/محاضرات الماده/استاتيكا/الوحدة الرابعة/index.html" },
-        { title: "محاضرات الوحدة الخامسة استاتيكا", desc: "صفحة محاضرات الوحدة الخامسة في الاستاتيكا", link: "/Subjects/ميكانيكا/محاضرات الماده/استاتيكا/الوحدة الخامسة/index.html" },
-        { title: "محاضرة الدرس الأول استاتيكا وحدة 5", desc: "الدرس الأول في الوحدة الخامسة استاتيكا", link: "/Subjects/ميكانيكا/محاضرات الماده/استاتيكا/الوحدة الخامسة/الدرس الأول/index.html" },
-        { title: "محاضرات الديناميكا", desc: "صفحة محاضرات الديناميكا في الميكانيكا", link: "/Subjects/ميكانيكا/محاضرات الماده/ديناميكا/DynamicsLectures.html" },
-        { title: "محاضرات الوحدة الثانية ديناميكا", desc: "صفحة محاضرات الوحدة الثانية في الديناميكا", link: "/Subjects/ميكانيكا/محاضرات الماده/ديناميكا/الوحدة الثانية/index.html" },
-        { title: "محاضرة الوحدة الثالثة ديناميكا", desc: "محاضرة الوحدة الثالثة في الديناميكا", link: "/Subjects/ميكانيكا/محاضرات الماده/ديناميكا/الوحدة الثالثة/index.html" },
-        { title: "محاضرة الوحدة الرابعة ديناميكا", desc: "محاضرة الوحدة الرابعة في الديناميكا", link: "/Subjects/ميكانيكا/محاضرات الماده/ديناميكا/الوحدة الرابعة/index.html" }
+        // English
+        { title: "مادة الإنجليزي", desc: "الصفحة الرئيسية لمادة اللغة الإنجليزية", link: "Subjects/انجليزي/English.html" },
+        { title: "كتب الإنجليزي", desc: "صفحة كتب مادة الإنجليزي", link: "Subjects/انجليزي/الكتب/books.html" },
+        { title: "كتاب شرح الإنجليزي", desc: "صفحة كتاب دراسي لشرح مادة الإنجليزي", link: "Subjects/انجليزي/الكتب/كتاب الشرح/explanation-book.html" },
+        { title: "كتاب مراجعة الإنجليزي", desc: "صفحة كتاب مراجعة نهائية للإنجليزي", link: "Subjects/انجليزي/الكتب/كتاب المراجعة/review-book.html" },
+        { title: "امتحانات سابقة إنجليزي", desc: "صفحة امتحانات سابقة لمادة الإنجليزي", link: "Subjects/انجليزي/امتحانات سابقه/past-exams.html" },
+        { title: "تمارين مراجعة إنجليزي", desc: "صفحة تمارين لمراجعة مادة الإنجليزي", link: "Subjects/انجليزي/تمارين للمراجعه/review-exercises.html" },
+        { title: "محاضرات مادة الإنجليزي", desc: "صفحة محاضرات مادة الإنجليزي", link: "Subjects/انجليزي/محاضرات الماده/course-lectures.html" },
+        
+        // Calculus
+        { title: "مادة التفاضل والتكامل", desc: "الصفحة الرئيسية لمادة التفاضل والتكامل", link: "Subjects/تفاضل و تكامل/Calculus.html" },
+        { title: "كتب التفاضل والتكامل", desc: "صفحة كتب مادة التفاضل والتكامل", link: "Subjects/تفاضل و تكامل/الكتب/Books.html" },
+        { title: "امتحانات سابقة تفاضل وتكامل", desc: "صفحة امتحانات سابقة للتفاضل والتكامل", link: "Subjects/تفاضل و تكامل/امتحانات سابقه/PastExams.html" },
+        { title: "تمارين مراجعة تفاضل وتكامل", desc: "صفحة تمارين لمراجعة التفاضل والتكامل", link: "Subjects/تفاضل و تكامل/تمارين للمراجعه/ReviewExercises.html" },
+        { title: "محاضرات التفاضل والتكامل", desc: "صفحة محاضرات مادة التفاضل والتكامل", link: "Subjects/تفاضل و تكامل/محاضرات الماده/CourseLectures.html" },
+        { title: "محاضرة تفاضل", desc: "محاضرة عن التفاضل", link: "Subjects/تفاضل و تكامل/محاضرات الماده/تفاضل/Differentiation.html" },
+        { title: "محاضرة تكامل", desc: "محاضرة عن التكامل", link: "Subjects/تفاضل و تكامل/محاضرات الماده/تكامل/Integration.html" },
+
+        // Algebra and Solid Geometry
+        { title: "مادة الجبر والهندسة الفراغية", desc: "الصفحة الرئيسية للجبر والهندسة الفراغية", link: "Subjects/جبر و هندسة فراغية/Algebra.html" },
+        { title: "امتحانات سابقة جبر وهندسة", desc: "صفحة امتحانات سابقة للجبر والهندسة", link: "Subjects/جبر و هندسة فراغية/امتحانات سابقه/PastExams.html" },
+        { title: "تمارين مراجعة جبر وهندسة", desc: "صفحة تمارين لمراجعة الجبر والهندسة", link: "Subjects/جبر و هندسة فراغية/تمارين للمراجعه/ReviewExercises.html" },
+        { title: "كتب الجبر والهندسة", desc: "صفحة كتب الجبر والهندسة الفراغية", link: "Subjects/جبر و هندسة فراغية/كتب/Books.html" },
+        { title: "محاضرات الجبر والهندسة", desc: "صفحة محاضرات الجبر والهندسة الفراغية", link: "Subjects/جبر و هندسة فراغية/محاضرات الماده/AlgebraGeometry.html" },
+        { title: "محاضرة الجبر", desc: "محاضرة عن الجبر", link: "Subjects/جبر و هندسة فراغية/محاضرات الماده/الجبر/AlgebraLectures.html" },
+        { title: "محاضرة الهندسة الفراغية", desc: "محاضرة عن الهندسة الفراغية", link: "Subjects/جبر و هندسة فراغية/محاضرات الماده/الفراغية/SpatialGeometry.html" },
+
+        // Physics
+        { title: "مادة الفيزياء", desc: "الصفحة الرئيسية لمادة الفيزياء", link: "Subjects/فيزياء/Physics.html" },
+        { title: "كتب الفيزياء", desc: "صفحة كتب مادة الفيزياء", link: "Subjects/فيزياء/الكتب/Books.html" },
+        { title: "امتحانات سابقة فيزياء", desc: "صفحة امتحانات سابقة لمادة الفيزياء", link: "Subjects/فيزياء/امتحانات سابقه/PreviousExams.html" },
+        { title: "تمارين مراجعة فيزياء", desc: "صفحة تمارين لمراجعة مادة الفيزياء", link: "Subjects/فيزياء/تمارين للمراجعه/ReviewExercises.html" },
+        { title: "حل كتاب الامتحان فيزياء", desc: "صفحة حلول كتاب الامتحان في الفيزياء", link: "Subjects/فيزياء/حل كتاب الامتحان/Lectures.html" },
+        { title: "محاضرات الفيزياء", desc: "صفحة محاضرات مادة الفيزياء", link: "Subjects/فيزياء/محاضرات الماده/lectures.html" },
+
+        // Chemistry
+        { title: "مادة الكيمياء", desc: "الصفحة الرئيسية لمادة الكيمياء", link: "Subjects/كيمياء/Chemistry.html" },
+        { title: "كتب الكيمياء", desc: "صفحة كتب مادة الكيمياء", link: "Subjects/كيمياء/الكتب/Books.html" },
+        { title: "كتاب شرح الكيمياء", desc: "صفحة كتاب دراسي لشرح مادة الكيمياء", link: "Subjects/كيمياء/الكتب/كتاب الشرح/ExplanationBook.html" },
+        { title: "كتاب مراجعة الكيمياء", desc: "صفحة كتاب مراجعة نهائية للكيمياء", link: "Subjects/كيمياء/الكتب/كتاب المراجعة/index.html" },
+        { title: "امتحانات سابقة كيمياء", desc: "صفحة امتحانات سابقة لمادة الكيمياء", link: "Subjects/كيمياء/امتحانات سابقه/Exams.html" },
+        { title: "تمارين مراجعة كيمياء", desc: "صفحة تمارين لمراجعة مادة الكيمياء", link: "Subjects/كيمياء/تمارين للمراجعه/Exercises.html" },
+        { title: "محاضرات الكيمياء", desc: "صفحة محاضرات مادة الكيمياء", link: "Subjects/كيمياء/محاضرات الماده/ChemistryLectures.html" },
+
+        // Mechanics
+        { title: "مادة الميكانيكا", desc: "الصفحة الرئيسية لمادة الميكانيكا", link: "Subjects/ميكانيكا/Mechanics.html" },
+        { title: "كتب الميكانيكا", desc: "صفحة كتب مادة الميكانيكا", link: "Subjects/ميكانيكا/الكتب/Books.html" },
+        { title: "كتب الاستاتيكا", desc: "صفحة كتب الاستاتيكا في الميكانيكا", link: "Subjects/ميكانيكا/الكتب/استاتيكا/StaticsBooks.html" },
+        { title: "كتب الديناميكا", desc: "صفحة كتب الديناميكا في الميكانيكا", link: "Subjects/ميكانيكا/الكتب/ديناميكا/DynamicsBooks.html" },
+        { title: "امتحانات سابقة ميكانيكا", desc: "صفحة امتحانات سابقة لمادة الميكانيكا", link: "Subjects/ميكانيكا/امتحانات سابقه/Exams.html" },
+        { title: "تمارين مراجعة ميكانيكا", desc: "صفحة تمارين لمراجعة مادة الميكانيكا", link: "Subjects/ميكانيكا/تمارين للمراجعه/Exercises.html" },
+        { title: "محاضرات الميكانيكا", desc: "صفحة محاضرات مادة الميكانيكا", link: "Subjects/ميكانيكا/محاضرات الماده/Lectures.html" },
+        { title: "محاضرات الاستاتيكا", desc: "صفحة محاضرات الاستاتيكا في الميكانيكا", link: "Subjects/ميكانيكا/محاضرات الماده/استاتيكا/StaticsLectures.html" },
+        { title: "محاضرات الديناميكا", desc: "صفحة محاضرات الديناميكا في الميكانيكا", link: "Subjects/ميكانيكا/محاضرات الماده/ديناميكا/DynamicsLectures.html" }
     ];
 
     function sanitizeInput(input) {
@@ -159,8 +157,8 @@ import { auth, db, onAuthStateChanged, signOut, getDoc, doc } from './firebase-c
     function toggleReadMore() {
         if (!equationContent || !readMoreBtn || !readLessBtn) return;
         const isVisible = equationContent.classList.toggle("visible");
-        readMoreBtn.classList.toggle("hidden", isVisible);
-        readLessBtn.classList.toggle("hidden", !isVisible);
+        readMoreBtn.classList.toggle(hiddenClass, isVisible);
+        readLessBtn.classList.toggle(hiddenClass, !isVisible);
         if (isVisible) {
             equationContent.scrollIntoView({ behavior: "smooth", block: "start" });
         }
@@ -215,33 +213,37 @@ import { auth, db, onAuthStateChanged, signOut, getDoc, doc } from './firebase-c
                 authButton.textContent = "تسجيل الخروج";
                 authButton.onclick = handleLogout;
             }
-            loggedInMenuItems.forEach(item => item.style.display = 'flex');
-            loggedOutMenuItems.forEach(item => item.style.display = 'none');
+            loggedInMenuItems.forEach(item => item.classList.remove(hiddenClass));
+            loggedOutMenuItems.forEach(item => item.classList.add(hiddenClass));
 
             try {
                 const userDoc = await getDoc(doc(db, "users", user.uid));
                 if (userDoc.exists() && userDoc.data().username) {
                     const username = sanitizeInput(userDoc.data().username);
-                    if (usernameDisplay) usernameDisplay.textContent = `مرحبًا، ${username}`;
+                    if (usernameDisplay) {
+                        usernameDisplay.textContent = `مرحبًا، ${username}`;
+                        usernameDisplay.classList.remove(hiddenClass);
+                    }
                     if (menuUsername) menuUsername.textContent = username;
-                    if (menuUserProfile) menuUserProfile.style.display = 'flex';
+                    if (menuUserProfile) menuUserProfile.classList.remove(hiddenClass);
                 } else {
-                     if (menuUserProfile) menuUserProfile.style.display = 'none';
+                     if (menuUserProfile) menuUserProfile.classList.add(hiddenClass);
+                     if (usernameDisplay) usernameDisplay.classList.add(hiddenClass);
                 }
             } catch (error) {
                 console.error("خطأ في جلب بيانات المستخدم:", error);
-                if (usernameDisplay) usernameDisplay.textContent = "";
-                if (menuUserProfile) menuUserProfile.style.display = 'none';
+                if (usernameDisplay) usernameDisplay.classList.add(hiddenClass);
+                if (menuUserProfile) menuUserProfile.classList.add(hiddenClass);
             }
         } else {
             if (authButton) {
                 authButton.textContent = "تسجيل الدخول";
                 authButton.onclick = () => { window.location.href = "login.html"; };
             }
-            loggedInMenuItems.forEach(item => item.style.display = 'none');
-            loggedOutMenuItems.forEach(item => item.style.display = 'flex');
-            if (usernameDisplay) usernameDisplay.textContent = "";
-            if (menuUserProfile) menuUserProfile.style.display = 'none';
+            loggedInMenuItems.forEach(item => item.classList.add(hiddenClass));
+            loggedOutMenuItems.forEach(item => item.classList.remove(hiddenClass));
+            if (usernameDisplay) usernameDisplay.classList.add(hiddenClass);
+            if (menuUserProfile) menuUserProfile.classList.add(hiddenClass);
         }
     }
 
@@ -279,9 +281,22 @@ import { auth, db, onAuthStateChanged, signOut, getDoc, doc } from './firebase-c
     function setupEventListeners() {
         const nextBtn = document.querySelector(".slider-btn.next");
         const prevBtn = document.querySelector(".slider-btn.prev");
-        if (nextBtn) nextBtn.addEventListener("click", debounce(() => { stopSlider(); nextSlide(); startSlider(); }, 300));
-        if (prevBtn) prevBtn.addEventListener("click", debounce(() => { stopSlider(); prevSlide(); startSlider(); }, 300));
-        dots.forEach((dot, i) => dot.addEventListener("click", debounce(() => { stopSlider(); showSlide(i); startSlider(); }, 300)));
+
+        const slideHandler = (action) => {
+            stopSlider();
+            action();
+            startSlider();
+        };
+
+        if (nextBtn) nextBtn.addEventListener("click", debounce(() => slideHandler(nextSlide), 300));
+        if (prevBtn) prevBtn.addEventListener("click", debounce(() => slideHandler(prevSlide), 300));
+        
+        dots.forEach(dot => {
+            dot.addEventListener("click", debounce(() => {
+                const slideIndex = parseInt(dot.dataset.slide, 10);
+                slideHandler(() => showSlide(slideIndex));
+            }, 300));
+        });
 
         if (readMoreBtn) readMoreBtn.addEventListener("click", debounce(toggleReadMore, 300));
         if (readLessBtn) readLessBtn.addEventListener("click", debounce(toggleReadMore, 300));
@@ -347,14 +362,14 @@ import { auth, db, onAuthStateChanged, signOut, getDoc, doc } from './firebase-c
         
         if (mobileSearchTrigger) {
             mobileSearchTrigger.addEventListener('click', () => {
-                if(mobileSearchOverlay) mobileSearchOverlay.style.display = 'flex';
+                if(mobileSearchOverlay) mobileSearchOverlay.classList.remove(hiddenClass);
                 if(mobileSearchInput) mobileSearchInput.focus();
             });
         }
 
         if (closeSearchOverlayBtn) {
             closeSearchOverlayBtn.addEventListener('click', () => {
-                if(mobileSearchOverlay) mobileSearchOverlay.style.display = 'none';
+                if(mobileSearchOverlay) mobileSearchOverlay.classList.add(hiddenClass);
                 if(searchResults) searchResults.classList.remove('show');
                 if(mobileSearchInput) mobileSearchInput.value = '';
             });
