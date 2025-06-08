@@ -3,6 +3,7 @@ import { auth, db, onAuthStateChanged, signOut, getDoc, doc } from './firebase-c
 (function () {
     "use strict";
 
+    // DOM Elements
     const body = document.body;
     const slides = document.querySelectorAll(".hero-slide");
     const dots = document.querySelectorAll(".dot");
@@ -32,10 +33,12 @@ import { auth, db, onAuthStateChanged, signOut, getDoc, doc } from './firebase-c
     const menuUserProfile = document.querySelector('#menu-user-profile');
     const menuUsername = document.querySelector('#menu-username');
 
+    // State Variables
     let currentSlide = 0;
     let slideInterval;
     const hiddenClass = 'hidden';
 
+    // Data
     const subjects = [
         // English
         { title: "مادة الإنجليزي", desc: "الصفحة الرئيسية لمادة اللغة الإنجليزية", link: "Subjects/انجليزي/English.html" },
@@ -105,28 +108,15 @@ import { auth, db, onAuthStateChanged, signOut, getDoc, doc } from './firebase-c
         const style = document.createElement('style');
         style.textContent = `
             .toast {
-                position: fixed;
-                bottom: 20px;
-                left: 50%;
-                transform: translateX(-50%);
-                padding: 12px 20px;
-                border-radius: 8px;
-                color: white;
-                font-family: 'Cairo', sans-serif;
-                z-index: 2000;
-                opacity: 0;
-                transition: opacity 0.3s, bottom 0.3s;
+                position: fixed; bottom: 20px; left: 50%;
+                transform: translateX(-50%); padding: 12px 20px;
+                border-radius: 8px; color: white;
+                font-family: 'Cairo', sans-serif; z-index: 2000;
+                opacity: 0; transition: opacity 0.3s, bottom 0.3s;
             }
-            .toast.show {
-                opacity: 1;
-                bottom: 40px;
-            }
-            .toast.error {
-                background-color: #e74c3c;
-            }
-            .toast.success {
-                background-color: #2ecc71;
-            }
+            .toast.show { opacity: 1; bottom: 40px; }
+            .toast.error { background-color: #e74c3c; }
+            .toast.success { background-color: #2ecc71; }
         `;
         document.head.appendChild(style);
         document.body.appendChild(toast);
@@ -208,41 +198,49 @@ import { auth, db, onAuthStateChanged, signOut, getDoc, doc } from './firebase-c
 
     async function updateUIForAuthState(user) {
         if (user) {
+            // Logged-in state
             if (authButton) {
                 authButton.textContent = "تسجيل الخروج";
                 authButton.onclick = handleLogout;
             }
-            loggedInMenuItems.forEach(item => item.classList.remove(hiddenClass));
-            loggedOutMenuItems.forEach(item => item.classList.add(hiddenClass));
-
+            // Show logged-in items
+            loggedInMenuItems.forEach(item => item.style.display = 'flex');
+            if (menuUserProfile) menuUserProfile.style.display = 'flex';
+            // Hide logged-out items
+            loggedOutMenuItems.forEach(item => item.style.display = 'none');
+            
+            // Fetch and display username
             try {
                 const userDoc = await getDoc(doc(db, "users", user.uid));
                 if (userDoc.exists() && userDoc.data().username) {
                     const username = sanitizeInput(userDoc.data().username);
                     if (usernameDisplay) {
                         usernameDisplay.textContent = `مرحبًا، ${username}`;
-                        usernameDisplay.classList.remove(hiddenClass);
+                        usernameDisplay.classList.remove('hidden');
                     }
                     if (menuUsername) menuUsername.textContent = username;
-                    if (menuUserProfile) menuUserProfile.classList.remove(hiddenClass);
                 } else {
-                     if (menuUserProfile) menuUserProfile.classList.add(hiddenClass);
-                     if (usernameDisplay) usernameDisplay.classList.add(hiddenClass);
+                     if (menuUserProfile) menuUserProfile.style.display = 'none';
+                     if (usernameDisplay) usernameDisplay.classList.add('hidden');
                 }
             } catch (error) {
                 console.error("خطأ في جلب بيانات المستخدم:", error);
-                if (usernameDisplay) usernameDisplay.classList.add(hiddenClass);
-                if (menuUserProfile) menuUserProfile.classList.add(hiddenClass);
+                if (usernameDisplay) usernameDisplay.classList.add('hidden');
+                if (menuUserProfile) menuUserProfile.style.display = 'none';
             }
         } else {
+            // Logged-out state
             if (authButton) {
                 authButton.textContent = "تسجيل الدخول";
                 authButton.onclick = () => { window.location.href = "login.html"; };
             }
-            loggedInMenuItems.forEach(item => item.classList.add(hiddenClass));
-            loggedOutMenuItems.forEach(item => item.classList.remove(hiddenClass));
-            if (usernameDisplay) usernameDisplay.classList.add(hiddenClass);
-            if (menuUserProfile) menuUserProfile.classList.add(hiddenClass);
+            // Hide logged-in items
+            loggedInMenuItems.forEach(item => item.style.display = 'none');
+            if (menuUserProfile) menuUserProfile.style.display = 'none';
+            if (usernameDisplay) usernameDisplay.classList.add('hidden');
+    
+            // Show logged-out items
+            loggedOutMenuItems.forEach(item => item.style.display = 'flex');
         }
     }
 
@@ -361,14 +359,14 @@ import { auth, db, onAuthStateChanged, signOut, getDoc, doc } from './firebase-c
         
         if (mobileSearchTrigger) {
             mobileSearchTrigger.addEventListener('click', () => {
-                if(mobileSearchOverlay) mobileSearchOverlay.classList.remove(hiddenClass);
+                if(mobileSearchOverlay) mobileSearchOverlay.style.display = 'flex';
                 if(mobileSearchInput) mobileSearchInput.focus();
             });
         }
 
         if (closeSearchOverlayBtn) {
             closeSearchOverlayBtn.addEventListener('click', () => {
-                if(mobileSearchOverlay) mobileSearchOverlay.classList.add(hiddenClass);
+                if(mobileSearchOverlay) mobileSearchOverlay.style.display = 'none';
                 if(searchResults) searchResults.classList.remove('show');
                 if(mobileSearchInput) mobileSearchInput.value = '';
             });
@@ -384,10 +382,8 @@ import { auth, db, onAuthStateChanged, signOut, getDoc, doc } from './firebase-c
             body.classList.add('dark-mode');
         }
 
-        // On mobile, move the search results container to be a direct child of the body
-        // to ensure it is visible when the mobile search is active.
-        if (window.innerWidth <= 768 && searchResults) {
-            body.appendChild(searchResults);
+        if (window.innerWidth <= 768 && searchResults && mobileSearchOverlay) {
+             mobileSearchOverlay.insertAdjacentElement('afterend', searchResults);
         }
 
         if (slides && slides.length > 0) {
