@@ -36,7 +36,6 @@ import { auth, db, onAuthStateChanged, signOut, getDoc, doc } from './firebase-c
     let slideInterval;
     const hiddenClass = 'hidden';
 
-    // --- المصفوفة المحدثة بالمسارات الإنجليزية الصحيحة ---
     const subjects = [
         // English
         { title: "مادة الإنجليزي", desc: "الصفحة الرئيسية لمادة اللغة الإنجليزية", link: "Subjects/انجليزي/English.html" },
@@ -383,6 +382,12 @@ import { auth, db, onAuthStateChanged, signOut, getDoc, doc } from './firebase-c
     function init() {
         if (localStorage.getItem('darkMode') === 'enabled') {
             body.classList.add('dark-mode');
+        }
+
+        // On mobile, move the search results container to be a direct child of the body
+        // to ensure it is visible when the mobile search is active.
+        if (window.innerWidth <= 768 && searchResults) {
+            body.appendChild(searchResults);
         }
 
         if (slides && slides.length > 0) {
